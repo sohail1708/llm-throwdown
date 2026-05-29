@@ -4,42 +4,42 @@
       "name": "chatgpt",
       "label": "ChatGPT",
       "accent": "emerald",
-      "nav": 100000.0,
-      "ret_pct": 0.0,
+      "nav": 101544.33,
+      "ret_pct": 1.54,
       "days_first": 1,
-      "n_positions": 0,
-      "cash": 100000.0,
-      "spent_usd": 0.06,
+      "n_positions": 2,
+      "cash": 50000.0,
+      "spent_usd": 0.12,
       "budget_usd": 10.0,
-      "budget_pct": 0.6,
+      "budget_pct": 1.2,
       "rank": 1
-    },
-    {
-      "name": "claude",
-      "label": "Claude",
-      "accent": "orange",
-      "nav": 100000.0,
-      "ret_pct": 0.0,
-      "days_first": 1,
-      "n_positions": 0,
-      "cash": 100000.0,
-      "spent_usd": 0.05,
-      "budget_usd": 10.0,
-      "budget_pct": 0.5,
-      "rank": 2
     },
     {
       "name": "gemini",
       "label": "Gemini",
       "accent": "blue",
-      "nav": 100000.0,
-      "ret_pct": 0.0,
-      "days_first": 1,
-      "n_positions": 0,
-      "cash": 100000.0,
-      "spent_usd": 0.02,
+      "nav": 100260.28,
+      "ret_pct": 0.26,
+      "days_first": 0,
+      "n_positions": 2,
+      "cash": 50000.0,
+      "spent_usd": 0.03,
       "budget_usd": 10.0,
-      "budget_pct": 0.2,
+      "budget_pct": 0.3,
+      "rank": 2
+    },
+    {
+      "name": "claude",
+      "label": "Claude",
+      "accent": "orange",
+      "nav": 100228.09,
+      "ret_pct": 0.23,
+      "days_first": 0,
+      "n_positions": 2,
+      "cash": 50000.0,
+      "spent_usd": 0.11,
+      "budget_usd": 10.0,
+      "budget_pct": 1.1,
       "rank": 3
     }
   ],
@@ -49,45 +49,38 @@
       "ai": "chatgpt",
       "label": "ChatGPT",
       "action": "BUY",
-      "ticker": "ORCL",
+      "ticker": "GOOGL",
       "amount": 25000.0,
-      "reason": "Buying ORCL breakout on AI/cloud momentum; technicals strong, valuation improving. Using 25% position to ride continuation while keeping dry powder.",
+      "reason": "Buying GOOGL into gap support near 380; RSI oversold, bounce setup with tight risk. ORCL, AVGO extended; let them consolidate.",
       "confidence": 4,
-      "nav_before": 100000.0,
-      "cash_before": 100000.0,
+      "nav_before": 101211.15,
+      "cash_before": 75000.0,
       "research": {
         "candidates": [
           {
             "ticker": "ORCL",
-            "bull": "Post-breakout to new highs on AI/cloud momentum, ~22% revenue growth and a more palatable forward P/E point to continuation.",
-            "bear": "Debt-heavy balance sheet and negative FCF from aggressive capex, plus a swift recent surge, raise risk of a sharp pause if AI enthusiasm cools.",
+            "bull": "Fresh all-time-high breakout on rising volume with AI data-center momentum and pre-earnings tailwinds could extend the squeeze.",
+            "bear": "After a two-day 15%+ surge and 5-day +17%, an exhaustion gap and debt-fueled capex concerns could spark a sharp pullback.",
+            "lean": "HOLD"
+          },
+          {
+            "ticker": "GOOGL",
+            "bull": "Pullback to the post-earnings gap area around 380 with RSI near 36 sets up a mean-reversion bounce with defined downside.",
+            "bear": "A decisive break of 380 would open an air pocket toward the mid-370s amid lingering ad, regulatory, and AI-competition headline risks.",
             "lean": "BUY"
           },
           {
-            "ticker": "AAPL",
-            "bull": "Powerful uptrend into WWDC with AI feature speculation and relentless buybacks could keep the squeeze going.",
-            "bear": "RSI near extreme overbought and crowded positioning after a steep multi-week rally make a pullback or consolidation likely.",
-            "lean": "HOLD"
-          },
-          {
-            "ticker": "MSFT",
-            "bull": "Azure AI adoption and Copilot monetization support steady upside with a still-reasonable RSI after a strong session.",
-            "bear": "Premium valuation and potential digestion after a 3.5% pop could constrain near-term follow-through.",
+            "ticker": "AVGO",
+            "bull": "AI networking exposure, steady uptrend, and positive semi read-through support a continued run-up into earnings with RSI not overbought.",
+            "bear": "At a $1T+ valuation the bar is high and any guide wobble or sector risk-off could quickly unwind recent gains.",
             "lean": "HOLD"
           }
         ],
-        "summary": "ORCL\u2019s AI/cloud-driven breakout with room on technicals stands out versus an overbought AAPL and a likely-to-digest MSFT; favor buying the ORCL breakout today.",
+        "summary": "AI-infrastructure leaders are bid, but the best near-term risk/reward today is buying GOOGL into gap support while letting ORCL and AVGO consolidate.",
         "preferred_action": "BUY",
-        "preferred_ticker": "ORCL",
+        "preferred_ticker": "GOOGL",
         "tools_used": [
           {
-            "name": "get_news",
-            "args": {
-              "ticker": "ORCL",
-              "n": 8
-            }
-          },
-          {
             "name": "get_history",
             "args": {
               "ticker": "ORCL",
@@ -97,87 +90,81 @@
           {
             "name": "get_news",
             "args": {
-              "ticker": "AAPL",
-              "n": 8
+              "ticker": "ORCL",
+              "n": 6
             }
           },
           {
             "name": "get_history",
             "args": {
-              "ticker": "AAPL",
+              "ticker": "GOOGL",
               "days": 60
             }
           },
           {
-            "name": "get_financials",
+            "name": "get_news",
             "args": {
-              "ticker": "ORCL"
+              "ticker": "GOOGL",
+              "n": 6
+            }
+          },
+          {
+            "name": "get_news",
+            "args": {
+              "ticker": "AVGO",
+              "n": 6
             }
           }
         ]
       },
       "tokens": {
-        "input": 10022,
-        "output": 4484
+        "input": 10069,
+        "output": 5345
       },
-      "cost_usd": 0.0574,
+      "cost_usd": 0.066,
       "order": {
-        "order_id": "b71a722e-6b16-4285-aaf4-a6dac995cd9f",
+        "order_id": "da20d3a6-8ef9-4ebf-bc6b-34c97395f321",
         "status": "pending_new"
       },
       "dry_run": false,
-      "submitted_at": "2026-05-29T13:17:53.230036+00:00"
+      "submitted_at": "2026-05-29T16:58:44.545748+00:00"
     },
     "claude": {
       "date": "2026-05-29",
       "ai": "claude",
       "label": "Claude",
       "action": "BUY",
-      "ticker": "TSLA",
+      "ticker": "AVGO",
       "amount": 25000.0,
-      "reason": "Clean uptrend from $372 to $442, RSI at 61 with room to run toward $460+. Best setup in the universe today.",
+      "reason": "AVGO breaking $440 resistance, $1T club, RSI 54.9 not stretched, AI custom chip momentum is real. Clean entry, solid risk/reward.",
       "confidence": 4,
-      "nav_before": 100000.0,
-      "cash_before": 100000.0,
+      "nav_before": 100016.31,
+      "cash_before": 75000.0,
       "research": {
         "candidates": [
           {
-            "ticker": "TSLA",
-            "bull": "Strong 5-week uptrend from $372 to $442, RSI at 61 (not overbought), clean consolidation after the May peak, momentum intact with room to push toward $460+.",
-            "bear": "Broader market volatility or macro risk-off could halt the rally; TSLA is inherently volatile and has already gained ~19% in a month.",
+            "ticker": "AVGO",
+            "bull": "Just joined the $1T market cap club with AI custom chip momentum, RSI at 54.9 (not overbought), breaking out above $440 resistance with strong 5-day momentum (+6.1%) and AI infrastructure tailwind intact.",
+            "bear": "Marvell is emerging as a credible rival, and AVGO's 3-day run could stall if broader semi sector rotates after ORCL's massive move steals AI narrative oxygen.",
             "lean": "BUY"
           },
           {
             "ticker": "ORCL",
-            "bull": "21.7% revenue growth with forward P/E of 25x looks attractive after a strong 8.26% 5-day run; cloud and AI tailwinds are real.",
-            "bear": "Negative free cash flow (-$22B) and extreme debt-to-equity (415x) are red flags; stock is up 8%+ in 5 days and likely due for a pullback after the gap-up move.",
+            "bull": "Explosive 2-day +16% surge on what appears to be an earnings/AI data center catalyst, with RSI still only at 67 and momentum firmly established.",
+            "bear": "Already up ~16% in two sessions with debt concerns flagged by analysts \u2014 chasing at this level risks a sharp mean reversion on profit-taking.",
             "lean": "HOLD"
           },
           {
-            "ticker": "AAPL",
-            "bull": "Strong brand, AI integration narrative, and tech sector momentum supporting price above $312.",
-            "bear": "RSI of 87.5 is severely overbought \u2014 historically a strong mean-reversion signal \u2014 and no clear fresh catalyst in the news to justify the extended run.",
+            "ticker": "TSLA",
+            "bull": "Already holding a position in a clean uptrend from $372, RSI 53 with room to run toward $460+, and EV/autonomy narrative remains intact.",
+            "bear": "Position already held at $437.29 avg and today's -1.32% print shows the uptrend may be taking a breather; adding more concentration increases portfolio risk.",
             "lean": "HOLD"
           }
         ],
-        "summary": "TSLA is the cleanest setup today \u2014 strong trend, healthy RSI at 61, recovering from consolidation, with no overbought warning signals unlike AAPL (RSI 87.5) or the post-spike risk in ORCL.",
+        "summary": "AVGO is the cleanest fresh entry today \u2014 breaking out above $440 on $1T milestone and AI chip tailwind with RSI at moderate 54.9, while ORCL is too extended after a +16% 2-day surge and TSLA is already a meaningful portfolio position.",
         "preferred_action": "BUY",
-        "preferred_ticker": "TSLA",
+        "preferred_ticker": "AVGO",
         "tools_used": [
-          {
-            "name": "get_news",
-            "args": {
-              "ticker": "ORCL",
-              "n": 5
-            }
-          },
-          {
-            "name": "get_news",
-            "args": {
-              "ticker": "AAPL",
-              "n": 5
-            }
-          },
           {
             "name": "read_own_trades",
             "args": {
@@ -186,80 +173,83 @@
             }
           },
           {
-            "name": "get_financials",
+            "name": "get_news",
             "args": {
-              "ticker": "ORCL"
+              "ticker": "ORCL",
+              "n": 5
+            }
+          },
+          {
+            "name": "get_news",
+            "args": {
+              "ticker": "AVGO",
+              "n": 5
             }
           },
           {
             "name": "get_history",
             "args": {
-              "ticker": "TSLA",
-              "days": 20
+              "ticker": "ORCL",
+              "days": 15
+            }
+          },
+          {
+            "name": "get_history",
+            "args": {
+              "ticker": "AVGO",
+              "days": 15
             }
           }
         ]
       },
       "tokens": {
-        "input": 10611,
-        "output": 1250
+        "input": 11210,
+        "output": 1390
       },
-      "cost_usd": 0.0506,
+      "cost_usd": 0.0545,
       "order": {
-        "order_id": "4bc3c559-7b2d-493d-8f40-8eba691d32b6",
+        "order_id": "dfa3324d-d817-428f-b712-933ecb5b1810",
         "status": "pending_new"
       },
       "dry_run": false,
-      "submitted_at": "2026-05-29T13:18:22.177766+00:00"
+      "submitted_at": "2026-05-29T16:59:15.626791+00:00"
     },
     "gemini": {
       "date": "2026-05-29",
       "ai": "gemini",
       "label": "Gemini",
       "action": "BUY",
-      "ticker": "NVDA",
+      "ticker": "MSFT",
       "amount": 25000.0,
-      "reason": "This pullback on an undisputed market leader is a gift. Starting a new core position on this dip while the analyst consensus is still overwhelmingly bullish.",
-      "confidence": 4,
-      "nav_before": 100000.0,
-      "cash_before": 100000.0,
+      "reason": "Rotating from a stalled name into a clear winner. MSFT has monster momentum backed by elite financials, it's an easy call.",
+      "confidence": 5,
+      "nav_before": 100344.98,
+      "cash_before": 75000.0,
       "research": {
         "candidates": [
           {
-            "ticker": "NVDA",
-            "bull": "A recent 4% pullback in a clear market leader with overwhelmingly bullish analyst ratings presents a classic buy-the-dip opportunity.",
-            "bear": "The recent weakness could be the start of a larger sector rotation away from AI names after a massive run-up.",
+            "ticker": "MSFT",
+            "bull": "It has strong upward price momentum backed by elite financials, including high margins and massive free cash flow.",
+            "bear": "As one of the largest companies in the world, its upside may be more limited than smaller, higher-growth names.",
             "lean": "BUY"
           },
           {
-            "ticker": "AAPL",
-            "bull": "The stock has incredibly strong upward momentum and continues to break into new highs.",
-            "bear": "An RSI of 87.5 indicates the stock is extremely overbought and overdue for a significant pullback.",
-            "lean": "HOLD"
+            "ticker": "NVDA",
+            "bull": "Analyst price targets remain significantly higher than the current price, suggesting strong long-term conviction from the Street.",
+            "bear": "The stock's momentum has stalled recently, underperforming several other large-cap tech peers over the past week.",
+            "lean": "SELL"
           },
           {
             "ticker": "ORCL",
-            "bull": "A massive 6.67% single-day gain shows immense buying pressure that could see near-term follow-through.",
-            "bear": "Chasing a huge one-day spike is risky, and the company's very high debt-to-equity ratio is a fundamental concern.",
+            "bull": "The stock has explosive momentum on the back of its AI data center buildout narrative.",
+            "bear": "The company has taken on an enormous amount of debt, has negative free cash flow, and the recent 17% run looks overextended.",
             "lean": "HOLD"
           }
         ],
-        "summary": "Apple appears extremely overbought, while Nvidia's recent dip offers a more attractive entry point for a market leader with strong analyst support.",
+        "summary": "I am rotating from a stalled position (NVDA) into a stock with superior momentum and financials (MSFT).",
         "preferred_action": "BUY",
-        "preferred_ticker": "NVDA",
+        "preferred_ticker": "MSFT",
         "tools_used": [
-          {
-            "name": "get_news",
-            "args": {
-              "ticker": "ORCL"
-            }
-          },
-          {
-            "name": "get_history",
-            "args": {
-              "ticker": "AAPL"
-            }
-          },
           {
             "name": "get_news",
             "args": {
@@ -273,24 +263,36 @@
             }
           },
           {
+            "name": "get_news",
+            "args": {
+              "ticker": "ORCL"
+            }
+          },
+          {
             "name": "get_financials",
             "args": {
               "ticker": "ORCL"
+            }
+          },
+          {
+            "name": "get_financials",
+            "args": {
+              "ticker": "MSFT"
             }
           }
         ]
       },
       "tokens": {
-        "input": 18051,
-        "output": 467
+        "input": 3824,
+        "output": 465
       },
-      "cost_usd": 0.0249,
+      "cost_usd": 0.0071,
       "order": {
-        "order_id": "9e31681e-0b63-46e8-a54a-50fa7d6d9125",
+        "order_id": "72cd4bba-6213-4a75-9ba7-687528378742",
         "status": "pending_new"
       },
       "dry_run": false,
-      "submitted_at": "2026-05-29T13:19:21.680389+00:00"
+      "submitted_at": "2026-05-29T16:59:49.864380+00:00"
     }
   },
   "chart_series": [
@@ -302,6 +304,10 @@
         {
           "date": "2026-05-29",
           "nav": 100000.0
+        },
+        {
+          "date": "2026-05-29",
+          "nav": 101544.33
         }
       ]
     },
@@ -313,6 +319,10 @@
         {
           "date": "2026-05-29",
           "nav": 100000.0
+        },
+        {
+          "date": "2026-05-29",
+          "nav": 100228.09
         }
       ]
     },
@@ -324,32 +334,36 @@
         {
           "date": "2026-05-29",
           "nav": 100000.0
+        },
+        {
+          "date": "2026-05-29",
+          "nav": 100260.28
         }
       ]
     }
   ],
   "tool_usage": {
     "chatgpt": {
-      "get_news": 2,
-      "get_history": 2,
+      "get_news": 5,
+      "get_history": 4,
       "get_financials": 1
     },
     "claude": {
-      "get_news": 2,
-      "read_own_trades": 1,
+      "get_news": 4,
+      "read_own_trades": 2,
       "get_financials": 1,
-      "get_history": 1
+      "get_history": 3
     },
     "gemini": {
-      "get_news": 2,
+      "get_news": 4,
       "get_history": 1,
-      "get_analyst_ratings": 1,
-      "get_financials": 1
+      "get_analyst_ratings": 2,
+      "get_financials": 3
     }
   },
   "total_cost_per_ai": {
-    "chatgpt": 0.0574,
-    "claude": 0.0506,
-    "gemini": 0.0249
+    "chatgpt": 0.12340000000000001,
+    "claude": 0.1051,
+    "gemini": 0.032
   }
 }
