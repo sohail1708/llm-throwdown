@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
   <style>
     body { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
     .num { font-family: 'JetBrains Mono', monospace; font-feature-settings: "tnum"; }
@@ -35,6 +36,23 @@
     .c-sell { background: #fee2e2; color: #991b1b; } .c-sell::before { background: #dc2626; }
     .c-hold { background: #f4f4f5; color: #52525b; } .c-hold::before { background: #71717a; }
     .c-error{ background: #fef2f2; color: #991b1b; } .c-error::before{ background: #ef4444; }
+
+    /* Tabs */
+    .tab-btn { padding: 10px 20px; font-size: 13px; font-weight: 700; letter-spacing: 0.02em; color: #71717a; border-radius: 10px; transition: all .15s; cursor: pointer; }
+    .tab-btn:hover { color: #18181b; background: #f4f4f5; }
+    .tab-btn.active { background: #18181b; color: #fff; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Mermaid container */
+    .mermaid-wrap { background: #fafafa; border: 1px solid #e4e4e7; border-radius: 16px; padding: 32px; overflow-x: auto; }
+    .mermaid-wrap .mermaid { display: flex; justify-content: center; }
+
+    /* Architecture explanatory cards */
+    .arch-step { background: #fff; border: 1px solid #e4e4e7; border-radius: 12px; padding: 16px 18px; }
+    .arch-step h4 { font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #18181b; margin-bottom: 6px; }
+    .arch-step p { font-size: 13px; color: #52525b; line-height: 1.55; }
+    .arch-step code { font-family: 'JetBrains Mono', monospace; font-size: 11px; background: #f4f4f5; padding: 1px 5px; border-radius: 4px; color: #18181b; }
   </style>
 </head>
 <body class="text-zinc-900">
@@ -67,6 +85,15 @@
       <strong class="text-zinc-900 whitespace-nowrap">Whoever ends highest wins.</strong>
     </p>
   </div>
+
+  <!-- Tab nav -->
+  <div class="flex justify-center gap-2 mb-8">
+    <button class="tab-btn active" data-tab="dashboard">📊 Dashboard</button>
+    <button class="tab-btn" data-tab="architecture">🏗️ Architecture</button>
+  </div>
+
+  <!-- ============== DASHBOARD TAB ============== -->
+  <div id="tab-dashboard" class="tab-panel active">
 
   <!-- Leaderboard 3-up -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -271,6 +298,145 @@
     {% endif %}
   </div>
 
+  </div><!-- /tab-dashboard -->
+
+  <!-- ============== ARCHITECTURE TAB ============== -->
+  <div id="tab-architecture" class="tab-panel">
+
+    <div class="card p-6 mb-6">
+      <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">🏗️ How it works</h3>
+      <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-1">Daily pipeline — same rails for every AI</p>
+      <p class="text-xs text-zinc-600 mb-6">Two GitHub Actions cron jobs drive the whole thing. Identical prompts, identical tools, identical validators across all three players — the only difference is the model behind the wheel.</p>
+
+      <div class="mermaid-wrap">
+        <div class="mermaid">
+flowchart TD
+    classDef cron fill:#18181b,stroke:#18181b,color:#fff,font-weight:700
+    classDef llm fill:#fff,stroke:#a1a1aa,color:#18181b,font-weight:600
+    classDef chatgpt fill:#ecfdf5,stroke:#10b981,color:#065f46,font-weight:700
+    classDef claude fill:#fff7ed,stroke:#f97316,color:#9a3412,font-weight:700
+    classDef gemini fill:#eff6ff,stroke:#3b82f6,color:#1e40af,font-weight:700
+    classDef tool fill:#fafafa,stroke:#d4d4d8,color:#3f3f46
+    classDef store fill:#fef3c7,stroke:#f59e0b,color:#78350f,font-weight:600
+    classDef gate fill:#fee2e2,stroke:#dc2626,color:#7f1d1d,font-weight:700
+    classDef out fill:#dbeafe,stroke:#2563eb,color:#1e3a8a,font-weight:700
+
+    Cron1["⏰ Morning Cron<br/>Mon–Fri 13:30 UTC"]:::cron
+    Daily["daily.py<br/>orchestrator"]:::llm
+    Snap["📸 Market snapshot<br/>9 tickers · yfinance"]:::llm
+
+    Cron1 --> Daily --> Snap
+
+    Snap --> ChatGPT["💚 ChatGPT<br/>gpt-5"]:::chatgpt
+    Snap --> Claude["🧡 Claude<br/>sonnet-4-6"]:::claude
+    Snap --> Gemini["💙 Gemini<br/>2.5-pro"]:::gemini
+
+    subgraph Pipeline["🧠 2-phase pipeline (per AI)"]
+      direction TB
+      Research["Phase 1 · Research<br/>≤ 5 tool iterations<br/>commits via submit_research"]:::llm
+      Decision["Phase 2 · Decision<br/>commits via submit_decision<br/>action · ticker · amount · reason"]:::llm
+      Research --> Decision
+    end
+
+    ChatGPT --> Pipeline
+    Claude --> Pipeline
+    Gemini --> Pipeline
+
+    subgraph Tools["🛠 Shared tool registry"]
+      direction LR
+      T1["get_history"]:::tool
+      T2["get_news"]:::tool
+      T3["get_financials"]:::tool
+      T4["get_analyst_ratings"]:::tool
+      T5["read_own_trades"]:::tool
+    end
+
+    Research -.-> Tools
+
+    Decision --> Validate{"✅ Validator<br/>in universe?<br/>≥ $5k notional?<br/>≤ 25% NAV?"}:::gate
+
+    Validate -->|BUY / SELL| Alpaca["🏦 Alpaca Paper API<br/>3 separate accounts"]:::out
+    Validate --> DecLog[("📒 data/decisions.jsonl")]:::store
+
+    Cron2["⏰ Evening Cron<br/>Mon–Fri 20:30 UTC"]:::cron
+    EOD["eod.py"]:::llm
+    NavSnap["💰 NAV snapshot per AI"]:::llm
+    NavLog[("📈 data/nav.jsonl")]:::store
+    Render["🎨 Jinja2 render"]:::llm
+    Pages["🌐 GitHub Pages<br/>docs/index.html"]:::out
+
+    Cron2 --> EOD --> NavSnap --> NavLog
+    EOD --> Render
+    DecLog --> Render
+    NavLog --> Render
+    Render --> Pages
+        </div>
+      </div>
+    </div>
+
+    <!-- Step-by-step explainer -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <div class="arch-step">
+        <h4>1 · Morning trigger</h4>
+        <p>At <code>13:30 UTC</code> (09:30 ET, market open) GitHub Actions kicks off <code>daily.py</code>. It pulls a fresh snapshot of the 9-stock tech universe from yfinance and fans out to all three providers sequentially.</p>
+      </div>
+      <div class="arch-step">
+        <h4>2 · Research phase</h4>
+        <p>Each AI runs a tool-using loop (max 5 iterations) over the shared tool registry. The loop ends when the model calls the <code>submit_research</code> sentinel tool — its arguments <em>are</em> the structured output. Same mechanism for all 3 (no JSON-mode disparity).</p>
+      </div>
+      <div class="arch-step">
+        <h4>3 · Decision phase</h4>
+        <p>A second LLM call ingests the research and emits exactly one action via <code>submit_decision</code>: <code>BUY</code> · <code>SELL</code> · <code>HOLD</code> with ticker, dollar notional, reason, and confidence 1–5.</p>
+      </div>
+      <div class="arch-step">
+        <h4>4 · Validator</h4>
+        <p>Hard rails enforced in code, not prompts: ticker must be in the universe; BUY notional ≥ $5k; position ≤ 25% of NAV (auto-clipped to headroom); SELL requires existing position. Failed validation logs an error — no trade.</p>
+      </div>
+      <div class="arch-step">
+        <h4>5 · Execute</h4>
+        <p>Validated orders go to each AI's own Alpaca paper account as a market order, day TIF. Every research + decision + token + cost record gets appended to <code>data/decisions.jsonl</code>.</p>
+      </div>
+      <div class="arch-step">
+        <h4>6 · Evening settle</h4>
+        <p>At <code>20:30 UTC</code> (post-close), <code>eod.py</code> snapshots each AI's NAV from Alpaca, appends to <code>data/nav.jsonl</code>, re-renders this dashboard via Jinja2, and commits to <code>main</code> — GitHub Pages republishes <code>/docs</code> automatically.</p>
+      </div>
+    </div>
+
+    <!-- Fairness manifest -->
+    <div class="card p-6 mb-6">
+      <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">⚖️ Fairness manifest</h3>
+      <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-4">What's identical across the three players</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-sm">
+        <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Prompts</span> — same <code class="text-xs">RESEARCH_SYSTEM_PROMPT</code> and <code class="text-xs">DECISION_SYSTEM_PROMPT</code></span></div>
+        <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Tools</span> — same 5 functions, same JSON-Schema</span></div>
+        <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Tool budget</span> — 5 iterations max each</span></div>
+        <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Structured output</span> — sentinel tools for ChatGPT &amp; Claude; native JSON mode for Gemini</span></div>
+        <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Validators</span> — universe, $5k min, 25% NAV cap</span></div>
+        <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Starting capital</span> — $100,000 paper cash each</span></div>
+        <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Market data</span> — yfinance, same snapshot per cron</span></div>
+        <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Broker</span> — Alpaca paper, market order, day TIF</span></div>
+      </div>
+      <p class="text-xs text-zinc-500 mt-4 italic">The only variable is which model is reading the prompt.</p>
+    </div>
+
+    <!-- Stack -->
+    <div class="card p-6 mb-6">
+      <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">🧱 Stack</h3>
+      <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-4">No servers. No databases. All static.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+        <div class="border border-zinc-200 rounded-lg p-3"><div class="font-bold text-zinc-900 mb-1">LLMs</div><div class="text-zinc-600">OpenAI · Anthropic · Google GenAI</div></div>
+        <div class="border border-zinc-200 rounded-lg p-3"><div class="font-bold text-zinc-900 mb-1">Market data</div><div class="text-zinc-600">yfinance (free)</div></div>
+        <div class="border border-zinc-200 rounded-lg p-3"><div class="font-bold text-zinc-900 mb-1">Broker</div><div class="text-zinc-600">Alpaca paper · 3 accounts</div></div>
+        <div class="border border-zinc-200 rounded-lg p-3"><div class="font-bold text-zinc-900 mb-1">Scheduler</div><div class="text-zinc-600">GitHub Actions cron</div></div>
+        <div class="border border-zinc-200 rounded-lg p-3"><div class="font-bold text-zinc-900 mb-1">Storage</div><div class="text-zinc-600">JSONL in repo (git-versioned)</div></div>
+        <div class="border border-zinc-200 rounded-lg p-3"><div class="font-bold text-zinc-900 mb-1">Templating</div><div class="text-zinc-600">Jinja2</div></div>
+        <div class="border border-zinc-200 rounded-lg p-3"><div class="font-bold text-zinc-900 mb-1">Frontend</div><div class="text-zinc-600">Tailwind · Chart.js · Mermaid</div></div>
+        <div class="border border-zinc-200 rounded-lg p-3"><div class="font-bold text-zinc-900 mb-1">Hosting</div><div class="text-zinc-600">GitHub Pages</div></div>
+      </div>
+    </div>
+
+  </div><!-- /tab-architecture -->
+
   <footer class="mt-12 text-center text-xs text-zinc-400">
     Starting cash: ${{ "{:,.0f}".format(starting_cash) }} per AI · Alpaca paper trading ·
     <a class="hover:text-zinc-700 underline" href="https://github.com/sohail1708/llm-throwdown">repo</a> ·
@@ -281,6 +447,38 @@
 <script>
   const chartSeries = {{ chart_series | tojson }};
   const ACCENT = { emerald: '#10b981', orange: '#f97316', blue: '#3b82f6' };
+
+  // Tab switcher
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.tab;
+        buttons.forEach(b => b.classList.toggle('active', b === btn));
+        document.querySelectorAll('.tab-panel').forEach(p => {
+          p.classList.toggle('active', p.id === 'tab-' + target);
+        });
+      });
+    });
+  });
+
+  // Mermaid init
+  if (window.mermaid) {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'base',
+      themeVariables: {
+        fontFamily: 'Inter, system-ui, sans-serif',
+        primaryColor: '#fff',
+        primaryTextColor: '#18181b',
+        primaryBorderColor: '#d4d4d8',
+        lineColor: '#a1a1aa',
+        secondaryColor: '#fafafa',
+        tertiaryColor: '#f4f4f5',
+      },
+      flowchart: { curve: 'basis', padding: 16, nodeSpacing: 50, rankSpacing: 60 },
+    });
+  }
 
   document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('navChart');
