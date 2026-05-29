@@ -311,53 +311,51 @@
       <div class="mermaid-wrap">
         <div class="mermaid">
 flowchart TD
-    Cron1["Morning Cron<br>Mon-Fri 13:30 UTC"]
-    Daily["daily.py orchestrator"]
-    Snap["Market snapshot<br>9 tickers via yfinance"]
-    Cron1 --> Daily
-    Daily --> Snap
+    Cron1[Morning Cron 13:30 UTC]
+    Daily[daily.py orchestrator]
+    Snap[Market snapshot - 9 tickers via yfinance]
+    Cron1 --> Daily --> Snap
 
-    ChatGPT["ChatGPT<br>gpt-5"]
-    Claude["Claude<br>sonnet-4-6"]
-    Gemini["Gemini<br>2.5-pro"]
+    ChatGPT[ChatGPT gpt-5]
+    Claude[Claude sonnet-4-6]
+    Gemini[Gemini 2.5-pro]
     Snap --> ChatGPT
     Snap --> Claude
     Snap --> Gemini
 
-    Research["Research phase<br>up to 5 tool iterations<br>commits via submit_research"]
-    Decision["Decision phase<br>commits via submit_decision"]
+    Research[Research phase - up to 5 tool iterations]
+    Decision[Decision phase - submit_decision]
     ChatGPT --> Research
     Claude --> Research
     Gemini --> Research
     Research --> Decision
 
-    Tools["Shared tool registry<br>get_history · get_news<br>get_financials<br>get_analyst_ratings<br>read_own_trades"]
-    Research -.calls.-> Tools
+    Tools[Shared tools - get_history, get_news, get_financials, get_analyst_ratings, read_own_trades]
+    Research -.-> Tools
 
-    Validate{"Validator<br>in universe<br>min 5k notional<br>max 25 percent NAV"}
+    Validate[Validator - universe, min 5k, max 25 pct NAV]
     Decision --> Validate
 
-    Alpaca["Alpaca Paper API<br>3 separate accounts"]
-    DecLog[("data/decisions.jsonl")]
-    Validate -->|BUY or SELL| Alpaca
+    Alpaca[Alpaca Paper - 3 separate accounts]
+    DecLog[(decisions.jsonl)]
+    Validate --> Alpaca
     Validate --> DecLog
 
-    Cron2["Evening Cron<br>Mon-Fri 20:30 UTC"]
-    EOD["eod.py"]
-    NavSnap["NAV snapshot per AI"]
-    NavLog[("data/nav.jsonl")]
-    Render["Jinja2 render"]
-    Pages["GitHub Pages<br>docs/index.html"]
+    Cron2[Evening Cron 20:30 UTC]
+    EOD[eod.py]
+    NavSnap[NAV snapshot per AI]
+    NavLog[(nav.jsonl)]
+    Render[Jinja2 render]
+    Pages[GitHub Pages]
 
     Cron2 --> EOD
-    EOD --> NavSnap
-    NavSnap --> NavLog
+    EOD --> NavSnap --> NavLog
     EOD --> Render
     DecLog --> Render
     NavLog --> Render
     Render --> Pages
 
-    classDef cron fill:#18181b,stroke:#18181b,color:#fff
+    classDef cron fill:#18181b,stroke:#18181b,color:#ffffff
     classDef llm fill:#ffffff,stroke:#a1a1aa,color:#18181b
     classDef chatgpt fill:#ecfdf5,stroke:#10b981,color:#065f46
     classDef claude fill:#fff7ed,stroke:#f97316,color:#9a3412
