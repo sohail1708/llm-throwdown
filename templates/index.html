@@ -311,65 +311,71 @@
       <div class="mermaid-wrap">
         <div class="mermaid">
 flowchart TD
-    classDef cron fill:#18181b,stroke:#18181b,color:#fff,font-weight:700
-    classDef llm fill:#fff,stroke:#a1a1aa,color:#18181b,font-weight:600
-    classDef chatgpt fill:#ecfdf5,stroke:#10b981,color:#065f46,font-weight:700
-    classDef claude fill:#fff7ed,stroke:#f97316,color:#9a3412,font-weight:700
-    classDef gemini fill:#eff6ff,stroke:#3b82f6,color:#1e40af,font-weight:700
-    classDef tool fill:#fafafa,stroke:#d4d4d8,color:#3f3f46
-    classDef store fill:#fef3c7,stroke:#f59e0b,color:#78350f,font-weight:600
-    classDef gate fill:#fee2e2,stroke:#dc2626,color:#7f1d1d,font-weight:700
-    classDef out fill:#dbeafe,stroke:#2563eb,color:#1e3a8a,font-weight:700
+    Cron1["Morning Cron<br>Mon-Fri 13:30 UTC"]
+    Daily["daily.py orchestrator"]
+    Snap["Market snapshot<br>9 tickers via yfinance"]
+    Cron1 --> Daily
+    Daily --> Snap
 
-    Cron1["⏰ Morning Cron<br/>Mon–Fri 13:30 UTC"]:::cron
-    Daily["daily.py<br/>orchestrator"]:::llm
-    Snap["📸 Market snapshot<br/>9 tickers · yfinance"]:::llm
+    ChatGPT["ChatGPT<br>gpt-5"]
+    Claude["Claude<br>sonnet-4-6"]
+    Gemini["Gemini<br>2.5-pro"]
+    Snap --> ChatGPT
+    Snap --> Claude
+    Snap --> Gemini
 
-    Cron1 --> Daily --> Snap
+    Research["Research phase<br>up to 5 tool iterations<br>commits via submit_research"]
+    Decision["Decision phase<br>commits via submit_decision"]
+    ChatGPT --> Research
+    Claude --> Research
+    Gemini --> Research
+    Research --> Decision
 
-    Snap --> ChatGPT["💚 ChatGPT<br/>gpt-5"]:::chatgpt
-    Snap --> Claude["🧡 Claude<br/>sonnet-4-6"]:::claude
-    Snap --> Gemini["💙 Gemini<br/>2.5-pro"]:::gemini
+    Tools["Shared tool registry<br>get_history · get_news<br>get_financials<br>get_analyst_ratings<br>read_own_trades"]
+    Research -.calls.-> Tools
 
-    subgraph Pipeline["🧠 2-phase pipeline (per AI)"]
-      direction TB
-      Research["Phase 1 · Research<br/>≤ 5 tool iterations<br/>commits via submit_research"]:::llm
-      Decision["Phase 2 · Decision<br/>commits via submit_decision<br/>action · ticker · amount · reason"]:::llm
-      Research --> Decision
-    end
+    Validate{"Validator<br>in universe<br>min 5k notional<br>max 25 percent NAV"}
+    Decision --> Validate
 
-    ChatGPT --> Pipeline
-    Claude --> Pipeline
-    Gemini --> Pipeline
+    Alpaca["Alpaca Paper API<br>3 separate accounts"]
+    DecLog[("data/decisions.jsonl")]
+    Validate -->|BUY or SELL| Alpaca
+    Validate --> DecLog
 
-    subgraph Tools["🛠 Shared tool registry"]
-      direction LR
-      T1["get_history"]:::tool
-      T2["get_news"]:::tool
-      T3["get_financials"]:::tool
-      T4["get_analyst_ratings"]:::tool
-      T5["read_own_trades"]:::tool
-    end
+    Cron2["Evening Cron<br>Mon-Fri 20:30 UTC"]
+    EOD["eod.py"]
+    NavSnap["NAV snapshot per AI"]
+    NavLog[("data/nav.jsonl")]
+    Render["Jinja2 render"]
+    Pages["GitHub Pages<br>docs/index.html"]
 
-    Research -.-> Tools
-
-    Decision --> Validate{"✅ Validator<br/>in universe?<br/>≥ $5k notional?<br/>≤ 25% NAV?"}:::gate
-
-    Validate -->|BUY / SELL| Alpaca["🏦 Alpaca Paper API<br/>3 separate accounts"]:::out
-    Validate --> DecLog[("📒 data/decisions.jsonl")]:::store
-
-    Cron2["⏰ Evening Cron<br/>Mon–Fri 20:30 UTC"]:::cron
-    EOD["eod.py"]:::llm
-    NavSnap["💰 NAV snapshot per AI"]:::llm
-    NavLog[("📈 data/nav.jsonl")]:::store
-    Render["🎨 Jinja2 render"]:::llm
-    Pages["🌐 GitHub Pages<br/>docs/index.html"]:::out
-
-    Cron2 --> EOD --> NavSnap --> NavLog
+    Cron2 --> EOD
+    EOD --> NavSnap
+    NavSnap --> NavLog
     EOD --> Render
     DecLog --> Render
     NavLog --> Render
     Render --> Pages
+
+    classDef cron fill:#18181b,stroke:#18181b,color:#fff
+    classDef llm fill:#ffffff,stroke:#a1a1aa,color:#18181b
+    classDef chatgpt fill:#ecfdf5,stroke:#10b981,color:#065f46
+    classDef claude fill:#fff7ed,stroke:#f97316,color:#9a3412
+    classDef gemini fill:#eff6ff,stroke:#3b82f6,color:#1e40af
+    classDef tool fill:#fafafa,stroke:#d4d4d8,color:#3f3f46
+    classDef store fill:#fef3c7,stroke:#f59e0b,color:#78350f
+    classDef gate fill:#fee2e2,stroke:#dc2626,color:#7f1d1d
+    classDef out fill:#dbeafe,stroke:#2563eb,color:#1e3a8a
+
+    class Cron1,Cron2 cron
+    class Daily,Snap,Research,Decision,EOD,NavSnap,Render llm
+    class ChatGPT chatgpt
+    class Claude claude
+    class Gemini gemini
+    class Tools tool
+    class DecLog,NavLog store
+    class Validate gate
+    class Alpaca,Pages out
         </div>
       </div>
     </div>
