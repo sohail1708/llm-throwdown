@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-zinc-50">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LLM Trading Throwdown — ChatGPT vs Claude vs Gemini</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    .num { font-family: 'JetBrains Mono', monospace; font-feature-settings: "tnum"; }
+    .card { background: #fff; border: 1px solid #e4e4e7; border-radius: 16px; }
+    /* NAV numbers live inside one of three side-by-side cards, so the upper
+       bound has to fit ~$100k (8 chars wide) inside a card that's roughly
+       1/3 of the page. clamp(min, fluid, max) with conservative caps. */
+    .hero-num { font-family: 'JetBrains Mono', monospace; font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; letter-spacing: -0.04em; line-height: 1; white-space: nowrap; overflow: hidden; text-overflow: clip; }
+
+    .accent-emerald { --accent: #10b981; --accent-bg: #ecfdf5; --accent-text: #047857; --accent-border: #a7f3d0; }
+    .accent-orange  { --accent: #f97316; --accent-bg: #fff7ed; --accent-text: #c2410c; --accent-border: #fed7aa; }
+    .accent-blue    { --accent: #3b82f6; --accent-bg: #eff6ff; --accent-text: #1d4ed8; --accent-border: #bfdbfe; }
+
+    .ai-card { background: linear-gradient(135deg, var(--accent-bg) 0%, #fff 75%); border: 1px solid var(--accent-border); border-radius: 16px; }
+    .ai-card .accent-bar { height: 4px; background: var(--accent); border-radius: 16px 16px 0 0; }
+
+    .rank-chip { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 999px; font-weight: 800; font-size: 13px; }
+    .rank-1 { background: linear-gradient(135deg, #fde047 0%, #facc15 100%); color: #713f12; }
+    .rank-2 { background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%); color: #374151; }
+    .rank-3 { background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%); color: #7f1d1d; }
+
+    .chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 999px; }
+    .chip::before { content: ""; width: 6px; height: 6px; border-radius: 999px; }
+    .c-buy  { background: #d1fae5; color: #065f46; } .c-buy::before  { background: #059669; }
+    .c-sell { background: #fee2e2; color: #991b1b; } .c-sell::before { background: #dc2626; }
+    .c-hold { background: #f4f4f5; color: #52525b; } .c-hold::before { background: #71717a; }
+    .c-error{ background: #fef2f2; color: #991b1b; } .c-error::before{ background: #ef4444; }
+  </style>
+</head>
+<body class="text-zinc-900">
+
+<div class="max-w-7xl mx-auto px-6 py-8">
+
+  <!-- Header strip -->
+  <div class="flex items-center justify-between mb-10">
+    <div class="flex items-center gap-2">
+      <span class="text-xl">🥊</span>
+      <span class="text-xs font-bold uppercase tracking-[0.22em] text-zinc-700">LLM Trading Throwdown</span>
+    </div>
+    <div class="text-right">
+      <div class="text-[10px] uppercase tracking-[0.2em] text-zinc-500">{{ day.label }}</div>
+      <div class="text-xs text-zinc-600 mt-0.5">{{ day.sub }}</div>
+    </div>
+  </div>
+
+  <!-- Title -->
+  <div class="text-center mb-10">
+    <h1 class="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.95]">
+      <span class="bg-gradient-to-br from-emerald-500 to-emerald-700 bg-clip-text text-transparent">ChatGPT</span>
+      vs
+      <span class="bg-gradient-to-br from-orange-500 to-orange-700 bg-clip-text text-transparent">Claude</span>
+      vs
+      <span class="bg-gradient-to-br from-blue-500 to-blue-700 bg-clip-text text-transparent">Gemini</span>
+    </h1>
+    <p class="mt-6 text-zinc-600 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+      Three AIs. $100,000 each. One trade per day. 30 days.
+      <strong class="text-zinc-900 whitespace-nowrap">Whoever ends highest wins.</strong>
+    </p>
+  </div>
+
+  <!-- Leaderboard 3-up -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+    {% for r in leaderboard %}
+    <div class="ai-card accent-{{ r.accent }}">
+      <div class="accent-bar"></div>
+      <div class="p-6">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-3">
+            <span class="rank-chip rank-{{ r.rank }}">{{ r.rank }}</span>
+            <span class="text-xl font-extrabold tracking-tight">{{ r.label }}</span>
+          </div>
+          {% if r.days_first > 0 %}
+          <span class="text-[10px] uppercase tracking-widest text-zinc-500" title="Days finished in 1st place">👑 {{ r.days_first }} day{% if r.days_first != 1 %}s{% endif %} #1</span>
+          {% endif %}
+        </div>
+        <div class="hero-num" style="color: var(--accent)">
+          ${{ "{:,.0f}".format(r.nav) }}
+        </div>
+        <div class="mt-2 num text-sm font-bold {% if r.ret_pct > 0 %}text-emerald-600{% elif r.ret_pct < 0 %}text-rose-600{% else %}text-zinc-500{% endif %}">
+          {% if r.ret_pct > 0 %}+{% endif %}{{ "%.2f"|format(r.ret_pct) }}%
+        </div>
+        <div class="mt-5 pt-4 border-t border-zinc-200/60 text-xs text-zinc-600 grid grid-cols-2 gap-2">
+          <div>💵 Cash <span class="num text-zinc-900 font-semibold">${{ "{:,.0f}".format(r.cash) }}</span></div>
+          <div>📦 Positions <span class="num text-zinc-900 font-semibold">{{ r.n_positions }}</span></div>
+        </div>
+        <div class="mt-3">
+          <div class="flex justify-between text-[10px] uppercase tracking-widest text-zinc-500 mb-1">
+            <span>🪙 LLM spend</span>
+            <span class="num">${{ "%.2f"|format(r.spent_usd) }} / ${{ "%.0f"|format(r.budget_usd) }}</span>
+          </div>
+          <div class="h-1.5 rounded-full bg-zinc-200/60 overflow-hidden">
+            <div class="h-full" style="width: {{ r.budget_pct }}%; background: var(--accent)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- NAV race chart -->
+  <div class="card p-6 mb-6">
+    <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">📈 NAV race</h3>
+    <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-4">Portfolio value over time</p>
+    <div class="h-80">
+      <canvas id="navChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Today's research + decision per AI -->
+  <div class="mb-2 mt-2">
+    <h3 class="text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500">🧠 Today's thinking</h3>
+    <p class="text-sm text-zinc-600 mt-1 mb-4">What each AI researched and decided</p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+    {% for d in today_decisions %}
+    {% set p = providers[loop.index0] %}
+    <div class="ai-card accent-{{ p.accent }}">
+      <div class="accent-bar"></div>
+      <div class="p-6">
+        <!-- header -->
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-sm font-bold">{{ p.label }}</span>
+          {% if d %}
+            {% if d.action == 'BUY' %}<span class="chip c-buy">Buy {{ d.ticker }}</span>
+            {% elif d.action == 'SELL' %}<span class="chip c-sell">Sell {{ d.ticker }}</span>
+            {% elif d.action == 'HOLD' %}<span class="chip c-hold">Hold</span>
+            {% else %}<span class="chip c-error">Error</span>{% endif %}
+          {% else %}
+            <span class="chip c-hold">No move yet</span>
+          {% endif %}
+        </div>
+
+        {% if d %}
+        <div class="text-[10px] uppercase tracking-widest text-zinc-500 mb-2">{{ d.date }}</div>
+
+        <!-- decision -->
+        {% if d.amount %}<div class="num text-2xl font-extrabold mb-1" style="color: var(--accent)">${{ "{:,.0f}".format(d.amount) }}</div>{% endif %}
+        <p class="text-sm text-zinc-900 leading-snug font-semibold">"{{ d.reason }}"</p>
+        {% if d.confidence %}
+        <div class="mt-2 text-[10px] uppercase tracking-widest text-zinc-500">Confidence {{ d.confidence }}/5</div>
+        {% endif %}
+
+        <!-- research summary -->
+        {% if d.research and d.research.summary %}
+        <div class="mt-5 pt-4 border-t border-zinc-200/60">
+          <div class="text-[10px] uppercase tracking-widest text-zinc-500 mb-2">🔍 Research summary</div>
+          <p class="text-xs text-zinc-700 leading-relaxed italic">{{ d.research.summary }}</p>
+        </div>
+        {% endif %}
+
+        <!-- candidates considered -->
+        {% if d.research and d.research.candidates %}
+        <div class="mt-3">
+          <div class="text-[10px] uppercase tracking-widest text-zinc-500 mb-2">💭 Candidates ({{ d.research.candidates|length }})</div>
+          <div class="space-y-1.5">
+            {% for c in d.research.candidates %}
+            <details class="text-xs">
+              <summary class="cursor-pointer flex items-center gap-2 py-1">
+                <span class="font-bold">{{ c.ticker }}</span>
+                {% if c.lean == 'BUY' %}<span class="chip c-buy">Buy</span>
+                {% elif c.lean == 'SELL' %}<span class="chip c-sell">Sell</span>
+                {% else %}<span class="chip c-hold">Hold</span>{% endif %}
+              </summary>
+              <div class="pl-3 pt-1 pb-2 text-zinc-700 space-y-1">
+                <div><span class="text-emerald-700 font-semibold">Bull:</span> {{ c.bull }}</div>
+                <div><span class="text-rose-700 font-semibold">Bear:</span> {{ c.bear }}</div>
+              </div>
+            </details>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- tools used + cost -->
+        {% if d.research and d.research.tools_used %}
+        <div class="mt-4 pt-3 border-t border-zinc-200/60 flex flex-wrap items-center justify-between gap-2 text-[10px] text-zinc-500 uppercase tracking-widest">
+          <span>🛠 {{ d.research.tools_used|length }} tool call{% if d.research.tools_used|length != 1 %}s{% endif %}</span>
+          {% if d.cost_usd %}<span class="num">${{ "%.4f"|format(d.cost_usd) }}</span>{% endif %}
+        </div>
+        {% endif %}
+
+        {% else %}
+        <p class="text-sm text-zinc-400 italic">No decision logged yet.</p>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Tool usage panel -->
+  {% set any_tools = tool_usage | selectattr('counts') | list %}
+  {% if any_tools %}
+  <div class="card p-6 mb-6">
+    <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">🛠 Tool usage</h3>
+    <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-4">How each AI investigates</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {% for u in tool_usage %}
+      <div class="border border-zinc-200 rounded-lg p-4 accent-{{ u.accent }}">
+        <div class="flex items-center justify-between mb-3">
+          <span class="font-bold text-sm">{{ u.label }}</span>
+          <span class="text-xs text-zinc-500 num">{{ u.counts.values() | sum }} total</span>
+        </div>
+        {% if u.counts %}
+        <div class="space-y-1.5">
+          {% for tool, n in u.counts.items() %}
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-mono text-zinc-700">{{ tool }}</span>
+            <span class="num font-semibold" style="color: var(--accent)">{{ n }}</span>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-xs text-zinc-400 italic">No tool calls yet.</p>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Recent activity -->
+  <div class="card p-6 mb-6">
+    <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">🗓️ Recent moves</h3>
+    <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-4">Last 30 actions across all 3 AIs</p>
+    {% if decisions %}
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead class="text-[10px] uppercase tracking-widest text-zinc-500 border-b border-zinc-200">
+          <tr>
+            <th class="text-left py-2 px-2">Date</th>
+            <th class="text-left py-2 px-2">AI</th>
+            <th class="text-left py-2 px-2">Move</th>
+            <th class="text-left py-2 px-2">Ticker</th>
+            <th class="text-right py-2 px-2">Size</th>
+            <th class="text-left py-2 px-2">Reason</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for d in decisions %}
+          <tr class="border-b border-zinc-100 align-top">
+            <td class="py-3 px-2 text-zinc-500 text-xs num">{{ d.date }}</td>
+            <td class="py-3 px-2 font-bold">{{ d.label }}</td>
+            <td class="py-3 px-2">
+              {% if d.action == 'BUY' %}<span class="chip c-buy">Buy</span>
+              {% elif d.action == 'SELL' %}<span class="chip c-sell">Sell</span>
+              {% elif d.action == 'HOLD' %}<span class="chip c-hold">Hold</span>
+              {% else %}<span class="chip c-error">Error</span>{% endif %}
+            </td>
+            <td class="py-3 px-2 font-bold text-xs">{{ d.ticker or '—' }}</td>
+            <td class="py-3 px-2 text-right num text-xs">
+              {% if d.amount %}${{ "{:,.0f}".format(d.amount) }}{% else %}—{% endif %}
+            </td>
+            <td class="py-3 px-2 text-zinc-600 text-xs">{{ d.reason }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="text-zinc-400 italic text-sm py-12 text-center">First moves land at 09:30 ET on launch day.</div>
+    {% endif %}
+  </div>
+
+  <footer class="mt-12 text-center text-xs text-zinc-400">
+    Starting cash: ${{ "{:,.0f}".format(starting_cash) }} per AI · Alpaca paper trading ·
+    <a class="hover:text-zinc-700 underline" href="https://github.com/sohail1708/llm-throwdown">repo</a> ·
+    Last updated {{ generated_at }} UTC
+  </footer>
+</div>
+
+<script>
+  const chartSeries = {{ chart_series | tojson }};
+  const ACCENT = { emerald: '#10b981', orange: '#f97316', blue: '#3b82f6' };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('navChart');
+    if (!canvas) return;
+    const allDates = new Set();
+    chartSeries.forEach(s => s.points.forEach(p => allDates.add(p.date)));
+    const labels = [...allDates].sort();
+    if (!labels.length) return;
+    const datasets = chartSeries.map(s => {
+      const lookup = Object.fromEntries(s.points.map(p => [p.date, p.nav]));
+      const color = ACCENT[s.accent] || '#71717a';
+      return {
+        label: s.label,
+        data: labels.map(d => lookup[d] ?? null),
+        borderColor: color,
+        backgroundColor: color + '14',
+        fill: false,
+        tension: 0.3,
+        borderWidth: 2.5,
+        pointRadius: 2,
+        pointHoverRadius: 5,
+        spanGaps: true,
+      };
+    });
+    new Chart(canvas, {
+      type: 'line',
+      data: { labels, datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'top', align: 'end' }, tooltip: { mode: 'index', intersect: false } },
+        scales: {
+          y: { grid: { color: '#f4f4f5' }, ticks: { callback: v => '$' + v.toLocaleString() } },
+          x: { grid: { display: false }, ticks: { maxRotation: 0 } },
+        },
+      },
+    });
+  });
+</script>
+</body>
+</html>

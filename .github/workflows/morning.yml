@@ -1,0 +1,49 @@
+name: Morning fan-out
+
+on:
+  schedule:
+    # 13:30 UTC = 09:30 BST = 08:30 ET. NYSE opens 09:30 ET. Submitting
+    # market orders here means they queue and fill at open.
+    - cron: '30 13 * * 1-5'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  decide:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -e .
+
+      - name: Run daily fan-out (3 AIs)
+        env:
+          OPENAI_API_KEY:        ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY:     ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY:        ${{ secrets.GEMINI_API_KEY }}
+          ALPACA_CHATGPT_KEY:    ${{ secrets.ALPACA_CHATGPT_KEY }}
+          ALPACA_CHATGPT_SECRET: ${{ secrets.ALPACA_CHATGPT_SECRET }}
+          ALPACA_CLAUDE_KEY:     ${{ secrets.ALPACA_CLAUDE_KEY }}
+          ALPACA_CLAUDE_SECRET:  ${{ secrets.ALPACA_CLAUDE_SECRET }}
+          ALPACA_GEMINI_KEY:     ${{ secrets.ALPACA_GEMINI_KEY }}
+          ALPACA_GEMINI_SECRET:  ${{ secrets.ALPACA_GEMINI_SECRET }}
+        run: python daily.py
+
+      - name: Commit decisions
+        run: |
+          git config user.name  "throwdown-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/decisions.jsonl
+          git commit -m "decisions: $(date -u +%Y-%m-%d)" || echo "no changes"
+          git push

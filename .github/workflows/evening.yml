@@ -1,0 +1,47 @@
+name: EOD snapshot + dashboard
+
+on:
+  schedule:
+    # 20:30 UTC = 21:30 BST = 16:30 ET — 30 min after NYSE close. NAVs are
+    # finalized, fills are settled. We just read each account's portfolio
+    # value, append it to nav.jsonl, and regen the static dashboard.
+    - cron: '30 20 * * 1-5'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  eod:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -e .
+
+      - name: Run EOD snapshot + dashboard
+        env:
+          ALPACA_CHATGPT_KEY:    ${{ secrets.ALPACA_CHATGPT_KEY }}
+          ALPACA_CHATGPT_SECRET: ${{ secrets.ALPACA_CHATGPT_SECRET }}
+          ALPACA_CLAUDE_KEY:     ${{ secrets.ALPACA_CLAUDE_KEY }}
+          ALPACA_CLAUDE_SECRET:  ${{ secrets.ALPACA_CLAUDE_SECRET }}
+          ALPACA_GEMINI_KEY:     ${{ secrets.ALPACA_GEMINI_KEY }}
+          ALPACA_GEMINI_SECRET:  ${{ secrets.ALPACA_GEMINI_SECRET }}
+        run: python eod.py
+
+      - name: Commit nav + dashboard
+        run: |
+          git config user.name  "throwdown-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/nav.jsonl docs/index.html docs/data.json
+          git commit -m "eod: $(date -u +%Y-%m-%d)" || echo "no changes"
+          git push
