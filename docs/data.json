@@ -344,6 +344,11 @@
           "date": "2026-06-01",
           "ret_pct": 1.99,
           "portfolio_value": 25497.23
+        },
+        {
+          "date": "2026-06-01",
+          "ret_pct": 1.99,
+          "portfolio_value": 25497.23
         }
       ],
       "is_benchmark": false
@@ -353,6 +358,11 @@
       "label": "Claude",
       "accent": "orange",
       "points": [
+        {
+          "date": "2026-06-01",
+          "ret_pct": 2.32,
+          "portfolio_value": 25536.09
+        },
         {
           "date": "2026-06-01",
           "ret_pct": 2.32,
@@ -370,6 +380,11 @@
           "date": "2026-06-01",
           "ret_pct": 0.33,
           "portfolio_value": 20065.6
+        },
+        {
+          "date": "2026-06-01",
+          "ret_pct": 0.33,
+          "portfolio_value": 20065.6
         }
       ],
       "is_benchmark": false
@@ -379,6 +394,11 @@
       "label": "QQQ",
       "accent": "zinc",
       "points": [
+        {
+          "date": "2026-06-01",
+          "ret_pct": 0.76,
+          "portfolio_value": 100761.06
+        },
         {
           "date": "2026-06-01",
           "ret_pct": 0.76,
