@@ -4,75 +4,394 @@
       "name": "chatgpt",
       "label": "ChatGPT",
       "accent": "emerald",
-      "nav": 100000.0,
-      "ret_pct": 0.0,
-      "days_first": 0,
-      "n_positions": 0,
-      "cash": 100000.0,
-      "spent_usd": 0.0,
+      "nav": 102726.39,
+      "ret_pct": 2.73,
+      "days_first": 1,
+      "n_positions": 1,
+      "cash": 76448.12,
+      "spent_usd": 0.06,
       "budget_usd": 10.0,
-      "budget_pct": 0.0,
-      "positions": [],
-      "cash_pct_nav": 100.0,
+      "budget_pct": 0.6,
+      "positions": [
+        {
+          "ticker": "AVGO",
+          "qty": 55.4324,
+          "market_value": 26278.27,
+          "pct_nav": 25.6
+        }
+      ],
+      "cash_pct_nav": 74.4,
       "rank": 1
-    },
-    {
-      "name": "claude",
-      "label": "Claude",
-      "accent": "orange",
-      "nav": 100000.0,
-      "ret_pct": 0.0,
-      "days_first": 0,
-      "n_positions": 0,
-      "cash": 100000.0,
-      "spent_usd": 0.0,
-      "budget_usd": 10.0,
-      "budget_pct": 0.0,
-      "positions": [],
-      "cash_pct_nav": 100.0,
-      "rank": 2
     },
     {
       "name": "gemini",
       "label": "Gemini",
       "accent": "blue",
-      "nav": 100000.0,
-      "ret_pct": 0.0,
+      "nav": 101491.47,
+      "ret_pct": 1.49,
       "days_first": 0,
-      "n_positions": 0,
-      "cash": 100000.0,
-      "spent_usd": 0.0,
+      "n_positions": 1,
+      "cash": 81832.28,
+      "spent_usd": 0.01,
       "budget_usd": 10.0,
-      "budget_pct": 0.0,
-      "positions": [],
-      "cash_pct_nav": 100.0,
+      "budget_pct": 0.1,
+      "positions": [
+        {
+          "ticker": "GOOGL",
+          "qty": 53.3135,
+          "market_value": 19659.19,
+          "pct_nav": 19.4
+        }
+      ],
+      "cash_pct_nav": 80.6,
+      "rank": 2
+    },
+    {
+      "name": "claude",
+      "label": "Claude",
+      "accent": "orange",
+      "nav": 100398.42,
+      "ret_pct": 0.4,
+      "days_first": 0,
+      "n_positions": 1,
+      "cash": 74871.43,
+      "spent_usd": 0.05,
+      "budget_usd": 10.0,
+      "budget_pct": 0.5,
+      "positions": [
+        {
+          "ticker": "NVDA",
+          "qty": 113.8175,
+          "market_value": 25526.99,
+          "pct_nav": 25.4
+        }
+      ],
+      "cash_pct_nav": 74.6,
       "rank": 3
     }
   ],
-  "today_decisions": {},
+  "today_decisions": {
+    "chatgpt": {
+      "date": "2026-06-01",
+      "ai": "chatgpt",
+      "label": "ChatGPT",
+      "action": "BUY",
+      "ticker": "AVGO",
+      "amount": 25000.0,
+      "reason": "AI infra momentum + networking exposure, strong breakout into earnings. Riding strength; risk is stretched expectations, but trend\u2019s our friend.",
+      "confidence": 4,
+      "nav_before": 101448.12,
+      "cash_before": 101448.12,
+      "research": {
+        "candidates": [
+          {
+            "ticker": "AVGO",
+            "bull": "AI infrastructure demand and networking exposure are driving a steady high-volume breakout with positive sentiment into an approaching earnings catalyst.",
+            "bear": "After an 8%+ week and a multi-month run, expectations are stretched and any wobble in guidance could spark a sharp semi-wide pullback.",
+            "lean": "BUY"
+          },
+          {
+            "ticker": "GOOGL",
+            "bull": "Post-earnings re-rating, active buybacks/dividend, and a cooled RSI after a multi-week fade set up a buy-the-dip near late-April gap support.",
+            "bear": "Regulatory headlines around EU cloud tenders and recent distribution raise risk of a deeper gap-fill toward the mid-360s before buyers return.",
+            "lean": "BUY"
+          },
+          {
+            "ticker": "ORCL",
+            "bull": "AI/OCI momentum and pre-earnings enthusiasm have powered a decisive breakout that could continue if enterprise AI demand surprises to the upside.",
+            "bear": "RSI >70 after a ~20% weekly surge makes it vulnerable to mean reversion or disappointment on the timing of AI revenue conversion.",
+            "lean": "HOLD"
+          }
+        ],
+        "summary": "AI infrastructure momentum is leading while search/ad cools; I\u2019ll ride the trend and favor AVGO over a dip buy in GOOGL today.",
+        "preferred_action": "BUY",
+        "preferred_ticker": "AVGO",
+        "tools_used": [
+          {
+            "name": "get_news",
+            "args": {
+              "ticker": "GOOGL",
+              "n": 5
+            }
+          },
+          {
+            "name": "get_news",
+            "args": {
+              "ticker": "AVGO",
+              "n": 5
+            }
+          },
+          {
+            "name": "get_news",
+            "args": {
+              "ticker": "ORCL",
+              "n": 5
+            }
+          },
+          {
+            "name": "get_history",
+            "args": {
+              "ticker": "GOOGL",
+              "days": 60
+            }
+          },
+          {
+            "name": "get_history",
+            "args": {
+              "ticker": "AVGO",
+              "days": 60
+            }
+          }
+        ]
+      },
+      "tokens": {
+        "input": 9962,
+        "output": 4886
+      },
+      "cost_usd": 0.0613,
+      "order": {
+        "order_id": "4802754d-e52f-4805-8d9b-108d91d8be6f",
+        "status": "pending_new"
+      },
+      "dry_run": false,
+      "submitted_at": "2026-06-01T13:55:34.643272+00:00"
+    },
+    "claude": {
+      "date": "2026-06-01",
+      "ai": "claude",
+      "label": "Claude",
+      "action": "BUY",
+      "ticker": "NVDA",
+      "amount": 24957.0,
+      "reason": "Computex catalysts + 17x fwd P/E on 85% growth with RSI at 50 \u2014 cleanest AI hardware setup right now, loads of room to run.",
+      "confidence": 4,
+      "nav_before": 99828.43,
+      "cash_before": 99828.43,
+      "research": {
+        "candidates": [
+          {
+            "ticker": "NVDA",
+            "bull": "Computex Taipei product announcements + RTX Spark laptop CPU are fresh catalysts, while forward P/E of 17.3x on 85% revenue growth and 63% margins makes this genuinely cheap; RSI at 50 gives plenty of room to run.",
+            "bear": "Debt-to-equity of 6.5x is elevated, and broader market wavering (Dow/S&P/Nasdaq indecisive per today's headlines) could cap near-term upside.",
+            "lean": "BUY"
+          },
+          {
+            "ticker": "ORCL",
+            "bull": "A 20%+ 5-day surge on massive volume (5/28-5/29) signals a likely earnings beat catalyst, and momentum is still intact with today's gap-up open and continuation.",
+            "bear": "Barron's 'bubble' warning + RSI at 72.5 on a stock that's run $190\u2192$232 in a week creates significant mean-reversion risk \u2014 chasing this late is dangerous.",
+            "lean": "HOLD"
+          },
+          {
+            "ticker": "GOOGL",
+            "bull": "RSI at 38.7 suggests oversold conditions, and as one of the cheapest mega-cap AI names, a bounce is overdue if broad market stabilizes.",
+            "bear": "Negative 5-day momentum (-2.16%) with no visible catalyst makes this a falling knife with undefined bottom.",
+            "lean": "HOLD"
+          }
+        ],
+        "summary": "NVDA is the cleanest setup today \u2014 Computex AI hardware catalysts + deeply discounted forward valuation (17x fwd P/E on 85% growth) with a neutral RSI at 50, while ORCL's 20% 5-day surge is too extended to chase safely.",
+        "preferred_action": "BUY",
+        "preferred_ticker": "NVDA",
+        "tools_used": [
+          {
+            "name": "get_news",
+            "args": {
+              "ticker": "ORCL",
+              "n": 5
+            }
+          },
+          {
+            "name": "get_news",
+            "args": {
+              "ticker": "NVDA",
+              "n": 5
+            }
+          },
+          {
+            "name": "read_own_trades",
+            "args": {
+              "ai": "claude",
+              "n": 10
+            }
+          },
+          {
+            "name": "get_history",
+            "args": {
+              "ticker": "ORCL",
+              "days": 15
+            }
+          },
+          {
+            "name": "get_financials",
+            "args": {
+              "ticker": "NVDA"
+            }
+          }
+        ]
+      },
+      "tokens": {
+        "input": 10503,
+        "output": 1334
+      },
+      "cost_usd": 0.0515,
+      "order": {
+        "order_id": "b30775f3-797e-4e28-90c4-e7bf8ef36265",
+        "status": "pending_new"
+      },
+      "dry_run": false,
+      "submitted_at": "2026-06-01T13:56:04.149287+00:00"
+    },
+    "gemini": {
+      "date": "2026-06-01",
+      "ai": "gemini",
+      "label": "Gemini",
+      "action": "BUY",
+      "ticker": "GOOGL",
+      "amount": 20000.0,
+      "reason": "Alphabet looks oversold on what seems like overblown regulatory news. Buying this dip on a high-quality name seems like the right call today.",
+      "confidence": 4,
+      "nav_before": 101832.28,
+      "cash_before": 101832.28,
+      "research": {
+        "candidates": [
+          {
+            "ticker": "GOOGL",
+            "bull": "The stock is fundamentally strong and technically oversold (RSI 38.7), offering a good entry point on a dip caused by potentially overblown regulatory news.",
+            "bear": "Negative headlines regarding new EU cloud rules could create sustained headwinds and further selling pressure.",
+            "lean": "BUY"
+          },
+          {
+            "ticker": "NVDA",
+            "bull": "After a healthy pullback, the stock showed strong momentum yesterday, bouncing off a support level with a neutral RSI, suggesting the start of a new leg up.",
+            "bear": "The recent pop could be short-lived, and the stock could re-test its recent lows if the broader market for semiconductors doesn't show strength.",
+            "lean": "BUY"
+          },
+          {
+            "ticker": "MSFT",
+            "bull": "The stock is exhibiting powerful upward momentum and is a market leader in the AI space, which could continue to drive the price higher.",
+            "bear": "With a high RSI of 77.0, the stock is technically overbought and vulnerable to a sharp pullback if momentum stalls.",
+            "lean": "HOLD"
+          }
+        ],
+        "summary": "Today's market shows a split between overbought momentum names (MSFT, ORCL) and beaten-down tech giants (GOOGL), creating a classic value vs. momentum decision.",
+        "preferred_action": "BUY",
+        "preferred_ticker": "GOOGL",
+        "tools_used": [
+          {
+            "name": "get_news",
+            "args": {
+              "ticker": "MSFT"
+            }
+          },
+          {
+            "name": "get_news",
+            "args": {
+              "ticker": "ORCL"
+            }
+          },
+          {
+            "name": "get_news",
+            "args": {
+              "ticker": "GOOGL"
+            }
+          },
+          {
+            "name": "get_financials",
+            "args": {
+              "ticker": "GOOGL"
+            }
+          },
+          {
+            "name": "get_history",
+            "args": {
+              "ticker": "NVDA",
+              "days": 30
+            }
+          }
+        ]
+      },
+      "tokens": {
+        "input": 5874,
+        "output": 519
+      },
+      "cost_usd": 0.0099,
+      "order": {
+        "order_id": "1c00114f-c710-4285-9364-22b9cc638fcb",
+        "status": "pending_new"
+      },
+      "dry_run": false,
+      "submitted_at": "2026-06-01T13:56:35.903499+00:00"
+    }
+  },
   "chart_series": [
     {
       "name": "chatgpt",
       "label": "ChatGPT",
       "accent": "emerald",
-      "points": [],
+      "points": [
+        {
+          "date": "2026-06-01",
+          "nav": 102726.39
+        }
+      ],
       "is_benchmark": false
     },
     {
       "name": "claude",
       "label": "Claude",
       "accent": "orange",
-      "points": [],
+      "points": [
+        {
+          "date": "2026-06-01",
+          "nav": 100398.42
+        }
+      ],
       "is_benchmark": false
     },
     {
       "name": "gemini",
       "label": "Gemini",
       "accent": "blue",
-      "points": [],
+      "points": [
+        {
+          "date": "2026-06-01",
+          "nav": 101491.47
+        }
+      ],
       "is_benchmark": false
+    },
+    {
+      "name": "qqq",
+      "label": "QQQ",
+      "accent": "zinc",
+      "points": [
+        {
+          "date": "2026-06-01",
+          "nav": 100773.37
+        }
+      ],
+      "is_benchmark": true
     }
   ],
-  "tool_usage": {},
-  "total_cost_per_ai": {}
+  "tool_usage": {
+    "chatgpt": {
+      "get_news": 3,
+      "get_history": 2
+    },
+    "claude": {
+      "get_news": 2,
+      "read_own_trades": 1,
+      "get_history": 1,
+      "get_financials": 1
+    },
+    "gemini": {
+      "get_news": 3,
+      "get_financials": 1,
+      "get_history": 1
+    }
+  },
+  "total_cost_per_ai": {
+    "chatgpt": 0.0613,
+    "claude": 0.0515,
+    "gemini": 0.0099
+  }
 }
