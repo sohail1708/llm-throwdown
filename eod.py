@@ -113,7 +113,14 @@ def snapshot() -> int:
                 "positions_value": round(acct.portfolio_value - acct.cash, 2),
                 "n_positions": len(positions),
                 "positions": [
-                    {"ticker": p.ticker, "qty": round(p.qty, 4), "market_value": round(p.market_value, 2)}
+                    {
+                        "ticker": p.ticker,
+                        "qty": round(p.qty, 4),
+                        "avg_entry_price": round(p.avg_entry_price, 4),
+                        "market_value": round(p.market_value, 2),
+                        "current_price": round(p.market_value / p.qty, 4) if p.qty else 0,
+                        "unrealized_pl": round(p.unrealized_pl, 2),
+                    }
                     for p in positions
                 ],
             }

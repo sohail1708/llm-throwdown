@@ -4,8 +4,9 @@
       "name": "chatgpt",
       "label": "ChatGPT",
       "accent": "emerald",
-      "nav": 102726.39,
-      "ret_pct": 2.73,
+      "portfolio_value": 26274.39,
+      "cost_basis": 25000.01,
+      "ret_pct": 5.1,
       "days_first": 1,
       "n_positions": 1,
       "cash": 76448.12,
@@ -16,42 +17,23 @@
         {
           "ticker": "AVGO",
           "qty": 55.4324,
-          "market_value": 26278.27,
-          "pct_nav": 25.6
+          "avg_entry_price": 451.0,
+          "current_price": 473.99,
+          "market_value": 26274.39,
+          "cost_basis": 25000.01,
+          "pl_usd": 1274.38,
+          "pl_pct": 5.1
         }
       ],
-      "cash_pct_nav": 74.4,
       "rank": 1
-    },
-    {
-      "name": "gemini",
-      "label": "Gemini",
-      "accent": "blue",
-      "nav": 101491.47,
-      "ret_pct": 1.49,
-      "days_first": 0,
-      "n_positions": 1,
-      "cash": 81832.28,
-      "spent_usd": 0.01,
-      "budget_usd": 10.0,
-      "budget_pct": 0.1,
-      "positions": [
-        {
-          "ticker": "GOOGL",
-          "qty": 53.3135,
-          "market_value": 19659.19,
-          "pct_nav": 19.4
-        }
-      ],
-      "cash_pct_nav": 80.6,
-      "rank": 2
     },
     {
       "name": "claude",
       "label": "Claude",
       "accent": "orange",
-      "nav": 100398.42,
-      "ret_pct": 0.4,
+      "portfolio_value": 25528.13,
+      "cost_basis": 24957.0,
+      "ret_pct": 2.29,
       "days_first": 0,
       "n_positions": 1,
       "cash": 74871.43,
@@ -62,11 +44,41 @@
         {
           "ticker": "NVDA",
           "qty": 113.8175,
-          "market_value": 25526.99,
-          "pct_nav": 25.4
+          "avg_entry_price": 219.27,
+          "current_price": 224.29,
+          "market_value": 25528.13,
+          "cost_basis": 24957.0,
+          "pl_usd": 571.13,
+          "pl_pct": 2.29
         }
       ],
-      "cash_pct_nav": 74.6,
+      "rank": 2
+    },
+    {
+      "name": "gemini",
+      "label": "Gemini",
+      "accent": "blue",
+      "portfolio_value": 19611.37,
+      "cost_basis": 20000.0,
+      "ret_pct": -1.94,
+      "days_first": 0,
+      "n_positions": 1,
+      "cash": 81832.28,
+      "spent_usd": 0.01,
+      "budget_usd": 10.0,
+      "budget_pct": 0.1,
+      "positions": [
+        {
+          "ticker": "GOOGL",
+          "qty": 53.3135,
+          "avg_entry_price": 375.14,
+          "current_price": 367.85,
+          "market_value": 19611.37,
+          "cost_basis": 20000.0,
+          "pl_usd": -388.63,
+          "pl_pct": -1.94
+        }
+      ],
       "rank": 3
     }
   ],
@@ -330,7 +342,8 @@
       "points": [
         {
           "date": "2026-06-01",
-          "nav": 102726.39
+          "ret_pct": 5.1,
+          "portfolio_value": 26274.39
         }
       ],
       "is_benchmark": false
@@ -342,7 +355,8 @@
       "points": [
         {
           "date": "2026-06-01",
-          "nav": 100398.42
+          "ret_pct": 2.29,
+          "portfolio_value": 25528.13
         }
       ],
       "is_benchmark": false
@@ -354,7 +368,8 @@
       "points": [
         {
           "date": "2026-06-01",
-          "nav": 101491.47
+          "ret_pct": -1.94,
+          "portfolio_value": 19611.37
         }
       ],
       "is_benchmark": false
@@ -366,7 +381,8 @@
       "points": [
         {
           "date": "2026-06-01",
-          "nav": 100773.37
+          "ret_pct": 0.76,
+          "portfolio_value": 100761.06
         }
       ],
       "is_benchmark": true

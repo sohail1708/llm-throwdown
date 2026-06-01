@@ -112,7 +112,7 @@
     <div class="flex items-center gap-6">
       <div class="text-right">
         <div class="num text-2xl font-extrabold text-zinc-700">${{ "{:,.0f}".format(benchmark.nav) }}</div>
-        <div class="text-[10px] uppercase tracking-widest text-zinc-500">value today</div>
+        <div class="text-[10px] uppercase tracking-widest text-zinc-500">$100k fully deployed</div>
       </div>
       <div class="text-right">
         <div class="num text-2xl font-extrabold {% if benchmark.ret_pct > 0 %}text-emerald-600{% elif benchmark.ret_pct < 0 %}text-rose-600{% else %}text-zinc-500{% endif %}">
@@ -144,14 +144,14 @@
           {% endif %}
         </div>
         <div class="hero-num" style="color: var(--accent)">
-          ${{ "{:,.0f}".format(r.nav) }}
+          ${{ "{:,.0f}".format(r.portfolio_value) }}
         </div>
         <div class="mt-2 num text-sm font-bold {% if r.ret_pct > 0 %}text-emerald-600{% elif r.ret_pct < 0 %}text-rose-600{% else %}text-zinc-500{% endif %}">
-          {% if r.ret_pct > 0 %}+{% endif %}{{ "%.2f"|format(r.ret_pct) }}%
+          {% if r.ret_pct > 0 %}+{% endif %}{{ "%.2f"|format(r.ret_pct) }}% <span class="text-zinc-500 font-medium">on ${{ "{:,.0f}".format(r.cost_basis) }} invested</span>
         </div>
         <div class="mt-5 pt-4 border-t border-zinc-200/60 text-xs text-zinc-600 grid grid-cols-2 gap-2">
-          <div>💵 Cash <span class="num text-zinc-900 font-semibold">${{ "{:,.0f}".format(r.cash) }}</span></div>
           <div>📦 Positions <span class="num text-zinc-900 font-semibold">{{ r.n_positions }}</span></div>
+          <div>💵 Dry powder <span class="num text-zinc-900 font-semibold">${{ "{:,.0f}".format(r.cash) }}</span></div>
         </div>
         <div class="mt-3">
           <div class="flex justify-between text-[10px] uppercase tracking-widest text-zinc-500 mb-1">
@@ -181,7 +181,7 @@
       </div>
 
       {% if r.positions %}
-      <div class="space-y-2">
+      <div class="space-y-3">
         {% for pos in r.positions %}
         <div>
           <div class="flex items-center justify-between text-sm">
@@ -189,11 +189,10 @@
             <span class="num font-semibold text-zinc-900">${{ "{:,.0f}".format(pos.market_value) }}</span>
           </div>
           <div class="flex items-center justify-between text-[10px] text-zinc-500 num mt-0.5">
-            <span>{{ "%.2f"|format(pos.qty) }} sh</span>
-            <span>{{ pos.pct_nav }}% of NAV</span>
-          </div>
-          <div class="h-1 rounded-full bg-zinc-100 mt-1 overflow-hidden">
-            <div class="h-full" style="width: {{ pos.pct_nav }}%; background: var(--accent)"></div>
+            <span>{{ "%.2f"|format(pos.qty) }} sh · fill ${{ "%.2f"|format(pos.avg_entry_price) }} → ${{ "%.2f"|format(pos.current_price) }}</span>
+            <span class="font-bold {% if pos.pl_pct > 0 %}text-emerald-600{% elif pos.pl_pct < 0 %}text-rose-600{% else %}text-zinc-500{% endif %}">
+              {% if pos.pl_pct > 0 %}+{% endif %}{{ "%.2f"|format(pos.pl_pct) }}%
+            </span>
           </div>
         </div>
         {% endfor %}
@@ -204,16 +203,16 @@
 
       <div class="mt-4 pt-3 border-t border-zinc-200/60 flex items-center justify-between text-xs">
         <span class="text-zinc-500">💵 Cash</span>
-        <span class="num font-semibold text-zinc-900">${{ "{:,.0f}".format(r.cash) }} <span class="text-zinc-400">({{ r.cash_pct_nav }}%)</span></span>
+        <span class="num font-semibold text-zinc-900">${{ "{:,.0f}".format(r.cash) }}</span>
       </div>
     </div>
     {% endfor %}
   </div>
 
-  <!-- NAV race chart -->
+  <!-- Return race chart -->
   <div class="card p-6 mb-6">
-    <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">📈 NAV race</h3>
-    <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-4">Portfolio value over time</p>
+    <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">📈 Return race</h3>
+    <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-4">Position-level return % over time (vs QQQ benchmark)</p>
     <div class="h-80">
       <canvas id="navChart"></canvas>
     </div>
@@ -344,6 +343,7 @@
             <th class="text-left py-2 px-2">AI</th>
             <th class="text-left py-2 px-2">Move</th>
             <th class="text-left py-2 px-2">Ticker</th>
+            <th class="text-right py-2 px-2">Fill</th>
             <th class="text-right py-2 px-2">Size</th>
             <th class="text-left py-2 px-2">Reason</th>
           </tr>
@@ -360,6 +360,9 @@
               {% else %}<span class="chip c-error">Error</span>{% endif %}
             </td>
             <td class="py-3 px-2 font-bold text-xs">{{ d.ticker or '—' }}</td>
+            <td class="py-3 px-2 text-right num text-xs">
+              {% if d.fill_price %}${{ "%.2f"|format(d.fill_price) }}{% else %}—{% endif %}
+            </td>
             <td class="py-3 px-2 text-right num text-xs">
               {% if d.amount %}${{ "{:,.0f}".format(d.amount) }}{% else %}—{% endif %}
             </td>
@@ -587,7 +590,7 @@ class ALPACA,PAGES out
     const labels = [...allDates].sort();
     if (!labels.length) return;
     const datasets = chartSeries.map(s => {
-      const lookup = Object.fromEntries(s.points.map(p => [p.date, p.nav]));
+      const lookup = Object.fromEntries(s.points.map(p => [p.date, p.ret_pct]));
       const color = ACCENT[s.accent] || '#71717a';
       return {
         label: s.is_benchmark ? s.label + ' (benchmark)' : s.label,
@@ -609,9 +612,15 @@ class ALPACA,PAGES out
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { position: 'top', align: 'end' }, tooltip: { mode: 'index', intersect: false } },
+        plugins: {
+          legend: { position: 'top', align: 'end' },
+          tooltip: {
+            mode: 'index', intersect: false,
+            callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y > 0 ? '+' : ''}${ctx.parsed.y.toFixed(2)}%` },
+          },
+        },
         scales: {
-          y: { grid: { color: '#f4f4f5' }, ticks: { callback: v => '$' + v.toLocaleString() } },
+          y: { grid: { color: '#f4f4f5' }, ticks: { callback: v => (v > 0 ? '+' : '') + v.toFixed(1) + '%' } },
           x: { grid: { display: false }, ticks: { maxRotation: 0 } },
         },
       },
