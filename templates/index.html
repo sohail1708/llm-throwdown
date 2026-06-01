@@ -387,98 +387,159 @@
       <div class="mermaid-wrap">
         <div class="mermaid">
 flowchart TD
-    Cron1[Morning Cron 13:30 UTC]
-    Daily[daily.py orchestrator]
-    Snap[Market snapshot - 9 tickers via yfinance]
-    Cron1 --> Daily --> Snap
 
-    ChatGPT[ChatGPT gpt-5]
-    Claude[Claude sonnet-4-6]
-    Gemini[Gemini 2.5-pro]
-    Snap --> ChatGPT
-    Snap --> Claude
-    Snap --> Gemini
+subgraph TRIGGER
+  CRON[Morning cron 13:30 UTC<br>GitHub Actions Mon-Fri]
+  ORCH[daily.py orchestrator]
+  SNAP[Market snapshot<br>9 NASDAQ tech stocks<br>via yfinance]
+  CRON --> ORCH
+  ORCH --> SNAP
+end
 
-    Research[Research phase - up to 5 tool iterations]
-    Decision[Decision phase - submit_decision]
-    ChatGPT --> Research
-    Claude --> Research
-    Gemini --> Research
-    Research --> Decision
+subgraph RESEARCH
+  CG_R[ChatGPT research agent<br>gpt-5<br>max 5 tool iterations]
+  CL_R[Claude research agent<br>sonnet-4-6<br>max 5 tool iterations]
+  GM_R[Gemini research agent<br>gemini-2.5-pro<br>max 5 tool iterations]
 
-    Tools[Shared tools - get_history, get_news, get_financials, get_analyst_ratings, read_own_trades]
-    Research -.-> Tools
+  T_HIST[get_history<br>OHLCV bars]
+  T_NEWS[get_news<br>recent headlines]
+  T_FIN[get_financials<br>P/E growth margins debt]
+  T_RATE[get_analyst_ratings<br>targets and buy sell mix]
+  T_SELF[read_own_trades<br>self reflection]
 
-    Validate[Validator - universe, min 5k, max 25 pct NAV]
-    Decision --> Validate
+  CG_R --> T_HIST
+  CG_R --> T_NEWS
+  CG_R --> T_FIN
+  CG_R --> T_RATE
+  CG_R --> T_SELF
 
-    Alpaca[Alpaca Paper - 3 separate accounts]
-    DecLog[(decisions.jsonl)]
-    Validate --> Alpaca
-    Validate --> DecLog
+  CL_R --> T_HIST
+  CL_R --> T_NEWS
+  CL_R --> T_FIN
+  CL_R --> T_RATE
+  CL_R --> T_SELF
 
-    Cron2[Evening Cron 20:30 UTC]
-    EOD[eod.py]
-    NavSnap[NAV snapshot per AI]
-    NavLog[(nav.jsonl)]
-    Render[Jinja2 render]
-    Pages[GitHub Pages]
+  GM_R --> T_HIST
+  GM_R --> T_NEWS
+  GM_R --> T_FIN
+  GM_R --> T_RATE
+  GM_R --> T_SELF
 
-    Cron2 --> EOD
-    EOD --> NavSnap --> NavLog
-    EOD --> Render
-    DecLog --> Render
-    NavLog --> Render
-    Render --> Pages
+  T_HIST --> CG_R
+  T_NEWS --> CG_R
+  T_FIN --> CG_R
+  T_RATE --> CG_R
+  T_SELF --> CG_R
 
-    classDef cron fill:#18181b,stroke:#18181b,color:#ffffff
-    classDef llm fill:#ffffff,stroke:#a1a1aa,color:#18181b
-    classDef chatgpt fill:#ecfdf5,stroke:#10b981,color:#065f46
-    classDef claude fill:#fff7ed,stroke:#f97316,color:#9a3412
-    classDef gemini fill:#eff6ff,stroke:#3b82f6,color:#1e40af
-    classDef tool fill:#fafafa,stroke:#d4d4d8,color:#3f3f46
-    classDef store fill:#fef3c7,stroke:#f59e0b,color:#78350f
-    classDef gate fill:#fee2e2,stroke:#dc2626,color:#7f1d1d
-    classDef out fill:#dbeafe,stroke:#2563eb,color:#1e3a8a
+  T_HIST --> CL_R
+  T_NEWS --> CL_R
+  T_FIN --> CL_R
+  T_RATE --> CL_R
+  T_SELF --> CL_R
 
-    class Cron1,Cron2 cron
-    class Daily,Snap,Research,Decision,EOD,NavSnap,Render llm
-    class ChatGPT chatgpt
-    class Claude claude
-    class Gemini gemini
-    class Tools tool
-    class DecLog,NavLog store
-    class Validate gate
-    class Alpaca,Pages out
+  T_HIST --> GM_R
+  T_NEWS --> GM_R
+  T_FIN --> GM_R
+  T_RATE --> GM_R
+  T_SELF --> GM_R
+
+  CG_SR[submit_research sentinel]
+  CL_SR[submit_research sentinel]
+  GM_SR[submit_research sentinel]
+
+  CG_R --> CG_SR
+  CL_R --> CL_SR
+  GM_R --> GM_SR
+end
+
+SNAP --> CG_R
+SNAP --> CL_R
+SNAP --> GM_R
+
+subgraph DECIDE
+  CG_D[ChatGPT decision call<br>no tools]
+  CL_D[Claude decision call<br>no tools]
+  GM_D[Gemini decision call<br>no tools]
+
+  CG_SD[submit_decision sentinel<br>action ticker amount reason confidence]
+  CL_SD[submit_decision sentinel<br>action ticker amount reason confidence]
+  GM_SD[submit_decision sentinel<br>action ticker amount reason confidence]
+
+  CG_D --> CG_SD
+  CL_D --> CL_SD
+  GM_D --> GM_SD
+end
+
+CG_SR --> CG_D
+CL_SR --> CL_D
+GM_SR --> GM_D
+
+subgraph EXECUTE
+  GATE[Validator gate<br>universe / min 5k / max 25 pct NAV<br>SELL needs existing position]
+  ALPACA[Alpaca paper API<br>market order DAY TIF<br>separate account per AI]
+  LOG[(decisions.jsonl<br>research + decision + tools + cost)]
+
+  GATE --> ALPACA
+  ALPACA --> LOG
+  GATE --> LOG
+end
+
+CG_SD --> GATE
+CL_SD --> GATE
+GM_SD --> GATE
+
+subgraph EOD
+  ECRON[Evening cron 20:30 UTC<br>GitHub Actions Mon-Fri]
+  EOD_PY[eod.py]
+  NAV_AI[NAV snapshot per AI<br>from Alpaca]
+  QQQ[QQQ price snapshot<br>benchmark NAV from 100k]
+  NAV_LOG[(nav.jsonl)]
+  JINJA[Jinja2 dashboard render]
+  PAGES[GitHub Pages /docs<br>commit to main]
+
+  ECRON --> EOD_PY
+  EOD_PY --> NAV_AI
+  EOD_PY --> QQQ
+  NAV_AI --> NAV_LOG
+  QQQ --> NAV_LOG
+  NAV_LOG --> JINJA
+  JINJA --> PAGES
+end
+
+classDef cron      fill:#18181b,stroke:#18181b,color:#fff
+classDef orch      fill:#fff,stroke:#a1a1aa,color:#18181b
+classDef chatgpt   fill:#ecfdf5,stroke:#10b981,color:#065f46
+classDef claude    fill:#fff7ed,stroke:#f97316,color:#9a3412
+classDef gemini    fill:#eff6ff,stroke:#3b82f6,color:#1e40af
+classDef tool      fill:#fafafa,stroke:#d4d4d8,color:#3f3f46
+classDef sentinel  fill:#fef3c7,stroke:#f59e0b,color:#78350f
+classDef gate      fill:#fee2e2,stroke:#dc2626,color:#7f1d1d
+classDef store     fill:#fef3c7,stroke:#f59e0b,color:#78350f
+classDef out       fill:#dbeafe,stroke:#2563eb,color:#1e3a8a
+
+class CRON,ECRON cron
+class ORCH,EOD_PY,SNAP,JINJA orch
+class CG_R,CG_D chatgpt
+class CL_R,CL_D claude
+class GM_R,GM_D gemini
+class T_HIST,T_NEWS,T_FIN,T_RATE,T_SELF tool
+class CG_SR,CL_SR,GM_SR,CG_SD,CL_SD,GM_SD sentinel
+class GATE gate
+class LOG,NAV_LOG,NAV_AI,QQQ store
+class ALPACA,PAGES out
         </div>
       </div>
     </div>
 
-    <!-- Step-by-step explainer -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-      <div class="arch-step">
-        <h4>1 · Morning trigger</h4>
-        <p>At <code>13:30 UTC</code> (09:30 ET, market open) GitHub Actions kicks off <code>daily.py</code>. It pulls a fresh snapshot of the 9-stock tech universe from yfinance and fans out to all three providers sequentially.</p>
-      </div>
-      <div class="arch-step">
-        <h4>2 · Research phase</h4>
-        <p>Each AI runs a tool-using loop (max 5 iterations) over the shared tool registry. The loop ends when the model calls the <code>submit_research</code> sentinel tool — its arguments <em>are</em> the structured output. Same mechanism for all 3 (no JSON-mode disparity).</p>
-      </div>
-      <div class="arch-step">
-        <h4>3 · Decision phase</h4>
-        <p>A second LLM call ingests the research and emits exactly one action via <code>submit_decision</code>: <code>BUY</code> · <code>SELL</code> · <code>HOLD</code> with ticker, dollar notional, reason, and confidence 1–5.</p>
-      </div>
-      <div class="arch-step">
-        <h4>4 · Validator</h4>
-        <p>Hard rails enforced in code, not prompts: ticker must be in the universe; BUY notional ≥ $5k; position ≤ 25% of NAV (auto-clipped to headroom); SELL requires existing position. Failed validation logs an error — no trade.</p>
-      </div>
-      <div class="arch-step">
-        <h4>5 · Execute</h4>
-        <p>Validated orders go to each AI's own Alpaca paper account as a market order, day TIF. Every research + decision + token + cost record gets appended to <code>data/decisions.jsonl</code>.</p>
-      </div>
-      <div class="arch-step">
-        <h4>6 · Evening settle</h4>
-        <p>At <code>20:30 UTC</code> (post-close), <code>eod.py</code> snapshots each AI's NAV from Alpaca, appends to <code>data/nav.jsonl</code>, re-renders this dashboard via Jinja2, and commits to <code>main</code> — GitHub Pages republishes <code>/docs</code> automatically.</p>
+    <!-- Per-day call budget -->
+    <div class="card p-6 mb-6">
+      <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">🔢 Per-day call budget</h3>
+      <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-4">How many calls fire in one trading day</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+        <div class="border border-zinc-200 rounded-lg p-3"><div class="num text-2xl font-extrabold text-zinc-900">21</div><div class="text-zinc-500 mt-1">LLM round-trips max<br>(7 per AI × 3)</div></div>
+        <div class="border border-zinc-200 rounded-lg p-3"><div class="num text-2xl font-extrabold text-zinc-900">30</div><div class="text-zinc-500 mt-1">yfinance / local tool<br>invocations max</div></div>
+        <div class="border border-zinc-200 rounded-lg p-3"><div class="num text-2xl font-extrabold text-zinc-900">6</div><div class="text-zinc-500 mt-1">sentinel commits<br>(submit_research + submit_decision)</div></div>
+        <div class="border border-zinc-200 rounded-lg p-3"><div class="num text-2xl font-extrabold text-zinc-900">3</div><div class="text-zinc-500 mt-1">Alpaca order submits<br>(one per AI)</div></div>
       </div>
     </div>
 
