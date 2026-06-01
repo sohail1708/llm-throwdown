@@ -552,7 +552,7 @@ class ALPACA,PAGES out
   <footer class="mt-12 text-center text-xs text-zinc-400">
     Starting cash: $100,000 per AI · Alpaca paper trading ·
     <a class="hover:text-zinc-700 underline" href="https://github.com/sohail1708/llm-throwdown">repo</a> ·
-    Last updated 2026-06-01T12:08:40+00:00 UTC
+    Last updated 2026-06-01T12:10:39+00:00 UTC
   </footer>
 </div>
 
@@ -560,24 +560,24 @@ class ALPACA,PAGES out
   const chartSeries = [{"accent": "emerald", "is_benchmark": false, "label": "ChatGPT", "name": "chatgpt", "points": []}, {"accent": "orange", "is_benchmark": false, "label": "Claude", "name": "claude", "points": []}, {"accent": "blue", "is_benchmark": false, "label": "Gemini", "name": "gemini", "points": []}];
   const ACCENT = { emerald: '#10b981', orange: '#f97316', blue: '#3b82f6', zinc: '#71717a' };
 
-  // Tab switcher
-  document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('.tab-btn');
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const target = btn.dataset.tab;
-        buttons.forEach(b => b.classList.toggle('active', b === btn));
-        document.querySelectorAll('.tab-panel').forEach(p => {
-          p.classList.toggle('active', p.id === 'tab-' + target);
-        });
-      });
-    });
-  });
-
-  // Mermaid init
+  // Mermaid init — securityLevel: 'loose' is required to render <br> in labels.
+  // We DON'T use startOnLoad because the Architecture tab is display:none at first
+  // paint; we render on demand instead (initially + each time the tab is shown).
+  let mermaidRendered = false;
+  function renderMermaidOnce() {
+    if (mermaidRendered || !window.mermaid) return;
+    mermaidRendered = true;
+    try {
+      mermaid.run({ querySelector: '.mermaid' });
+    } catch (e) {
+      console.error('mermaid render error:', e);
+      mermaidRendered = false;
+    }
+  }
   if (window.mermaid) {
     mermaid.initialize({
-      startOnLoad: true,
+      startOnLoad: false,
+      securityLevel: 'loose',
       theme: 'base',
       themeVariables: {
         fontFamily: 'Inter, system-ui, sans-serif',
@@ -591,6 +591,21 @@ class ALPACA,PAGES out
       flowchart: { curve: 'basis', padding: 16, nodeSpacing: 50, rankSpacing: 60 },
     });
   }
+
+  // Tab switcher — also lazily renders mermaid the first time Architecture is shown.
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.tab;
+        buttons.forEach(b => b.classList.toggle('active', b === btn));
+        document.querySelectorAll('.tab-panel').forEach(p => {
+          p.classList.toggle('active', p.id === 'tab-' + target);
+        });
+        if (target === 'architecture') renderMermaidOnce();
+      });
+    });
+  });
 
   document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('navChart');
