@@ -32,6 +32,23 @@ BENCHMARK_SLUG = "qqq"
 BENCHMARK_LABEL = "QQQ"
 
 
+def _yf_close(ticker: str) -> float | None:
+    """Today's consolidated NMS close from yfinance. Returns None on miss.
+
+    We use this for all position-level pricing so the dashboard shows the
+    SAME close that Yahoo / Google Finance / Schwab show, not Alpaca's
+    IEX-only paper feed (which can be minutes stale and off by several
+    dollars on illiquid moments).
+    """
+    try:
+        hist = yf.Ticker(ticker).history(period="2d", auto_adjust=False)
+        if hist.empty:
+            return None
+        return float(hist["Close"].iloc[-1])
+    except Exception:
+        return None
+
+
 def _load_jsonl(path: Path) -> list[dict]:
     if not path.exists():
         return []
@@ -104,25 +121,36 @@ def snapshot() -> int:
             trader = Trader(provider.alpaca_key_env, provider.alpaca_secret_env)
             acct = trader.account()
             positions = trader.positions()
+
+            # Override Alpaca's market_value with yfinance close so the dashboard
+            # matches the consolidated tape that the rest of the world sees.
+            positions_data: list[dict] = []
+            positions_value = 0.0
+            for p in positions:
+                yf_close = _yf_close(p.ticker)
+                cur_price = yf_close if yf_close is not None else (p.market_value / p.qty if p.qty else 0)
+                mv = p.qty * cur_price
+                positions_value += mv
+                positions_data.append({
+                    "ticker": p.ticker,
+                    "qty": round(p.qty, 4),
+                    "avg_entry_price": round(p.avg_entry_price, 4),
+                    "market_value": round(mv, 2),
+                    "current_price": round(cur_price, 4),
+                    "unrealized_pl": round(mv - p.qty * p.avg_entry_price, 2),
+                    "price_source": "yfinance" if yf_close is not None else "alpaca",
+                })
+
+            nav = acct.cash + positions_value
             row = {
                 "date": today,
                 "ai": provider.name,
                 "label": provider.label,
-                "nav": round(acct.portfolio_value, 2),
+                "nav": round(nav, 2),
                 "cash": round(acct.cash, 2),
-                "positions_value": round(acct.portfolio_value - acct.cash, 2),
+                "positions_value": round(positions_value, 2),
                 "n_positions": len(positions),
-                "positions": [
-                    {
-                        "ticker": p.ticker,
-                        "qty": round(p.qty, 4),
-                        "avg_entry_price": round(p.avg_entry_price, 4),
-                        "market_value": round(p.market_value, 2),
-                        "current_price": round(p.market_value / p.qty, 4) if p.qty else 0,
-                        "unrealized_pl": round(p.unrealized_pl, 2),
-                    }
-                    for p in positions
-                ],
+                "positions": positions_data,
             }
             print(f"  {provider.label:10s} NAV ${row['nav']:>10,.2f}  cash ${row['cash']:>10,.2f}  positions={row['n_positions']}")
             rows.append(row)
