@@ -309,7 +309,8 @@
           "date": "2026-05-29",
           "nav": 101544.33
         }
-      ]
+      ],
+      "is_benchmark": false
     },
     {
       "name": "claude",
@@ -324,7 +325,8 @@
           "date": "2026-05-29",
           "nav": 100228.09
         }
-      ]
+      ],
+      "is_benchmark": false
     },
     {
       "name": "gemini",
@@ -339,7 +341,20 @@
           "date": "2026-05-29",
           "nav": 100260.28
         }
-      ]
+      ],
+      "is_benchmark": false
+    },
+    {
+      "name": "qqq",
+      "label": "QQQ",
+      "accent": "zinc",
+      "points": [
+        {
+          "date": "2026-05-29",
+          "nav": 100000.0
+        }
+      ],
+      "is_benchmark": true
     }
   ],
   "tool_usage": {

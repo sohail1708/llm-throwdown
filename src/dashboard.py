@@ -21,6 +21,10 @@ END_DATE = date(2026, 7, 14)
 TOTAL_DAYS = 30
 BUDGET_PER_AI = 10.0
 
+BENCHMARK_SLUG = "qqq"
+BENCHMARK_LABEL = "QQQ"
+BENCHMARK_ACCENT = "zinc"
+
 
 def _day_label(today: date) -> dict:
     if today < LAUNCH_DATE:
@@ -113,6 +117,26 @@ def _tool_usage_per_ai(decisions: list[dict]) -> dict[str, dict[str, int]]:
     return {ai: dict(stats) for ai, stats in out.items()}
 
 
+def _benchmark_card(nav_history: list[dict], leaderboard: list[dict]) -> dict | None:
+    """Build the QQQ benchmark card. Returns None if no QQQ data yet."""
+    bench_rows = [r for r in nav_history if r.get("ai") == BENCHMARK_SLUG]
+    if not bench_rows:
+        return None
+    bench_rows.sort(key=lambda r: r["date"])
+    latest = bench_rows[-1]
+    nav = latest["nav"]
+    ret_pct = (nav / STARTING_CASH - 1) * 100
+    leaders_beating = sum(1 for r in leaderboard if r["nav"] > nav)
+    return {
+        "label": BENCHMARK_LABEL,
+        "accent": BENCHMARK_ACCENT,
+        "nav": round(nav, 2),
+        "ret_pct": round(ret_pct, 2),
+        "ais_ahead": leaders_beating,
+        "ais_total": len(leaderboard),
+    }
+
+
 def render_dashboard(*, nav_history: list[dict], decisions: list[dict]) -> None:
     env = Environment(
         loader=FileSystemLoader(str(TEMPLATE_DIR)),
@@ -120,11 +144,14 @@ def render_dashboard(*, nav_history: list[dict], decisions: list[dict]) -> None:
     )
     tpl = env.get_template("index.html")
 
+    ai_nav_history = [r for r in nav_history if r.get("ai") != BENCHMARK_SLUG]
+
     cost_by_ai = _total_cost_per_ai(decisions)
-    leaderboard = _leaderboard(nav_history, cost_by_ai)
+    leaderboard = _leaderboard(ai_nav_history, cost_by_ai)
     today_decisions = _today_decisions(decisions)
-    series_per_ai = _series_per_ai(nav_history)
+    series_per_ai = _series_per_ai(ai_nav_history)
     tool_usage = _tool_usage_per_ai(decisions)
+    benchmark = _benchmark_card(nav_history, leaderboard)
 
     chart_series = []
     for p in PROVIDERS:
@@ -134,12 +161,26 @@ def render_dashboard(*, nav_history: list[dict], decisions: list[dict]) -> None:
             "label": p.label,
             "accent": p.accent,
             "points": [{"date": r["date"], "nav": r["nav"]} for r in hist],
+            "is_benchmark": False,
+        })
+    bench_hist = sorted(
+        [r for r in nav_history if r.get("ai") == BENCHMARK_SLUG],
+        key=lambda r: r["date"],
+    )
+    if bench_hist:
+        chart_series.append({
+            "name": BENCHMARK_SLUG,
+            "label": BENCHMARK_LABEL,
+            "accent": BENCHMARK_ACCENT,
+            "points": [{"date": r["date"], "nav": r["nav"]} for r in bench_hist],
+            "is_benchmark": True,
         })
 
     OUT_HTML.parent.mkdir(parents=True, exist_ok=True)
     html = tpl.render(
         day=_day_label(date.today()),
         leaderboard=leaderboard,
+        benchmark=benchmark,
         today_decisions=[today_decisions.get(p.name) for p in PROVIDERS],
         providers=[{"name": p.name, "label": p.label, "accent": p.accent} for p in PROVIDERS],
         chart_series=chart_series,

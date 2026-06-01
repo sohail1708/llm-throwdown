@@ -21,6 +21,10 @@
     .accent-emerald { --accent: #10b981; --accent-bg: #ecfdf5; --accent-text: #047857; --accent-border: #a7f3d0; }
     .accent-orange  { --accent: #f97316; --accent-bg: #fff7ed; --accent-text: #c2410c; --accent-border: #fed7aa; }
     .accent-blue    { --accent: #3b82f6; --accent-bg: #eff6ff; --accent-text: #1d4ed8; --accent-border: #bfdbfe; }
+    .accent-zinc    { --accent: #71717a; --accent-bg: #fafafa; --accent-text: #3f3f46; --accent-border: #d4d4d8; }
+
+    /* Benchmark strip — a quieter card than the AI cards to mark it as not-a-contestant */
+    .bench-card { background: #fafafa; border: 1px dashed #a1a1aa; border-radius: 14px; }
 
     .ai-card { background: linear-gradient(135deg, var(--accent-bg) 0%, #fff 75%); border: 1px solid var(--accent-border); border-radius: 16px; }
     .ai-card .accent-bar { height: 4px; background: var(--accent); border-radius: 16px 16px 0 0; }
@@ -94,6 +98,35 @@
 
   <!-- ============== DASHBOARD TAB ============== -->
   <div id="tab-dashboard" class="tab-panel active">
+
+  <!-- Benchmark strip — what $100k in QQQ on launch day is worth today -->
+  {% if benchmark %}
+  <div class="bench-card p-4 mb-4 flex items-center justify-between gap-4 flex-wrap">
+    <div class="flex items-center gap-4">
+      <div class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">🏛️ Benchmark</div>
+      <div class="flex items-center gap-2">
+        <span class="text-base font-extrabold text-zinc-900">{{ benchmark.label }}</span>
+        <span class="text-xs text-zinc-500">$100k on launch day</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-6">
+      <div class="text-right">
+        <div class="num text-2xl font-extrabold text-zinc-700">${{ "{:,.0f}".format(benchmark.nav) }}</div>
+        <div class="text-[10px] uppercase tracking-widest text-zinc-500">value today</div>
+      </div>
+      <div class="text-right">
+        <div class="num text-2xl font-extrabold {% if benchmark.ret_pct > 0 %}text-emerald-600{% elif benchmark.ret_pct < 0 %}text-rose-600{% else %}text-zinc-500{% endif %}">
+          {% if benchmark.ret_pct > 0 %}+{% endif %}{{ "%.2f"|format(benchmark.ret_pct) }}%
+        </div>
+        <div class="text-[10px] uppercase tracking-widest text-zinc-500">return</div>
+      </div>
+      <div class="text-right">
+        <div class="num text-2xl font-extrabold text-zinc-900">{{ benchmark.ais_ahead }}/{{ benchmark.ais_total }}</div>
+        <div class="text-[10px] uppercase tracking-widest text-zinc-500">AIs beating QQQ</div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
 
   <!-- Leaderboard 3-up -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -450,7 +483,7 @@ flowchart TD
 
 <script>
   const chartSeries = {{ chart_series | tojson }};
-  const ACCENT = { emerald: '#10b981', orange: '#f97316', blue: '#3b82f6' };
+  const ACCENT = { emerald: '#10b981', orange: '#f97316', blue: '#3b82f6', zinc: '#71717a' };
 
   // Tab switcher
   document.addEventListener('DOMContentLoaded', () => {
@@ -495,14 +528,15 @@ flowchart TD
       const lookup = Object.fromEntries(s.points.map(p => [p.date, p.nav]));
       const color = ACCENT[s.accent] || '#71717a';
       return {
-        label: s.label,
+        label: s.is_benchmark ? s.label + ' (benchmark)' : s.label,
         data: labels.map(d => lookup[d] ?? null),
         borderColor: color,
         backgroundColor: color + '14',
         fill: false,
         tension: 0.3,
-        borderWidth: 2.5,
-        pointRadius: 2,
+        borderWidth: s.is_benchmark ? 2 : 2.5,
+        borderDash: s.is_benchmark ? [6, 5] : [],
+        pointRadius: s.is_benchmark ? 1 : 2,
         pointHoverRadius: 5,
         spanGaps: true,
       };
