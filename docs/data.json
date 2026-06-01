@@ -12,6 +12,21 @@
       "spent_usd": 0.12,
       "budget_usd": 10.0,
       "budget_pct": 1.2,
+      "positions": [
+        {
+          "ticker": "ORCL",
+          "qty": 117.962,
+          "market_value": 26671.2,
+          "pct_nav": 26.3
+        },
+        {
+          "ticker": "GOOGL",
+          "qty": 65.3782,
+          "market_value": 24873.13,
+          "pct_nav": 24.5
+        }
+      ],
+      "cash_pct_nav": 49.2,
       "rank": 1
     },
     {
@@ -26,6 +41,21 @@
       "spent_usd": 0.03,
       "budget_usd": 10.0,
       "budget_pct": 0.3,
+      "positions": [
+        {
+          "ticker": "MSFT",
+          "qty": 56.4474,
+          "market_value": 25344.89,
+          "pct_nav": 25.3
+        },
+        {
+          "ticker": "NVDA",
+          "qty": 117.0561,
+          "market_value": 24915.39,
+          "pct_nav": 24.9
+        }
+      ],
+      "cash_pct_nav": 49.9,
       "rank": 2
     },
     {
@@ -40,6 +70,21 @@
       "spent_usd": 0.11,
       "budget_usd": 10.0,
       "budget_pct": 1.1,
+      "positions": [
+        {
+          "ticker": "AVGO",
+          "qty": 56.8712,
+          "market_value": 25387.29,
+          "pct_nav": 25.3
+        },
+        {
+          "ticker": "TSLA",
+          "qty": 57.1697,
+          "market_value": 24840.8,
+          "pct_nav": 24.8
+        }
+      ],
+      "cash_pct_nav": 49.9,
       "rank": 3
     }
   ],

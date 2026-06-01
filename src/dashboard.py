@@ -75,6 +75,17 @@ def _leaderboard(nav_history: list[dict], cost_by_ai: dict[str, float]) -> list[
             if navs and max(navs.values()) == navs.get(p.name, 0):
                 days_first += 1
         spent = cost_by_ai.get(p.name, 0.0)
+        positions = []
+        if latest and latest.get("positions"):
+            for pos in latest["positions"]:
+                mv = pos.get("market_value", 0) or 0
+                positions.append({
+                    "ticker": pos["ticker"],
+                    "qty": pos.get("qty", 0),
+                    "market_value": round(mv, 2),
+                    "pct_nav": round(mv / nav * 100, 1) if nav else 0,
+                })
+            positions.sort(key=lambda x: x["market_value"], reverse=True)
         rows.append({
             "name": p.name,
             "label": p.label,
@@ -87,6 +98,8 @@ def _leaderboard(nav_history: list[dict], cost_by_ai: dict[str, float]) -> list[
             "spent_usd": round(spent, 2),
             "budget_usd": BUDGET_PER_AI,
             "budget_pct": min(100, round(spent / BUDGET_PER_AI * 100, 1)),
+            "positions": positions,
+            "cash_pct_nav": round((latest["cash"] if latest else STARTING_CASH) / nav * 100, 1) if nav else 0,
         })
     rows.sort(key=lambda r: r["nav"], reverse=True)
     for rank, r in enumerate(rows, start=1):
