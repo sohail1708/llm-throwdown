@@ -99,6 +99,12 @@
   <!-- ============== DASHBOARD TAB ============== -->
   <div id="tab-dashboard" class="tab-panel active">
 
+  <!-- Universe ribbon — the 9 tickers the AIs can pick from -->
+  <div class="flex items-center justify-center flex-wrap gap-x-3 gap-y-1 mb-4 text-xs">
+    <span class="text-[10px] font-bold uppercase tracking-[0.18em] text-zinc-500">🌐 Universe</span>
+    {% for t in universe %}<span class="num font-semibold text-zinc-700">{{ t }}</span>{% if not loop.last %}<span class="text-zinc-300">·</span>{% endif %}{% endfor %}
+  </div>
+
   <!-- Benchmark strip — what $100k in QQQ on launch day is worth today -->
   {% if benchmark %}
   <div class="bench-card p-4 mb-4 flex items-center justify-between gap-4 flex-wrap">

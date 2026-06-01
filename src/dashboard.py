@@ -8,7 +8,7 @@ from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from src.data import STARTING_CASH
+from src.data import STARTING_CASH, UNIVERSE
 from src.providers import PROVIDERS
 
 ROOT = Path(__file__).parent.parent
@@ -286,6 +286,7 @@ def render_dashboard(*, nav_history: list[dict], decisions: list[dict]) -> None:
         generated_at=datetime.now(timezone.utc).isoformat(timespec="seconds"),
         starting_cash=STARTING_CASH,
         budget_per_ai=BUDGET_PER_AI,
+        universe=UNIVERSE,
     )
     OUT_HTML.write_text(html)
     OUT_DATA.write_text(json.dumps({
