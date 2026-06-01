@@ -360,23 +360,23 @@
 flowchart TD
 
 subgraph TRIGGER
-  CRON["Morning cron 13:30 UTC<br>GitHub Actions Mon-Fri"]
-  ORCH["daily.py orchestrator"]
-  SNAP["Market snapshot<br>9 NASDAQ tech stocks<br>via yfinance"]
+  CRON[Morning cron 13:30 UTC Mon-Fri]
+  ORCH[daily.py orchestrator]
+  SNAP[Market snapshot - 9 NASDAQ tech stocks via yfinance]
   CRON --> ORCH
   ORCH --> SNAP
 end
 
 subgraph RESEARCH
-  CG_R["ChatGPT research agent<br>gpt-5<br>max 5 tool iterations"]
-  CL_R["Claude research agent<br>sonnet-4-6<br>max 5 tool iterations"]
-  GM_R["Gemini research agent<br>gemini-2.5-pro<br>max 5 tool iterations"]
+  CG_R[ChatGPT research - gpt-5 - max 5 tool iters]
+  CL_R[Claude research - sonnet-4-6 - max 5 tool iters]
+  GM_R[Gemini research - gemini-2.5-pro - max 5 tool iters]
 
-  T_HIST["get_history<br>OHLCV bars"]
-  T_NEWS["get_news<br>recent headlines"]
-  T_FIN["get_financials<br>P/E growth margins debt"]
-  T_RATE["get_analyst_ratings<br>targets and buy sell mix"]
-  T_SELF["read_own_trades<br>self reflection"]
+  T_HIST[get_history]
+  T_NEWS[get_news]
+  T_FIN[get_financials]
+  T_RATE[get_analyst_ratings]
+  T_SELF[read_own_trades]
 
   CG_R --> T_HIST
   CG_R --> T_NEWS
@@ -414,9 +414,9 @@ subgraph RESEARCH
   T_RATE --> GM_R
   T_SELF --> GM_R
 
-  CG_SR["submit_research sentinel"]
-  CL_SR["submit_research sentinel"]
-  GM_SR["submit_research sentinel"]
+  CG_SR[submit_research]
+  CL_SR[submit_research]
+  GM_SR[submit_research]
 
   CG_R --> CG_SR
   CL_R --> CL_SR
@@ -428,13 +428,13 @@ SNAP --> CL_R
 SNAP --> GM_R
 
 subgraph DECIDE
-  CG_D["ChatGPT decision call<br>no tools"]
-  CL_D["Claude decision call<br>no tools"]
-  GM_D["Gemini decision call<br>no tools"]
+  CG_D[ChatGPT decision - no tools]
+  CL_D[Claude decision - no tools]
+  GM_D[Gemini decision - no tools]
 
-  CG_SD["submit_decision sentinel<br>action ticker amount reason confidence"]
-  CL_SD["submit_decision sentinel<br>action ticker amount reason confidence"]
-  GM_SD["submit_decision sentinel<br>action ticker amount reason confidence"]
+  CG_SD[submit_decision]
+  CL_SD[submit_decision]
+  GM_SD[submit_decision]
 
   CG_D --> CG_SD
   CL_D --> CL_SD
@@ -446,9 +446,9 @@ CL_SR --> CL_D
 GM_SR --> GM_D
 
 subgraph EXECUTE
-  GATE["Validator gate<br>universe / min 5k / max 25 pct NAV<br>SELL needs existing position"]
-  ALPACA["Alpaca paper API<br>market order DAY TIF<br>separate account per AI"]
-  LOG[("decisions.jsonl<br>research + decision + tools + cost")]
+  GATE[Validator - universe / min 5k / max 25 pct NAV]
+  ALPACA[Alpaca paper API - market order DAY TIF]
+  LOG[(decisions.jsonl)]
 
   GATE --> ALPACA
   ALPACA --> LOG
@@ -460,13 +460,13 @@ CL_SD --> GATE
 GM_SD --> GATE
 
 subgraph EOD
-  ECRON["Evening cron 20:30 UTC<br>GitHub Actions Mon-Fri"]
-  EOD_PY["eod.py"]
-  NAV_AI["NAV snapshot per AI<br>from Alpaca"]
-  QQQ["QQQ price snapshot<br>benchmark NAV from 100k"]
-  NAV_LOG[("nav.jsonl")]
-  JINJA["Jinja2 dashboard render"]
-  PAGES["GitHub Pages /docs<br>commit to main"]
+  ECRON[Evening cron 20:30 UTC Mon-Fri]
+  EOD_PY[eod.py]
+  NAV_AI[NAV snapshot per AI from Alpaca]
+  QQQ[QQQ price snapshot - benchmark NAV]
+  NAV_LOG[(nav.jsonl)]
+  JINJA[Jinja2 dashboard render]
+  PAGES[GitHub Pages docs commit to main]
 
   ECRON --> EOD_PY
   EOD_PY --> NAV_AI
@@ -552,7 +552,7 @@ class ALPACA,PAGES out
   <footer class="mt-12 text-center text-xs text-zinc-400">
     Starting cash: $100,000 per AI · Alpaca paper trading ·
     <a class="hover:text-zinc-700 underline" href="https://github.com/sohail1708/llm-throwdown">repo</a> ·
-    Last updated 2026-06-01T12:10:39+00:00 UTC
+    Last updated 2026-06-01T12:16:28+00:00 UTC
   </footer>
 </div>
 
@@ -564,13 +564,15 @@ class ALPACA,PAGES out
   // We DON'T use startOnLoad because the Architecture tab is display:none at first
   // paint; we render on demand instead (initially + each time the tab is shown).
   let mermaidRendered = false;
-  function renderMermaidOnce() {
+  async function renderMermaidOnce() {
     if (mermaidRendered || !window.mermaid) return;
     mermaidRendered = true;
+    console.log('[mermaid] version:', mermaid.version, '— running');
     try {
-      mermaid.run({ querySelector: '.mermaid' });
+      await mermaid.run();
+      console.log('[mermaid] render complete');
     } catch (e) {
-      console.error('mermaid render error:', e);
+      console.error('[mermaid] render error:', e);
       mermaidRendered = false;
     }
   }
