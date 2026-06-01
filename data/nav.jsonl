@@ -1,7 +1,0 @@
-{"date": "2026-05-29", "ai": "chatgpt", "label": "ChatGPT", "nav": 100000.0, "cash": 100000.0, "positions_value": 0.0, "n_positions": 0, "positions": []}
-{"date": "2026-05-29", "ai": "claude", "label": "Claude", "nav": 100000.0, "cash": 100000.0, "positions_value": 0.0, "n_positions": 0, "positions": []}
-{"date": "2026-05-29", "ai": "gemini", "label": "Gemini", "nav": 100000.0, "cash": 100000.0, "positions_value": 0.0, "n_positions": 0, "positions": []}
-{"date": "2026-05-29", "ai": "chatgpt", "label": "ChatGPT", "nav": 101544.33, "cash": 50000.0, "positions_value": 51544.33, "n_positions": 2, "positions": [{"ticker": "GOOGL", "qty": 65.3782, "market_value": 24873.13}, {"ticker": "ORCL", "qty": 117.962, "market_value": 26671.2}]}
-{"date": "2026-05-29", "ai": "claude", "label": "Claude", "nav": 100228.09, "cash": 50000.0, "positions_value": 50228.09, "n_positions": 2, "positions": [{"ticker": "AVGO", "qty": 56.8712, "market_value": 25387.29}, {"ticker": "TSLA", "qty": 57.1697, "market_value": 24840.8}]}
-{"date": "2026-05-29", "ai": "gemini", "label": "Gemini", "nav": 100260.28, "cash": 50000.0, "positions_value": 50260.28, "n_positions": 2, "positions": [{"ticker": "MSFT", "qty": 56.4474, "market_value": 25344.89}, {"ticker": "NVDA", "qty": 117.0561, "market_value": 24915.39}]}
-{"date": "2026-05-29", "ai": "qqq", "label": "QQQ", "nav": 100000.0, "cash": 100000.0, "positions_value": 0.0, "n_positions": 0, "positions": [], "is_benchmark": true}

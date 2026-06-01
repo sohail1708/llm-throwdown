@@ -28,6 +28,23 @@ from src.providers import PROVIDERS, Provider
 DECISIONS_PATH = Path(__file__).parent / "data" / "decisions.jsonl"
 
 
+def _ais_already_traded_today(today: str) -> set[str]:
+    """Return slugs of AIs that already have a non-dry-run decision logged for `today`."""
+    if not DECISIONS_PATH.exists():
+        return set()
+    out: set[str] = set()
+    for line in DECISIONS_PATH.read_text().splitlines():
+        if not line.strip():
+            continue
+        try:
+            r = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if r.get("date") == today and not r.get("dry_run") and r.get("action") != "ERROR":
+            out.add(r.get("ai"))
+    return out
+
+
 def _portfolio_state(trader: Trader) -> dict:
     acct = trader.account()
     positions = trader.positions()
@@ -152,9 +169,15 @@ def run(*, dry_run: bool = False) -> int:
         print(f"  {s.ticker:6s} ${s.last_close:>8.2f}  RSI={s.rsi_14}  1d={s.pct_1d}%  5d={s.pct_5d}%")
 
     DECISIONS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    already = set() if dry_run else _ais_already_traded_today(today.isoformat())
+    if already:
+        print(f"[daily] already traded today (skipping): {sorted(already)}")
     rows: list[dict] = []
     total_cost = 0.0
     for provider in PROVIDERS:
+        if provider.name in already:
+            print(f"\n=== {provider.label} === SKIP (already traded {today.isoformat()})")
+            continue
         row = run_one(provider, snaps, dry_run=dry_run)
         rows.append(row)
         total_cost += row.get("cost_usd") or 0
