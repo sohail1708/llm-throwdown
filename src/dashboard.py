@@ -191,6 +191,103 @@ def _tool_usage_per_ai(decisions: list[dict]) -> dict[str, dict[str, int]]:
     return {ai: dict(stats) for ai, stats in out.items()}
 
 
+def _journal(decisions: list[dict], nav_history: list[dict]) -> list[dict]:
+    """Build a per-AI narrative timeline. One entry per AI per day that has
+    *either* a decision or a NAV snapshot, in chronological order.
+
+    Each entry tells the story of that day: what the AI saw, what it decided,
+    why, and how that played out by EOD (NAV change, cumulative return,
+    QQQ comparison).
+    """
+    enriched_decisions = _enrich_decisions_with_fills(decisions, nav_history)
+    decisions_by_ai_date: dict[tuple[str, str], dict] = {
+        (d["ai"], d["date"]): d for d in enriched_decisions
+    }
+
+    # NAV history per AI, deduped by date (latest wins per date), sorted.
+    nav_by_ai: dict[str, list[dict]] = defaultdict(list)
+    for r in nav_history:
+        if r.get("ai") == BENCHMARK_SLUG:
+            continue
+        nav_by_ai[r["ai"]].append(r)
+    for ai in nav_by_ai:
+        seen: set[str] = set()
+        dedup = []
+        for r in sorted(nav_by_ai[ai], key=lambda x: x["date"]):
+            if r["date"] in seen:
+                continue
+            seen.add(r["date"])
+            dedup.append(r)
+        nav_by_ai[ai] = dedup
+
+    # QQQ rows keyed by date for the benchmark column.
+    qqq_by_date = {r["date"]: r for r in nav_history if r.get("ai") == BENCHMARK_SLUG}
+
+    journal: list[dict] = []
+    for p in PROVIDERS:
+        nav_rows = nav_by_ai.get(p.name, [])
+        # Universe of dates this AI has data for (either decided or snapped).
+        date_set = {r["date"] for r in nav_rows}
+        date_set.update(d["date"] for d in enriched_decisions if d["ai"] == p.name)
+        dates = sorted(date_set)
+
+        days: list[dict] = []
+        prev_nav = STARTING_CASH
+        for day_num, dt in enumerate(dates, start=1):
+            decision = decisions_by_ai_date.get((p.name, dt))
+            nav_row = next((r for r in nav_rows if r["date"] == dt), None)
+            nav_eod = float(nav_row["nav"]) if nav_row else None
+            day_change_pct = None
+            if nav_eod is not None:
+                day_change_pct = (nav_eod / prev_nav - 1) * 100 if prev_nav else 0
+                prev_nav = nav_eod
+            cumulative_ret_pct = (nav_eod / STARTING_CASH - 1) * 100 if nav_eod is not None else None
+
+            # Position-level return at EOD (vs cost basis)
+            position_ret_pct = None
+            if nav_row:
+                pv, cb, rp, _ = _position_metrics(nav_row)
+                if cb:
+                    position_ret_pct = rp
+
+            qqq_row = qqq_by_date.get(dt)
+            qqq_ret_pct = ((qqq_row["nav"] / STARTING_CASH) - 1) * 100 if qqq_row else None
+
+            research = (decision or {}).get("research") or {}
+            tools_used = research.get("tools_used") or []
+            day = {
+                "date": dt,
+                "day_num": day_num,
+                "has_decision": decision is not None,
+                "action": decision.get("action") if decision else None,
+                "ticker": decision.get("ticker") if decision else None,
+                "amount": decision.get("amount") if decision else None,
+                "fill_price": decision.get("fill_price") if decision else None,
+                "reason": decision.get("reason") if decision else None,
+                "confidence": decision.get("confidence") if decision else None,
+                "research_summary": research.get("summary") if research else None,
+                "candidates": research.get("candidates") or [],
+                "n_tools": len(tools_used),
+                "cost_usd": decision.get("cost_usd") if decision else None,
+                "nav_eod": round(nav_eod, 2) if nav_eod is not None else None,
+                "day_change_pct": round(day_change_pct, 2) if day_change_pct is not None else None,
+                "cumulative_ret_pct": round(cumulative_ret_pct, 2) if cumulative_ret_pct is not None else None,
+                "position_ret_pct": round(position_ret_pct, 2) if position_ret_pct is not None else None,
+                "qqq_ret_pct": round(qqq_ret_pct, 2) if qqq_ret_pct is not None else None,
+            }
+            days.append(day)
+
+        # Most recent days first — easier to scan the latest narrative.
+        days.reverse()
+        journal.append({
+            "name": p.name,
+            "label": p.label,
+            "accent": p.accent,
+            "days": days,
+        })
+    return journal
+
+
 def _benchmark_card(nav_history: list[dict], leaderboard: list[dict]) -> dict | None:
     """Build the QQQ benchmark card. Returns None if no QQQ data yet.
 
@@ -273,11 +370,14 @@ def render_dashboard(*, nav_history: list[dict], decisions: list[dict]) -> None:
             "is_benchmark": True,
         })
 
+    journal = _journal(decisions, nav_history)
+
     OUT_HTML.parent.mkdir(parents=True, exist_ok=True)
     html = tpl.render(
         day=_day_label(date.today()),
         leaderboard=leaderboard,
         benchmark=benchmark,
+        journal=journal,
         today_decisions=[today_decisions.get(p.name) for p in PROVIDERS],
         providers=[{"name": p.name, "label": p.label, "accent": p.accent} for p in PROVIDERS],
         chart_series=chart_series,

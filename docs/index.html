@@ -57,6 +57,18 @@
     .arch-step h4 { font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #18181b; margin-bottom: 6px; }
     .arch-step p { font-size: 13px; color: #52525b; line-height: 1.55; }
     .arch-step code { font-family: 'JetBrains Mono', monospace; font-size: 11px; background: #f4f4f5; padding: 1px 5px; border-radius: 4px; color: #18181b; }
+
+    /* Journal timeline */
+    .journal-col { background: #fff; border: 1px solid #e4e4e7; border-radius: 16px; overflow: hidden; }
+    .journal-col-head { padding: 16px 18px; border-bottom: 1px solid #e4e4e7; background: linear-gradient(180deg, var(--accent-bg) 0%, #fff 100%); }
+    .journal-day { padding: 16px 18px; border-bottom: 1px solid #f4f4f5; }
+    .journal-day:last-child { border-bottom: none; }
+    .journal-day-pill { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 999px; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; }
+    .journal-day-date { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: #71717a; font-weight: 600; }
+    .journal-reason { font-size: 13px; line-height: 1.5; color: #18181b; font-weight: 500; }
+    .journal-summary { font-size: 12px; line-height: 1.55; color: #52525b; font-style: italic; }
+    .journal-stat { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; font-feature-settings: 'tnum'; }
+    .journal-mini { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: #71717a; font-weight: 600; }
   </style>
 </head>
 <body class="text-zinc-900">
@@ -93,6 +105,7 @@
   <!-- Tab nav -->
   <div class="flex justify-center gap-2 mb-8">
     <button class="tab-btn active" data-tab="dashboard">📊 Dashboard</button>
+    <button class="tab-btn" data-tab="journal">📓 Journal</button>
     <button class="tab-btn" data-tab="architecture">🏗️ Architecture</button>
   </div>
 
@@ -862,6 +875,719 @@
 
   </div><!-- /tab-dashboard -->
 
+  <!-- ============== JOURNAL TAB ============== -->
+  <div id="tab-journal" class="tab-panel">
+
+    <div class="mb-6">
+      <h2 class="text-2xl font-extrabold tracking-tight text-zinc-900">📓 Journal</h2>
+      <p class="text-sm text-zinc-600 mt-1">Day-by-day narrative of what each AI saw, decided, and how it played out. Newest day at the top.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      
+      <div class="journal-col accent-emerald">
+        <div class="journal-col-head">
+          <div class="flex items-center justify-between">
+            <span class="text-lg font-extrabold tracking-tight" style="color: var(--accent)">ChatGPT</span>
+            <span class="journal-mini">2 days</span>
+          </div>
+        </div>
+        
+          
+          <div class="journal-day">
+            <!-- header row -->
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2">
+                <span class="journal-day-pill">Day 2</span>
+                <span class="journal-day-date">2026-06-02</span>
+              </div>
+              <span class="chip c-buy">Buy AAPL</span>
+              
+            </div>
+
+            <!-- trade meta -->
+            
+            <div class="text-xs text-zinc-500 mb-2 num">
+              $25,000
+               · fill $315.03
+               · conf 4/5
+            </div>
+            
+
+            <!-- reason (the trader-voice 1-liner) -->
+            
+            <p class="journal-reason mb-2">"Riding WWDC/AI breakout momentum; strong volume, clean highs. Overbought risk, but want exposure before event. Sizing ~24% of NAV stays within cap."</p>
+            
+
+            <!-- research summary (the longer 'why' from research phase) -->
+            
+            <p class="journal-summary mb-3">Momentum is hot in AAPL and ORCL while GOOGL looks washed out near support; I favor riding AAPL strength into WWDC rather than chasing ORCL’s parabolic move.</p>
+            
+
+            <!-- candidates considered (collapsed) -->
+            
+            <details class="mb-3">
+              <summary class="text-[10px] uppercase tracking-widest text-zinc-500 cursor-pointer hover:text-zinc-900">💭 Also considered (3)</summary>
+              <div class="mt-2 space-y-1.5 text-xs">
+                
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">AAPL</span>
+                    <span class="chip c-buy">Buy lean</span>
+                    
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> Apple is breaking to new highs on rising volume with WWDC/AI hype as a near-term catalyst that can extend momentum.</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> RSI above 75 after a strong multi-week run raises sell-the-news risk and a quick pullback if sentiment cools.</div>
+                </div>
+                
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">GOOGL</span>
+                    <span class="chip c-buy">Buy lean</span>
+                    
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> Alphabet is retracing to the post-earnings gap zone with RSI in the mid-30s, setting up a favorable bounce as issuance overhang digests.</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> Convertible/equity issuance and heavy AI capex could suppress shares further, and a break below ~360 risks a deeper slide.</div>
+                </div>
+                
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">ORCL</span>
+                    <span class="chip c-hold">Hold lean</span>
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> Oracle’s AI-driven rerating and tight consolidation near highs suggest continuation as underowned managers chase performance.</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> A 5-day ~27% surge and RSI near 80 make it extended and vulnerable to mean reversion toward the low-230s.</div>
+                </div>
+                
+              </div>
+            </details>
+            
+
+            <!-- EOD outcome row -->
+            
+            <div class="mt-3 pt-3 border-t border-zinc-200/60 grid grid-cols-2 gap-2">
+              <div>
+                <div class="journal-mini">NAV (EOD)</div>
+                <div class="journal-stat text-zinc-900">$103,156</div>
+              </div>
+              
+              <div>
+                <div class="journal-mini">Day change</div>
+                <div class="journal-stat text-emerald-600">
+                  +1.19%
+                </div>
+              </div>
+              
+              
+              <div>
+                <div class="journal-mini">Position return</div>
+                <div class="journal-stat text-emerald-600">
+                  +3.42%
+                </div>
+              </div>
+              
+              
+              <div>
+                <div class="journal-mini">QQQ same day</div>
+                <div class="journal-stat text-zinc-700">
+                  +1.24%
+                </div>
+              </div>
+              
+            </div>
+            
+
+            <!-- footer meta -->
+            
+            <div class="mt-2 flex items-center justify-between text-[10px] text-zinc-400 uppercase tracking-widest">
+              <span>🛠 5 tool calls</span>
+              <span class="num">$0.0688</span>
+            </div>
+            
+          </div>
+          
+          <div class="journal-day">
+            <!-- header row -->
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2">
+                <span class="journal-day-pill">Day 1</span>
+                <span class="journal-day-date">2026-06-01</span>
+              </div>
+              <span class="chip c-buy">Buy AVGO</span>
+              
+            </div>
+
+            <!-- trade meta -->
+            
+            <div class="text-xs text-zinc-500 mb-2 num">
+              $25,000
+               · fill $451.00
+               · conf 4/5
+            </div>
+            
+
+            <!-- reason (the trader-voice 1-liner) -->
+            
+            <p class="journal-reason mb-2">"AI infra momentum + networking exposure, strong breakout into earnings. Riding strength; risk is stretched expectations, but trend’s our friend."</p>
+            
+
+            <!-- research summary (the longer 'why' from research phase) -->
+            
+            <p class="journal-summary mb-3">AI infrastructure momentum is leading while search/ad cools; I’ll ride the trend and favor AVGO over a dip buy in GOOGL today.</p>
+            
+
+            <!-- candidates considered (collapsed) -->
+            
+            <details class="mb-3">
+              <summary class="text-[10px] uppercase tracking-widest text-zinc-500 cursor-pointer hover:text-zinc-900">💭 Also considered (3)</summary>
+              <div class="mt-2 space-y-1.5 text-xs">
+                
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">AVGO</span>
+                    <span class="chip c-buy">Buy lean</span>
+                    
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> AI infrastructure demand and networking exposure are driving a steady high-volume breakout with positive sentiment into an approaching earnings catalyst.</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> After an 8%+ week and a multi-month run, expectations are stretched and any wobble in guidance could spark a sharp semi-wide pullback.</div>
+                </div>
+                
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">GOOGL</span>
+                    <span class="chip c-buy">Buy lean</span>
+                    
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> Post-earnings re-rating, active buybacks/dividend, and a cooled RSI after a multi-week fade set up a buy-the-dip near late-April gap support.</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> Regulatory headlines around EU cloud tenders and recent distribution raise risk of a deeper gap-fill toward the mid-360s before buyers return.</div>
+                </div>
+                
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">ORCL</span>
+                    <span class="chip c-hold">Hold lean</span>
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> AI/OCI momentum and pre-earnings enthusiasm have powered a decisive breakout that could continue if enterprise AI demand surprises to the upside.</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> RSI &gt;70 after a ~20% weekly surge makes it vulnerable to mean reversion or disappointment on the timing of AI revenue conversion.</div>
+                </div>
+                
+              </div>
+            </details>
+            
+
+            <!-- EOD outcome row -->
+            
+            <div class="mt-3 pt-3 border-t border-zinc-200/60 grid grid-cols-2 gap-2">
+              <div>
+                <div class="journal-mini">NAV (EOD)</div>
+                <div class="journal-stat text-zinc-900">$101,945</div>
+              </div>
+              
+              <div>
+                <div class="journal-mini">Day change</div>
+                <div class="journal-stat text-emerald-600">
+                  +1.95%
+                </div>
+              </div>
+              
+              
+              <div>
+                <div class="journal-mini">Position return</div>
+                <div class="journal-stat text-emerald-600">
+                  +1.99%
+                </div>
+              </div>
+              
+              
+              <div>
+                <div class="journal-mini">QQQ same day</div>
+                <div class="journal-stat text-zinc-700">
+                  +0.76%
+                </div>
+              </div>
+              
+            </div>
+            
+
+            <!-- footer meta -->
+            
+            <div class="mt-2 flex items-center justify-between text-[10px] text-zinc-400 uppercase tracking-widest">
+              <span>🛠 5 tool calls</span>
+              <span class="num">$0.0613</span>
+            </div>
+            
+          </div>
+          
+        
+      </div>
+      
+      <div class="journal-col accent-orange">
+        <div class="journal-col-head">
+          <div class="flex items-center justify-between">
+            <span class="text-lg font-extrabold tracking-tight" style="color: var(--accent)">Claude</span>
+            <span class="journal-mini">2 days</span>
+          </div>
+        </div>
+        
+          
+          <div class="journal-day">
+            <!-- header row -->
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2">
+                <span class="journal-day-pill">Day 2</span>
+                <span class="journal-day-date">2026-06-02</span>
+              </div>
+              <span class="chip c-hold">Hold</span>
+              
+            </div>
+
+            <!-- trade meta -->
+            
+
+            <!-- reason (the trader-voice 1-liner) -->
+            
+            <p class="journal-reason mb-2">"NVDA still cleanest AI play, neutral RSI, Computex tailwinds intact. No new catalyst to add or trim today."</p>
+            
+
+            <!-- research summary (the longer 'why' from research phase) -->
+            
+            <p class="journal-summary mb-3">AVGO&#39;s post-earnings gap is already fully priced with overbought RSI; NVDA remains the cleanest AI hardware hold with neutral RSI and intact Computex tailwinds — sit tight on existing position.</p>
+            
+
+            <!-- candidates considered (collapsed) -->
+            
+            <details class="mb-3">
+              <summary class="text-[10px] uppercase tracking-widest text-zinc-500 cursor-pointer hover:text-zinc-900">💭 Also considered (3)</summary>
+              <div class="mt-2 space-y-1.5 text-xs">
+                
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">NVDA</span>
+                    <span class="chip c-hold">Hold lean</span>
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> AI hardware spending cycle remains intact, Computex momentum supports continued upside, RSI neutral at 51.6 with avg cost of $219.27 giving room to add.</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> Already up 3.7% over 5 days and the broader market is showing rotation risk; a risk-off move could pressure semis.</div>
+                </div>
+                
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">AVGO</span>
+                    <span class="chip c-hold">Hold lean</span>
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> Strong earnings beat drove a 13% 5-day surge, forward P/E of 25x is reasonable for 29.5% revenue growth with $25B FCF.</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> Earnings catalyst is fully priced in post-gap, RSI=72.5 is overbought, and debt-to-equity of 82.7 is dangerously high — likely to fade.</div>
+                </div>
+                
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">GOOGL</span>
+                    <span class="chip c-hold">Hold lean</span>
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> RSI=35.7 is deeply oversold with 5d=-5.33% selloff creating a mean-reversion setup with attractive valuation vs AI peers.</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> Negative momentum is strong and the Barron&#39;s piece on Google equity sales suggests dilution/capital concerns that could weigh further.</div>
+                </div>
+                
+              </div>
+            </details>
+            
+
+            <!-- EOD outcome row -->
+            
+            <div class="mt-3 pt-3 border-t border-zinc-200/60 grid grid-cols-2 gap-2">
+              <div>
+                <div class="journal-mini">NAV (EOD)</div>
+                <div class="journal-stat text-zinc-900">$100,232</div>
+              </div>
+              
+              <div>
+                <div class="journal-mini">Day change</div>
+                <div class="journal-stat text-rose-600">
+                  -0.17%
+                </div>
+              </div>
+              
+              
+              <div>
+                <div class="journal-mini">Position return</div>
+                <div class="journal-stat text-emerald-600">
+                  +1.62%
+                </div>
+              </div>
+              
+              
+              <div>
+                <div class="journal-mini">QQQ same day</div>
+                <div class="journal-stat text-zinc-700">
+                  +1.24%
+                </div>
+              </div>
+              
+            </div>
+            
+
+            <!-- footer meta -->
+            
+            <div class="mt-2 flex items-center justify-between text-[10px] text-zinc-400 uppercase tracking-widest">
+              <span>🛠 5 tool calls</span>
+              <span class="num">$0.0494</span>
+            </div>
+            
+          </div>
+          
+          <div class="journal-day">
+            <!-- header row -->
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2">
+                <span class="journal-day-pill">Day 1</span>
+                <span class="journal-day-date">2026-06-01</span>
+              </div>
+              <span class="chip c-buy">Buy NVDA</span>
+              
+            </div>
+
+            <!-- trade meta -->
+            
+            <div class="text-xs text-zinc-500 mb-2 num">
+              $24,957
+               · fill $219.27
+               · conf 4/5
+            </div>
+            
+
+            <!-- reason (the trader-voice 1-liner) -->
+            
+            <p class="journal-reason mb-2">"Computex catalysts + 17x fwd P/E on 85% growth with RSI at 50 — cleanest AI hardware setup right now, loads of room to run."</p>
+            
+
+            <!-- research summary (the longer 'why' from research phase) -->
+            
+            <p class="journal-summary mb-3">NVDA is the cleanest setup today — Computex AI hardware catalysts + deeply discounted forward valuation (17x fwd P/E on 85% growth) with a neutral RSI at 50, while ORCL&#39;s 20% 5-day surge is too extended to chase safely.</p>
+            
+
+            <!-- candidates considered (collapsed) -->
+            
+            <details class="mb-3">
+              <summary class="text-[10px] uppercase tracking-widest text-zinc-500 cursor-pointer hover:text-zinc-900">💭 Also considered (3)</summary>
+              <div class="mt-2 space-y-1.5 text-xs">
+                
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">NVDA</span>
+                    <span class="chip c-buy">Buy lean</span>
+                    
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> Computex Taipei product announcements + RTX Spark laptop CPU are fresh catalysts, while forward P/E of 17.3x on 85% revenue growth and 63% margins makes this genuinely cheap; RSI at 50 gives plenty of room to run.</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> Debt-to-equity of 6.5x is elevated, and broader market wavering (Dow/S&amp;P/Nasdaq indecisive per today&#39;s headlines) could cap near-term upside.</div>
+                </div>
+                
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">ORCL</span>
+                    <span class="chip c-hold">Hold lean</span>
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> A 20%+ 5-day surge on massive volume (5/28-5/29) signals a likely earnings beat catalyst, and momentum is still intact with today&#39;s gap-up open and continuation.</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> Barron&#39;s &#39;bubble&#39; warning + RSI at 72.5 on a stock that&#39;s run $190→$232 in a week creates significant mean-reversion risk — chasing this late is dangerous.</div>
+                </div>
+                
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">GOOGL</span>
+                    <span class="chip c-hold">Hold lean</span>
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> RSI at 38.7 suggests oversold conditions, and as one of the cheapest mega-cap AI names, a bounce is overdue if broad market stabilizes.</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> Negative 5-day momentum (-2.16%) with no visible catalyst makes this a falling knife with undefined bottom.</div>
+                </div>
+                
+              </div>
+            </details>
+            
+
+            <!-- EOD outcome row -->
+            
+            <div class="mt-3 pt-3 border-t border-zinc-200/60 grid grid-cols-2 gap-2">
+              <div>
+                <div class="journal-mini">NAV (EOD)</div>
+                <div class="journal-stat text-zinc-900">$100,408</div>
+              </div>
+              
+              <div>
+                <div class="journal-mini">Day change</div>
+                <div class="journal-stat text-emerald-600">
+                  +0.41%
+                </div>
+              </div>
+              
+              
+              <div>
+                <div class="journal-mini">Position return</div>
+                <div class="journal-stat text-emerald-600">
+                  +2.32%
+                </div>
+              </div>
+              
+              
+              <div>
+                <div class="journal-mini">QQQ same day</div>
+                <div class="journal-stat text-zinc-700">
+                  +0.76%
+                </div>
+              </div>
+              
+            </div>
+            
+
+            <!-- footer meta -->
+            
+            <div class="mt-2 flex items-center justify-between text-[10px] text-zinc-400 uppercase tracking-widest">
+              <span>🛠 5 tool calls</span>
+              <span class="num">$0.0515</span>
+            </div>
+            
+          </div>
+          
+        
+      </div>
+      
+      <div class="journal-col accent-blue">
+        <div class="journal-col-head">
+          <div class="flex items-center justify-between">
+            <span class="text-lg font-extrabold tracking-tight" style="color: var(--accent)">Gemini</span>
+            <span class="journal-mini">2 days</span>
+          </div>
+        </div>
+        
+          
+          <div class="journal-day">
+            <!-- header row -->
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2">
+                <span class="journal-day-pill">Day 2</span>
+                <span class="journal-day-date">2026-06-02</span>
+              </div>
+              <span class="chip c-buy">Buy GOOGL</span>
+              
+            </div>
+
+            <!-- trade meta -->
+            
+            <div class="text-xs text-zinc-500 mb-2 num">
+              $5,500
+               · fill $373.53
+               · conf 4/5
+            </div>
+            
+
+            <!-- reason (the trader-voice 1-liner) -->
+            
+            <p class="journal-reason mb-2">"GOOGL looks oversold after this recent drop. It&#39;s a perfect chance to buy the dip and add to a core holding before it bounces back."</p>
+            
+
+            <!-- research summary (the longer 'why' from research phase) -->
+            
+            <p class="journal-summary mb-3">Momentum names like ORCL and AVGO look technically overextended, creating a contrarian opportunity in my beaten-down GOOGL position which is nearing oversold levels.</p>
+            
+
+            <!-- candidates considered (collapsed) -->
+            
+            <details class="mb-3">
+              <summary class="text-[10px] uppercase tracking-widest text-zinc-500 cursor-pointer hover:text-zinc-900">💭 Also considered (3)</summary>
+              <div class="mt-2 space-y-1.5 text-xs">
+                
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">ORCL</span>
+                    <span class="chip c-sell">Sell lean</span>
+                    
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> Incredible momentum driven by new AI customer wins from Arm, validating its cloud infrastructure strategy.</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> The stock is extremely overbought with an RSI near 80 and its price has already surpassed the average analyst target.</div>
+                </div>
+                
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">GOOGL</span>
+                    <span class="chip c-buy">Buy lean</span>
+                    
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> Approaching oversold RSI territory after a significant pullback, offering a potential mean-reversion entry point.</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> Recent price action is decidedly weak and news of a large capital raise could pressure the stock in the short term.</div>
+                </div>
+                
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">AVGO</span>
+                    <span class="chip c-hold">Hold lean</span>
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> Powerful momentum stock with strong revenue growth and excellent margins at the center of the AI trade.</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> A high valuation and an overbought RSI make it vulnerable to a sharp pullback on any negative catalyst.</div>
+                </div>
+                
+              </div>
+            </details>
+            
+
+            <!-- EOD outcome row -->
+            
+            <div class="mt-3 pt-3 border-t border-zinc-200/60 grid grid-cols-2 gap-2">
+              <div>
+                <div class="journal-mini">NAV (EOD)</div>
+                <div class="journal-stat text-zinc-900">$101,035</div>
+              </div>
+              
+              <div>
+                <div class="journal-mini">Day change</div>
+                <div class="journal-stat text-rose-600">
+                  -0.85%
+                </div>
+              </div>
+              
+              
+              <div>
+                <div class="journal-mini">Position return</div>
+                <div class="journal-stat text-rose-600">
+                  -3.13%
+                </div>
+              </div>
+              
+              
+              <div>
+                <div class="journal-mini">QQQ same day</div>
+                <div class="journal-stat text-zinc-700">
+                  +1.24%
+                </div>
+              </div>
+              
+            </div>
+            
+
+            <!-- footer meta -->
+            
+            <div class="mt-2 flex items-center justify-between text-[10px] text-zinc-400 uppercase tracking-widest">
+              <span>🛠 5 tool calls</span>
+              <span class="num">$0.0097</span>
+            </div>
+            
+          </div>
+          
+          <div class="journal-day">
+            <!-- header row -->
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2">
+                <span class="journal-day-pill">Day 1</span>
+                <span class="journal-day-date">2026-06-01</span>
+              </div>
+              <span class="chip c-buy">Buy GOOGL</span>
+              
+            </div>
+
+            <!-- trade meta -->
+            
+            <div class="text-xs text-zinc-500 mb-2 num">
+              $20,000
+               · fill $375.14
+               · conf 4/5
+            </div>
+            
+
+            <!-- reason (the trader-voice 1-liner) -->
+            
+            <p class="journal-reason mb-2">"Alphabet looks oversold on what seems like overblown regulatory news. Buying this dip on a high-quality name seems like the right call today."</p>
+            
+
+            <!-- research summary (the longer 'why' from research phase) -->
+            
+            <p class="journal-summary mb-3">Today&#39;s market shows a split between overbought momentum names (MSFT, ORCL) and beaten-down tech giants (GOOGL), creating a classic value vs. momentum decision.</p>
+            
+
+            <!-- candidates considered (collapsed) -->
+            
+            <details class="mb-3">
+              <summary class="text-[10px] uppercase tracking-widest text-zinc-500 cursor-pointer hover:text-zinc-900">💭 Also considered (3)</summary>
+              <div class="mt-2 space-y-1.5 text-xs">
+                
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">GOOGL</span>
+                    <span class="chip c-buy">Buy lean</span>
+                    
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> The stock is fundamentally strong and technically oversold (RSI 38.7), offering a good entry point on a dip caused by potentially overblown regulatory news.</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> Negative headlines regarding new EU cloud rules could create sustained headwinds and further selling pressure.</div>
+                </div>
+                
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">NVDA</span>
+                    <span class="chip c-buy">Buy lean</span>
+                    
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> After a healthy pullback, the stock showed strong momentum yesterday, bouncing off a support level with a neutral RSI, suggesting the start of a new leg up.</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> The recent pop could be short-lived, and the stock could re-test its recent lows if the broader market for semiconductors doesn&#39;t show strength.</div>
+                </div>
+                
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">MSFT</span>
+                    <span class="chip c-hold">Hold lean</span>
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> The stock is exhibiting powerful upward momentum and is a market leader in the AI space, which could continue to drive the price higher.</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> With a high RSI of 77.0, the stock is technically overbought and vulnerable to a sharp pullback if momentum stalls.</div>
+                </div>
+                
+              </div>
+            </details>
+            
+
+            <!-- EOD outcome row -->
+            
+            <div class="mt-3 pt-3 border-t border-zinc-200/60 grid grid-cols-2 gap-2">
+              <div>
+                <div class="journal-mini">NAV (EOD)</div>
+                <div class="journal-stat text-zinc-900">$101,898</div>
+              </div>
+              
+              <div>
+                <div class="journal-mini">Day change</div>
+                <div class="journal-stat text-emerald-600">
+                  +1.90%
+                </div>
+              </div>
+              
+              
+              <div>
+                <div class="journal-mini">Position return</div>
+                <div class="journal-stat text-emerald-600">
+                  +0.33%
+                </div>
+              </div>
+              
+              
+              <div>
+                <div class="journal-mini">QQQ same day</div>
+                <div class="journal-stat text-zinc-700">
+                  +0.76%
+                </div>
+              </div>
+              
+            </div>
+            
+
+            <!-- footer meta -->
+            
+            <div class="mt-2 flex items-center justify-between text-[10px] text-zinc-400 uppercase tracking-widest">
+              <span>🛠 5 tool calls</span>
+              <span class="num">$0.0099</span>
+            </div>
+            
+          </div>
+          
+        
+      </div>
+      
+    </div>
+
+  </div><!-- /tab-journal -->
+
   <!-- ============== ARCHITECTURE TAB ============== -->
   <div id="tab-architecture" class="tab-panel">
 
@@ -1008,7 +1734,7 @@ class ALPACA,PAGES out
   <footer class="mt-12 text-center text-xs text-zinc-400">
     Starting cash: $100,000 per AI · Alpaca paper trading ·
     <a class="hover:text-zinc-700 underline" href="https://github.com/sohail1708/llm-throwdown">repo</a> ·
-    Last updated 2026-06-02T22:22:08+00:00 UTC
+    Last updated 2026-06-02T22:30:12+00:00 UTC
   </footer>
 </div>
 

@@ -57,6 +57,18 @@
     .arch-step h4 { font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #18181b; margin-bottom: 6px; }
     .arch-step p { font-size: 13px; color: #52525b; line-height: 1.55; }
     .arch-step code { font-family: 'JetBrains Mono', monospace; font-size: 11px; background: #f4f4f5; padding: 1px 5px; border-radius: 4px; color: #18181b; }
+
+    /* Journal timeline */
+    .journal-col { background: #fff; border: 1px solid #e4e4e7; border-radius: 16px; overflow: hidden; }
+    .journal-col-head { padding: 16px 18px; border-bottom: 1px solid #e4e4e7; background: linear-gradient(180deg, var(--accent-bg) 0%, #fff 100%); }
+    .journal-day { padding: 16px 18px; border-bottom: 1px solid #f4f4f5; }
+    .journal-day:last-child { border-bottom: none; }
+    .journal-day-pill { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 999px; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; }
+    .journal-day-date { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: #71717a; font-weight: 600; }
+    .journal-reason { font-size: 13px; line-height: 1.5; color: #18181b; font-weight: 500; }
+    .journal-summary { font-size: 12px; line-height: 1.55; color: #52525b; font-style: italic; }
+    .journal-stat { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; font-feature-settings: 'tnum'; }
+    .journal-mini { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: #71717a; font-weight: 600; }
   </style>
 </head>
 <body class="text-zinc-900">
@@ -93,6 +105,7 @@
   <!-- Tab nav -->
   <div class="flex justify-center gap-2 mb-8">
     <button class="tab-btn active" data-tab="dashboard">📊 Dashboard</button>
+    <button class="tab-btn" data-tab="journal">📓 Journal</button>
     <button class="tab-btn" data-tab="architecture">🏗️ Architecture</button>
   </div>
 
@@ -384,6 +397,131 @@
   </div>
 
   </div><!-- /tab-dashboard -->
+
+  <!-- ============== JOURNAL TAB ============== -->
+  <div id="tab-journal" class="tab-panel">
+
+    <div class="mb-6">
+      <h2 class="text-2xl font-extrabold tracking-tight text-zinc-900">📓 Journal</h2>
+      <p class="text-sm text-zinc-600 mt-1">Day-by-day narrative of what each AI saw, decided, and how it played out. Newest day at the top.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      {% for ai in journal %}
+      <div class="journal-col accent-{{ ai.accent }}">
+        <div class="journal-col-head">
+          <div class="flex items-center justify-between">
+            <span class="text-lg font-extrabold tracking-tight" style="color: var(--accent)">{{ ai.label }}</span>
+            <span class="journal-mini">{{ ai.days | length }} day{% if ai.days | length != 1 %}s{% endif %}</span>
+          </div>
+        </div>
+        {% if ai.days %}
+          {% for d in ai.days %}
+          <div class="journal-day">
+            <!-- header row -->
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2">
+                <span class="journal-day-pill">Day {{ d.day_num }}</span>
+                <span class="journal-day-date">{{ d.date }}</span>
+              </div>
+              {% if d.action == 'BUY' %}<span class="chip c-buy">Buy {{ d.ticker }}</span>
+              {% elif d.action == 'SELL' %}<span class="chip c-sell">Sell {{ d.ticker }}</span>
+              {% elif d.action == 'HOLD' %}<span class="chip c-hold">Hold</span>
+              {% elif d.action %}<span class="chip c-error">{{ d.action }}</span>
+              {% else %}<span class="chip c-hold">No decision</span>{% endif %}
+            </div>
+
+            <!-- trade meta -->
+            {% if d.amount or d.fill_price %}
+            <div class="text-xs text-zinc-500 mb-2 num">
+              {% if d.amount %}${{ "{:,.0f}".format(d.amount) }}{% endif %}
+              {% if d.fill_price %} · fill ${{ "%.2f"|format(d.fill_price) }}{% endif %}
+              {% if d.confidence %} · conf {{ d.confidence }}/5{% endif %}
+            </div>
+            {% endif %}
+
+            <!-- reason (the trader-voice 1-liner) -->
+            {% if d.reason %}
+            <p class="journal-reason mb-2">"{{ d.reason }}"</p>
+            {% endif %}
+
+            <!-- research summary (the longer 'why' from research phase) -->
+            {% if d.research_summary %}
+            <p class="journal-summary mb-3">{{ d.research_summary }}</p>
+            {% endif %}
+
+            <!-- candidates considered (collapsed) -->
+            {% if d.candidates %}
+            <details class="mb-3">
+              <summary class="text-[10px] uppercase tracking-widest text-zinc-500 cursor-pointer hover:text-zinc-900">💭 Also considered ({{ d.candidates | length }})</summary>
+              <div class="mt-2 space-y-1.5 text-xs">
+                {% for c in d.candidates %}
+                <div class="border-l-2 border-zinc-200 pl-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold">{{ c.ticker }}</span>
+                    {% if c.lean == 'BUY' %}<span class="chip c-buy">Buy lean</span>
+                    {% elif c.lean == 'SELL' %}<span class="chip c-sell">Sell lean</span>
+                    {% else %}<span class="chip c-hold">Hold lean</span>{% endif %}
+                  </div>
+                  <div class="text-zinc-600 mt-0.5"><span class="text-emerald-700 font-semibold">+</span> {{ c.bull }}</div>
+                  <div class="text-zinc-600"><span class="text-rose-700 font-semibold">−</span> {{ c.bear }}</div>
+                </div>
+                {% endfor %}
+              </div>
+            </details>
+            {% endif %}
+
+            <!-- EOD outcome row -->
+            {% if d.nav_eod is not none %}
+            <div class="mt-3 pt-3 border-t border-zinc-200/60 grid grid-cols-2 gap-2">
+              <div>
+                <div class="journal-mini">NAV (EOD)</div>
+                <div class="journal-stat text-zinc-900">${{ "{:,.0f}".format(d.nav_eod) }}</div>
+              </div>
+              {% if d.day_change_pct is not none %}
+              <div>
+                <div class="journal-mini">Day change</div>
+                <div class="journal-stat {% if d.day_change_pct > 0 %}text-emerald-600{% elif d.day_change_pct < 0 %}text-rose-600{% else %}text-zinc-500{% endif %}">
+                  {% if d.day_change_pct > 0 %}+{% endif %}{{ "%.2f"|format(d.day_change_pct) }}%
+                </div>
+              </div>
+              {% endif %}
+              {% if d.position_ret_pct is not none %}
+              <div>
+                <div class="journal-mini">Position return</div>
+                <div class="journal-stat {% if d.position_ret_pct > 0 %}text-emerald-600{% elif d.position_ret_pct < 0 %}text-rose-600{% else %}text-zinc-500{% endif %}">
+                  {% if d.position_ret_pct > 0 %}+{% endif %}{{ "%.2f"|format(d.position_ret_pct) }}%
+                </div>
+              </div>
+              {% endif %}
+              {% if d.qqq_ret_pct is not none %}
+              <div>
+                <div class="journal-mini">QQQ same day</div>
+                <div class="journal-stat text-zinc-700">
+                  {% if d.qqq_ret_pct > 0 %}+{% endif %}{{ "%.2f"|format(d.qqq_ret_pct) }}%
+                </div>
+              </div>
+              {% endif %}
+            </div>
+            {% endif %}
+
+            <!-- footer meta -->
+            {% if d.n_tools or d.cost_usd %}
+            <div class="mt-2 flex items-center justify-between text-[10px] text-zinc-400 uppercase tracking-widest">
+              {% if d.n_tools %}<span>🛠 {{ d.n_tools }} tool call{% if d.n_tools != 1 %}s{% endif %}</span>{% endif %}
+              {% if d.cost_usd %}<span class="num">${{ "%.4f"|format(d.cost_usd) }}</span>{% endif %}
+            </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        {% else %}
+        <div class="p-6 text-center text-zinc-400 italic text-sm">No entries yet.</div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+
+  </div><!-- /tab-journal -->
 
   <!-- ============== ARCHITECTURE TAB ============== -->
   <div id="tab-architecture" class="tab-panel">
