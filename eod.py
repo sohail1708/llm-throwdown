@@ -161,10 +161,27 @@ def snapshot() -> int:
     if qqq_row is not None:
         rows.append(qqq_row)
 
-    with NAV_PATH.open("a") as f:
-        for row in rows:
+    # Idempotent: drop any pre-existing rows for today (and any historical
+    # duplicates on prior dates) before appending today's snapshot. Lets
+    # the evening cron fire multiple times safely — each firing just
+    # refreshes today's data with the latest yfinance closes.
+    existing = _load_jsonl(NAV_PATH)
+    seen: set[tuple[str, str]] = set()
+    kept: list[dict] = []
+    for r in existing:
+        if r.get("date") == today:
+            continue  # today's old rows: replaced by the fresh snapshot below
+        key = (r.get("date", ""), r.get("ai", ""))
+        if key in seen:
+            continue  # historical duplicate (e.g. from last night's double-cron)
+        seen.add(key)
+        kept.append(r)
+    kept.extend(rows)
+
+    with NAV_PATH.open("w") as f:
+        for row in kept:
             f.write(json.dumps(row) + "\n")
-    print(f"[eod] appended {len(rows)} NAV rows to {NAV_PATH}")
+    print(f"[eod] wrote {len(kept)} NAV rows ({len(rows)} fresh for {today}) to {NAV_PATH}")
     return 0
 
 

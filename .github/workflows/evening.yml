@@ -2,10 +2,15 @@ name: EOD snapshot + dashboard
 
 on:
   schedule:
-    # 20:30 UTC = 21:30 BST = 16:30 ET — 30 min after NYSE close. NAVs are
-    # finalized, fills are settled. We just read each account's portfolio
-    # value, append it to nav.jsonl, and regen the static dashboard.
-    - cron: '30 20 * * 1-5'
+    # NYSE closes at 20:00 UTC. We want the dashboard live within ~1h of
+    # close. GitHub Actions cron has notorious jitter (5 min to multiple
+    # hours), so we schedule THREE attempts spaced through the hour after
+    # close. eod.py is idempotent: it replaces today's rows in nav.jsonl
+    # rather than appending, so multiple firings just refresh the same
+    # data with the latest prices.
+    - cron: '5 20 * * 1-5'    # 20:05 UTC — 5 min post-close (earliest viable)
+    - cron: '30 20 * * 1-5'   # 20:30 UTC — original target
+    - cron: '0 21 * * 1-5'    # 21:00 UTC — 1h post-close, last-chance fallback
   workflow_dispatch: {}
 
 permissions:
