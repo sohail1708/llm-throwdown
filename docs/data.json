@@ -4,35 +4,45 @@
       "name": "chatgpt",
       "label": "ChatGPT",
       "accent": "emerald",
-      "portfolio_value": 51708.06,
-      "cost_basis": 50000.01,
-      "ret_pct": 3.42,
-      "days_first": 1,
-      "n_positions": 2,
-      "cash": 51448.08,
-      "spent_usd": 0.13,
+      "portfolio_value": 76121.8,
+      "cost_basis": 75000.02,
+      "ret_pct": 1.5,
+      "days_first": 2,
+      "n_positions": 3,
+      "cash": 26448.08,
+      "spent_usd": 0.2,
       "budget_usd": 10.0,
-      "budget_pct": 1.3,
+      "budget_pct": 2.0,
       "positions": [
         {
           "ticker": "AVGO",
           "qty": 55.4324,
           "avg_entry_price": 451.0,
-          "current_price": 481.57,
-          "market_value": 26694.57,
+          "current_price": 479.23,
+          "market_value": 26564.86,
           "cost_basis": 25000.01,
-          "pl_usd": 1694.56,
-          "pl_pct": 6.78
+          "pl_usd": 1564.85,
+          "pl_pct": 6.26
+        },
+        {
+          "ticker": "GOOGL",
+          "qty": 69.4601,
+          "avg_entry_price": 359.92,
+          "current_price": 358.99,
+          "market_value": 24935.47,
+          "cost_basis": 25000.02,
+          "pl_usd": -64.55,
+          "pl_pct": -0.26
         },
         {
           "ticker": "AAPL",
           "qty": 79.3575,
           "avg_entry_price": 315.03,
-          "current_price": 315.2,
-          "market_value": 25013.49,
+          "current_price": 310.26,
+          "market_value": 24621.47,
           "cost_basis": 24999.99,
-          "pl_usd": 13.5,
-          "pl_pct": 0.05
+          "pl_usd": -378.52,
+          "pl_pct": -1.51
         }
       ],
       "rank": 1
@@ -41,25 +51,35 @@
       "name": "claude",
       "label": "Claude",
       "accent": "orange",
-      "portfolio_value": 25360.81,
-      "cost_basis": 24957.0,
-      "ret_pct": 1.62,
+      "portfolio_value": 44389.64,
+      "cost_basis": 44956.98,
+      "ret_pct": -1.26,
       "days_first": 1,
-      "n_positions": 1,
-      "cash": 74871.41,
-      "spent_usd": 0.1,
+      "n_positions": 2,
+      "cash": 54871.41,
+      "spent_usd": 0.15,
       "budget_usd": 10.0,
-      "budget_pct": 1.0,
+      "budget_pct": 1.5,
       "positions": [
         {
           "ticker": "NVDA",
           "qty": 113.8175,
           "avg_entry_price": 219.27,
-          "current_price": 222.82,
-          "market_value": 25360.81,
+          "current_price": 214.75,
+          "market_value": 24442.31,
           "cost_basis": 24957.0,
-          "pl_usd": 403.81,
-          "pl_pct": 1.62
+          "pl_usd": -514.69,
+          "pl_pct": -2.06
+        },
+        {
+          "ticker": "GOOGL",
+          "qty": 55.5651,
+          "avg_entry_price": 359.94,
+          "current_price": 358.99,
+          "market_value": 19947.33,
+          "cost_basis": 19999.98,
+          "pl_usd": -52.65,
+          "pl_pct": -0.26
         }
       ],
       "rank": 2
@@ -68,25 +88,25 @@
       "name": "gemini",
       "label": "Gemini",
       "accent": "blue",
-      "portfolio_value": 24702.37,
+      "portfolio_value": 24507.12,
       "cost_basis": 25500.01,
-      "ret_pct": -3.13,
+      "ret_pct": -3.89,
       "days_first": 0,
       "n_positions": 1,
       "cash": 76332.25,
-      "spent_usd": 0.02,
+      "spent_usd": 0.03,
       "budget_usd": 10.0,
-      "budget_pct": 0.2,
+      "budget_pct": 0.3,
       "positions": [
         {
           "ticker": "GOOGL",
           "qty": 68.2669,
           "avg_entry_price": 373.53,
-          "current_price": 361.85,
-          "market_value": 24702.37,
+          "current_price": 358.99,
+          "market_value": 24507.12,
           "cost_basis": 25500.01,
-          "pl_usd": -797.64,
-          "pl_pct": -3.13
+          "pl_usd": -992.89,
+          "pl_pct": -3.89
         }
       ],
       "rank": 3
@@ -94,46 +114,60 @@
   ],
   "today_decisions": {
     "chatgpt": {
-      "date": "2026-06-02",
+      "date": "2026-06-03",
       "ai": "chatgpt",
       "label": "ChatGPT",
       "action": "BUY",
-      "ticker": "AAPL",
+      "ticker": "GOOGL",
       "amount": 25000.0,
-      "reason": "Riding WWDC/AI breakout momentum; strong volume, clean highs. Overbought risk, but want exposure before event. Sizing ~24% of NAV stays within cap.",
+      "reason": "Oversold RSI near support; expecting a reflex bounce. AI/Cloud tailwinds intact. Buying the dip; stop below 360.",
       "confidence": 4,
-      "nav_before": 102868.26,
-      "cash_before": 76448.08,
+      "nav_before": 102940.68,
+      "cash_before": 51448.08,
       "research": {
         "candidates": [
           {
-            "ticker": "AAPL",
-            "bull": "Apple is breaking to new highs on rising volume with WWDC/AI hype as a near-term catalyst that can extend momentum.",
-            "bear": "RSI above 75 after a strong multi-week run raises sell-the-news risk and a quick pullback if sentiment cools.",
-            "lean": "BUY"
-          },
-          {
             "ticker": "GOOGL",
-            "bull": "Alphabet is retracing to the post-earnings gap zone with RSI in the mid-30s, setting up a favorable bounce as issuance overhang digests.",
-            "bear": "Convertible/equity issuance and heavy AI capex could suppress shares further, and a break below ~360 risks a deeper slide.",
+            "bull": "RSI is extremely oversold (~14) after a sharp pullback to the post-earnings breakout zone (~355\u2013365), setting up a high-probability mean-reversion bounce with AI and Cloud tailwinds intact.",
+            "bear": "Capital-raising/dilution headlines (~$80\u201385B stock deal) plus regulatory overhang and a break below 360 could extend the slide toward the mid-340s.",
             "lean": "BUY"
           },
           {
-            "ticker": "ORCL",
-            "bull": "Oracle\u2019s AI-driven rerating and tight consolidation near highs suggest continuation as underowned managers chase performance.",
-            "bear": "A 5-day ~27% surge and RSI near 80 make it extended and vulnerable to mean reversion toward the low-230s.",
+            "ticker": "AVGO",
+            "bull": "Momentum into earnings remains powerful with AI networking/ASIC demand and VMware synergies, backed by positive sentiment and target hikes.",
+            "bear": "RSI ~76 and a crowded run into the print with an implied ~\u00b19% move raises risk of a \u2018sell the news\u2019 reversal if guidance doesn\u2019t clear a high bar.",
             "lean": "HOLD"
+          },
+          {
+            "ticker": "AMZN",
+            "bull": "After an 8.5% 5-day drop and RSI ~32, AMZN offers a tactical buy-the-dip setup with resilient ads/retail and long-term AI leverage in AWS.",
+            "bear": "Heavy AI capex and any AWS growth wobble could pressure margins and valuation, with weak tape risking further downside before a bounce.",
+            "lean": "BUY"
           }
         ],
-        "summary": "Momentum is hot in AAPL and ORCL while GOOGL looks washed out near support; I favor riding AAPL strength into WWDC rather than chasing ORCL\u2019s parabolic move.",
+        "summary": "Oversold mega-cap tech (GOOGL, AMZN) sets up for a tactical bounce while AVGO is extended into earnings with elevated event risk; prefer buying GOOGL here.",
         "preferred_action": "BUY",
-        "preferred_ticker": "AAPL",
+        "preferred_ticker": "GOOGL",
         "tools_used": [
           {
-            "name": "get_history",
+            "name": "get_news",
             "args": {
-              "ticker": "AAPL",
-              "days": 60
+              "ticker": "GOOGL",
+              "n": 5
+            }
+          },
+          {
+            "name": "get_news",
+            "args": {
+              "ticker": "AMZN",
+              "n": 5
+            }
+          },
+          {
+            "name": "get_news",
+            "args": {
+              "ticker": "AVGO",
+              "n": 5
             }
           },
           {
@@ -149,157 +183,142 @@
               "ticker": "ORCL",
               "days": 60
             }
-          },
-          {
-            "name": "get_news",
-            "args": {
-              "ticker": "AAPL",
-              "n": 5
-            }
-          },
-          {
-            "name": "get_news",
-            "args": {
-              "ticker": "ORCL",
-              "n": 5
-            }
           }
         ]
       },
       "tokens": {
-        "input": 12848,
-        "output": 5275
+        "input": 10078,
+        "output": 5320
       },
-      "cost_usd": 0.0688,
+      "cost_usd": 0.0658,
       "order": {
-        "order_id": "a0958f6e-c2cd-4793-8139-8c6bb0d0aa37",
+        "order_id": "38786bb4-47af-4065-bc8b-d89bf75fd1f3",
         "status": "pending_new"
       },
       "dry_run": false,
-      "submitted_at": "2026-06-02T17:54:02.242337+00:00"
+      "submitted_at": "2026-06-03T18:09:09.008689+00:00"
     },
     "claude": {
-      "date": "2026-06-02",
+      "date": "2026-06-03",
       "ai": "claude",
       "label": "Claude",
-      "action": "HOLD",
-      "ticker": null,
-      "amount": null,
-      "reason": "NVDA still cleanest AI play, neutral RSI, Computex tailwinds intact. No new catalyst to add or trim today.",
-      "confidence": 3,
-      "nav_before": 100234.5,
+      "action": "BUY",
+      "ticker": "GOOGL",
+      "amount": 20000.0,
+      "reason": "RSI 14.4 is historic capitulation territory \u2014 $85B deal is known event not fundamental rot, mean-reversion bounce looks imminent.",
+      "confidence": 4,
+      "nav_before": 99401.36,
       "cash_before": 74871.41,
       "research": {
         "candidates": [
           {
-            "ticker": "NVDA",
-            "bull": "AI hardware spending cycle remains intact, Computex momentum supports continued upside, RSI neutral at 51.6 with avg cost of $219.27 giving room to add.",
-            "bear": "Already up 3.7% over 5 days and the broader market is showing rotation risk; a risk-off move could pressure semis.",
-            "lean": "HOLD"
-          },
-          {
-            "ticker": "AVGO",
-            "bull": "Strong earnings beat drove a 13% 5-day surge, forward P/E of 25x is reasonable for 29.5% revenue growth with $25B FCF.",
-            "bear": "Earnings catalyst is fully priced in post-gap, RSI=72.5 is overbought, and debt-to-equity of 82.7 is dangerously high \u2014 likely to fade.",
-            "lean": "HOLD"
-          },
-          {
             "ticker": "GOOGL",
-            "bull": "RSI=35.7 is deeply oversold with 5d=-5.33% selloff creating a mean-reversion setup with attractive valuation vs AI peers.",
-            "bear": "Negative momentum is strong and the Barron's piece on Google equity sales suggests dilution/capital concerns that could weigh further.",
+            "bull": "RSI at a historic extreme of 14.4 with a ~11% drawdown from recent highs makes this deeply oversold \u2014 the $85B stock deal is a known event, not a deteriorating fundamental, and a mean-reversion bounce is likely.",
+            "bear": "The large equity offering signals massive AI capex spending that could pressure margins, and negative price momentum can persist well below RSI 20 if institutional selling continues.",
+            "lean": "BUY"
+          },
+          {
+            "ticker": "AMZN",
+            "bull": "RSI at 31.7 and down ~9% in 5 days with no clear fundamental catalyst makes AMZN a strong mean-reversion candidate as AI cloud spending (AWS) remains robust.",
+            "bear": "AMZN has been in consistent downtrend for 2 weeks, high capex commitments for AI infrastructure are pressuring sentiment, and RSI hasn't hit true capitulation yet.",
+            "lean": "BUY"
+          },
+          {
+            "ticker": "NVDA",
+            "bull": "Already in portfolio at avg $219.27 with Computex tailwinds intact \u2014 RSI at 42 is neutral/oversold, and any AI-sector rebound lifts NVDA first.",
+            "bear": "NVDA is underwater vs cost basis and the broader market is in a risk-off posture with multiple mega-cap tech names selling off hard.",
             "lean": "HOLD"
           }
         ],
-        "summary": "AVGO's post-earnings gap is already fully priced with overbought RSI; NVDA remains the cleanest AI hardware hold with neutral RSI and intact Computex tailwinds \u2014 sit tight on existing position.",
-        "preferred_action": "HOLD",
-        "preferred_ticker": "NVDA",
+        "summary": "Tech is in a broad pullback with GOOGL (RSI 14.4) and AMZN (RSI 31.7) hitting deeply oversold territory on heavy volume, presenting the strongest mean-reversion setups in the universe; GOOGL's $85B deal-driven selloff looks like an overreaction.",
+        "preferred_action": "BUY",
+        "preferred_ticker": "GOOGL",
         "tools_used": [
           {
             "name": "read_own_trades",
             "args": {
-              "ai": "claude"
+              "ai": "claude",
+              "n": 10
             }
           },
           {
             "name": "get_news",
             "args": {
-              "ticker": "ORCL",
+              "ticker": "GOOGL",
               "n": 5
             }
           },
           {
             "name": "get_news",
             "args": {
-              "ticker": "AVGO",
+              "ticker": "AMZN",
               "n": 5
-            }
-          },
-          {
-            "name": "get_financials",
-            "args": {
-              "ticker": "AVGO"
             }
           },
           {
             "name": "get_history",
             "args": {
-              "ticker": "AVGO",
+              "ticker": "GOOGL",
+              "days": 15
+            }
+          },
+          {
+            "name": "get_history",
+            "args": {
+              "ticker": "AMZN",
               "days": 15
             }
           }
         ]
       },
       "tokens": {
-        "input": 10360,
-        "output": 1223
+        "input": 11539,
+        "output": 1255
       },
-      "cost_usd": 0.0494,
-      "order": null,
+      "cost_usd": 0.0534,
+      "order": {
+        "order_id": "e3e83d78-f85c-4584-bed2-8c66f3bf6c58",
+        "status": "pending_new"
+      },
       "dry_run": false,
-      "submitted_at": "2026-06-02T17:54:30.592829+00:00"
+      "submitted_at": "2026-06-03T18:09:36.482497+00:00"
     },
     "gemini": {
-      "date": "2026-06-02",
+      "date": "2026-06-03",
       "ai": "gemini",
       "label": "Gemini",
-      "action": "BUY",
-      "ticker": "GOOGL",
-      "amount": 5500.0,
-      "reason": "GOOGL looks oversold after this recent drop. It's a perfect chance to buy the dip and add to a core holding before it bounces back.",
-      "confidence": 4,
-      "nav_before": 101443.89,
-      "cash_before": 81832.25,
+      "action": "HOLD",
+      "ticker": null,
+      "amount": null,
+      "reason": "Wanted to buy the GOOGL dip, but we're already at our max position size limit. Can't add more today, so we sit tight.",
+      "confidence": 3,
+      "nav_before": 100904.23,
+      "cash_before": 76332.25,
       "research": {
         "candidates": [
           {
-            "ticker": "ORCL",
-            "bull": "Incredible momentum driven by new AI customer wins from Arm, validating its cloud infrastructure strategy.",
-            "bear": "The stock is extremely overbought with an RSI near 80 and its price has already surpassed the average analyst target.",
-            "lean": "SELL"
-          },
-          {
             "ticker": "GOOGL",
-            "bull": "Approaching oversold RSI territory after a significant pullback, offering a potential mean-reversion entry point.",
-            "bear": "Recent price action is decidedly weak and news of a large capital raise could pressure the stock in the short term.",
+            "bull": "The stock is extremely oversold (RSI 14.4) on news of a dilutive but strategic stock sale to fund AI, which analysts still overwhelmingly support.",
+            "bear": "The dilution from the massive stock offering could continue to weigh on the shares as the market questions the return on heavy AI investment.",
             "lean": "BUY"
           },
           {
-            "ticker": "AVGO",
-            "bull": "Powerful momentum stock with strong revenue growth and excellent margins at the center of the AI trade.",
-            "bear": "A high valuation and an overbought RSI make it vulnerable to a sharp pullback on any negative catalyst.",
+            "ticker": "AMZN",
+            "bull": "The stock has been pulled down by the same AI spending fears as Google, is approaching oversold territory, and represents a quality leader on sale.",
+            "bear": "The chart is not as technically washed-out as Google's, and the pressure from massive capital expenditures remains a headwind for the sector.",
+            "lean": "HOLD"
+          },
+          {
+            "ticker": "ORCL",
+            "bull": "The stock is in a powerful AI-driven uptrend and momentum could carry it higher.",
+            "bear": "After a massive run, the stock is very overbought and yesterday's sharp -5.73% reversal may signal the momentum is breaking.",
             "lean": "HOLD"
           }
         ],
-        "summary": "Momentum names like ORCL and AVGO look technically overextended, creating a contrarian opportunity in my beaten-down GOOGL position which is nearing oversold levels.",
+        "summary": "Google is technically capitulating after a strategic, albeit dilutive, capital raise for AI, presenting a prime opportunity to buy a quality leader at an extremely oversold level.",
         "preferred_action": "BUY",
         "preferred_ticker": "GOOGL",
         "tools_used": [
-          {
-            "name": "get_news",
-            "args": {
-              "ticker": "ORCL"
-            }
-          },
           {
             "name": "get_news",
             "args": {
@@ -307,37 +326,39 @@
             }
           },
           {
-            "name": "get_analyst_ratings",
+            "name": "get_news",
+            "args": {
+              "ticker": "AMZN"
+            }
+          },
+          {
+            "name": "get_news",
             "args": {
               "ticker": "ORCL"
             }
           },
           {
-            "name": "get_history",
+            "name": "get_analyst_ratings",
             "args": {
-              "ticker": "GOOGL",
-              "days": 30
+              "ticker": "GOOGL"
             }
           },
           {
-            "name": "get_financials",
+            "name": "get_history",
             "args": {
-              "ticker": "AVGO"
+              "ticker": "GOOGL"
             }
           }
         ]
       },
       "tokens": {
-        "input": 5826,
-        "output": 478
+        "input": 5901,
+        "output": 508
       },
-      "cost_usd": 0.0097,
-      "order": {
-        "order_id": "8e234976-c63b-4dbf-9721-c87a27f7ac5e",
-        "status": "pending_new"
-      },
+      "cost_usd": 0.0099,
+      "order": null,
       "dry_run": false,
-      "submitted_at": "2026-06-02T17:55:10.723016+00:00"
+      "submitted_at": "2026-06-03T18:10:09.365976+00:00"
     }
   },
   "chart_series": [
@@ -355,6 +376,11 @@
           "date": "2026-06-02",
           "ret_pct": 3.42,
           "portfolio_value": 51708.06
+        },
+        {
+          "date": "2026-06-03",
+          "ret_pct": 1.5,
+          "portfolio_value": 76121.8
         }
       ],
       "is_benchmark": false
@@ -373,6 +399,11 @@
           "date": "2026-06-02",
           "ret_pct": 1.62,
           "portfolio_value": 25360.81
+        },
+        {
+          "date": "2026-06-03",
+          "ret_pct": -1.26,
+          "portfolio_value": 44389.64
         }
       ],
       "is_benchmark": false
@@ -391,6 +422,11 @@
           "date": "2026-06-02",
           "ret_pct": -3.13,
           "portfolio_value": 24702.37
+        },
+        {
+          "date": "2026-06-03",
+          "ret_pct": -3.89,
+          "portfolio_value": 24507.12
         }
       ],
       "is_benchmark": false
@@ -409,6 +445,11 @@
           "date": "2026-06-02",
           "ret_pct": 1.24,
           "portfolio_value": 101237.38
+        },
+        {
+          "date": "2026-06-03",
+          "ret_pct": 0.97,
+          "portfolio_value": 100972.82
         }
       ],
       "is_benchmark": true
@@ -416,25 +457,25 @@
   ],
   "tool_usage": {
     "chatgpt": {
-      "get_news": 5,
-      "get_history": 5
+      "get_news": 8,
+      "get_history": 7
     },
     "claude": {
-      "get_news": 4,
-      "read_own_trades": 2,
-      "get_history": 2,
+      "get_news": 6,
+      "read_own_trades": 3,
+      "get_history": 4,
       "get_financials": 2
     },
     "gemini": {
-      "get_news": 5,
+      "get_news": 8,
       "get_financials": 2,
-      "get_history": 2,
-      "get_analyst_ratings": 1
+      "get_history": 3,
+      "get_analyst_ratings": 2
     }
   },
   "total_cost_per_ai": {
-    "chatgpt": 0.1301,
-    "claude": 0.10089999999999999,
-    "gemini": 0.0196
+    "chatgpt": 0.1959,
+    "claude": 0.1543,
+    "gemini": 0.0295
   }
 }
