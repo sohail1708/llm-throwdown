@@ -2,74 +2,112 @@
 
 **ChatGPT vs Claude vs Gemini · 30 trading days · $100k each · one move per day**
 
+| | |
+|---|---|
+| 🌐 **Live dashboard** | **https://sohail1708.github.io/llm-throwdown/** |
+| 💻 **Source code** | **https://github.com/sohail1708/llm-throwdown** |
+| 📅 **Run window** | Mon Jun 1, 2026 → Tue Jul 14, 2026 (30 trading days) |
+
+---
+
 Every US weekday, three AIs each pick ONE move:
-- `BUY <ticker> $X` (open or add to a position, min $5k, max 25% of NAV)
-- `SELL <ticker>` (close the full position)
-- `HOLD` (no action today)
+- `BUY <ticker> $X` — open a new position or add to an existing one (min $5k, max 25% of NAV)
+- `SELL <ticker>` — close the full position (no partial sells)
+- `HOLD` — no action today
 
-Each AI's portfolio is a separate Alpaca paper account. End-of-day NAV is snapshotted. After 30 trading days, **highest NAV wins**.
+Each AI has its own Alpaca paper account. End-of-day NAV is snapshotted and benchmarked against QQQ. After 30 trading days, **highest position-level return wins**.
 
-Live dashboard: **[`sohail1708.github.io/llm-throwdown`](https://sohail1708.github.io/llm-throwdown/)**
-
-## How it works
+## Pipeline
 
 ```
-08:30 ET — daily.py (GitHub Actions)
-            ↓ fetch market snapshot via yfinance (prices, RSI, headlines)
-            ↓ fan out to 3 LLMs in parallel
-            ↓ each picks one action; gets validated against the rules
-            ↓ submit market-on-open order to that AI's Alpaca account
-            ↓ append all 3 decisions to data/decisions.jsonl
+13:30 UTC (09:30 ET) — daily.py via GitHub Actions
+    ↓ fetch market snapshot via yfinance (prices, RSI, headlines)
+    ↓ fan out to 3 LLMs sequentially
+    ↓ each runs research phase (≤5 tool iterations) → decision phase
+    ↓ validator enforces universe / $5k min / 25% NAV cap
+    ↓ submit market order to that AI's Alpaca paper account
+    ↓ append decision + research artifact to data/decisions.jsonl
 
-16:30 ET — eod.py (GitHub Actions)
-            ↓ read each Alpaca paper account's NAV + open positions
-            ↓ append to data/nav.jsonl
-            ↓ regenerate docs/index.html
-            ↓ git commit + push → GitHub Pages auto-deploys
+20:30 UTC (16:30 ET) — eod.py via GitHub Actions
+    ↓ snapshot each AI's NAV + open positions
+    ↓ pull official close prices from yfinance (NMS consolidated tape)
+    ↓ snapshot QQQ benchmark
+    ↓ append to data/nav.jsonl, regenerate docs/index.html
+    ↓ commit + push → GitHub Pages republishes
 ```
+
+Both crons schedule 3 redundant fires (e.g. 20:05 / 20:30 / 21:00 UTC) to hedge against GitHub Actions cron jitter; the underlying logic is idempotent.
 
 ## Players
 
-| AI | Model | Account env var prefix |
-|----|-------|------------------------|
-| ChatGPT | `gpt-4o-mini` (default) | `ALPACA_CHATGPT_*` |
-| Claude  | `claude-haiku-4-5-20251001` | `ALPACA_CLAUDE_*` |
-| Gemini  | `gemini-2.5-flash` (default) | `ALPACA_GEMINI_*` |
+| AI | Model |
+|----|-------|
+| ChatGPT | `gpt-5` |
+| Claude | `claude-sonnet-4-6` |
+| Gemini | `gemini-2.5-pro` |
 
-Override model with `OPENAI_MODEL` or `GEMINI_MODEL` env vars.
+Override with `OPENAI_MODEL` / `CLAUDE_MODEL` / `GEMINI_MODEL` env vars.
 
-## Universe
+## Universe (long-only)
 
-AAPL · MSFT · NVDA · GOOGL · AMZN · META · TSLA · AVGO · ORCL. Long-only.
+`AAPL` · `MSFT` · `NVDA` · `GOOGL` · `AMZN` · `META` · `TSLA` · `AVGO` · `ORCL`
 
-## Constraints (enforced by validator)
+The 9 largest NASDAQ tech names — maps cleanly to the QQQ benchmark.
 
-- One action per AI per day
-- BUY: min $5,000, max 25% of NAV per position
-- SELL: closes full position only (no partial sells)
-- HOLD: free choice, no penalty
-- Positions held overnight until SELL
+## Shared tools (research phase)
 
-## Run window
+Each AI gets a budget of 5 tool calls per day to investigate:
 
-**Mon Jun 1, 2026 → Tue Jul 14, 2026** (30 trading days)
+- `get_history(ticker, days)` — OHLCV bars
+- `get_news(ticker, n)` — recent headlines
+- `get_financials(ticker)` — P/E, growth, margins, debt
+- `get_analyst_ratings(ticker)` — Street targets + buy/sell distribution
+- `read_own_trades(ai, n)` — self-reflection on its own past trades
 
 ## Cost
 
-- LLM: ~3 calls/day × 22 trading days × cheap models = **~$0.50–1.00 total for the month**
-- Infra: $0 (GitHub Actions free tier + GitHub Pages)
+| | |
+|---|---|
+| LLM (3 AIs × ~$0.13/day × ~22 trading days) | **~$3–5** |
+| GitHub Actions cron | $0 (free for public repos) |
+| GitHub Pages | $0 |
+| Alpaca paper trading | $0 |
+| yfinance market data | $0 |
+| **Total for 30 days** | **~$4** |
+
+## Security
+
+- All secrets live in **`.env` (gitignored)** and **GitHub Actions repository secrets** — never committed.
+- `.env.example` shows the required variable names with empty values.
+- Repo is public; data files, code, and dashboard are all auditable. No keys, no PII.
 
 ## Local dev
 
 ```bash
 pip install -e .
-cp .env.example .env  # fill in 3 LLM keys + 3 Alpaca keypairs
-python daily.py --dry-run   # see what each AI would do, no orders
-python eod.py --rebuild-only   # regen dashboard from existing data
+cp .env.example .env  # fill in 3 LLM keys + 3 Alpaca paper keypairs
+python daily.py --dry-run     # run the pipeline, skip Alpaca order submission
+python eod.py --rebuild-only  # regen dashboard from existing data.jsonl files
 ```
 
 ## Required GitHub Actions secrets
 
 LLMs: `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GEMINI_API_KEY`
 
-Alpaca (paper): `ALPACA_{CHATGPT,CLAUDE,GEMINI}_{KEY,SECRET}`
+Alpaca paper: `ALPACA_CHATGPT_KEY`, `ALPACA_CHATGPT_SECRET`, `ALPACA_CLAUDE_KEY`, `ALPACA_CLAUDE_SECRET`, `ALPACA_GEMINI_KEY`, `ALPACA_GEMINI_SECRET`
+
+## Files
+
+| Path | What |
+|---|---|
+| `daily.py` | Morning orchestrator |
+| `eod.py` | Evening NAV snapshot + dashboard rebuild |
+| `src/llm_chatgpt.py` `llm_claude.py` `llm_gemini.py` | Provider adapters |
+| `src/tools.py` | Shared tool registry + sentinel tools |
+| `src/prompt.py` | Research + decision system prompts |
+| `src/decision.py` | Validators (universe, sizing, position rules) |
+| `src/broker.py` | Alpaca paper wrapper |
+| `src/dashboard.py` `templates/index.html` | Jinja2 dashboard render |
+| `data/decisions.jsonl` | Every decision + research artifact + cost |
+| `data/nav.jsonl` | EOD NAV snapshots per AI per day, plus QQQ |
+| `docs/index.html` `docs/data.json` | Published GitHub Pages content |
