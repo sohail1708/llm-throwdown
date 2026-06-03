@@ -20,13 +20,19 @@
 
     /* KPI cards — mobile-first, big-% layout. The % return is the hero;
        NAV is secondary. Designed to look right in a 9:16 screenshot. */
-    .kpi-pct { font-family: 'JetBrains Mono', monospace; font-size: clamp(56px, 14vw, 92px); font-weight: 900; letter-spacing: -0.05em; line-height: 0.95; white-space: nowrap; }
+    .kpi-pct { font-family: 'JetBrains Mono', monospace; font-size: clamp(40px, 10vw, 64px); font-weight: 900; letter-spacing: -0.04em; line-height: 0.95; white-space: nowrap; overflow: hidden; text-overflow: clip; }
+    /* Benchmark gets a smaller, lighter treatment so the eye knows it's the reference, not a contender. */
+    .kpi-card.bench .kpi-pct { font-size: clamp(32px, 8vw, 52px); font-weight: 800; color: #52525b !important; }
     .kpi-nav { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; color: #18181b; }
     .kpi-sub { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #71717a; font-weight: 600; }
     .kpi-card { background: linear-gradient(160deg, var(--accent-bg) 0%, #fff 70%); border: 1px solid var(--accent-border); border-radius: 20px; padding: 22px 24px; position: relative; overflow: hidden; }
     .kpi-card.bench { background: #fafafa; border: 1px dashed #a1a1aa; }
     .kpi-card .kpi-bar { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--accent); }
     .kpi-card.bench .kpi-bar { background: repeating-linear-gradient(90deg, #a1a1aa 0 6px, transparent 6px 12px); }
+    .vs-qqq { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+    .vs-qqq.beating { background: #d1fae5; color: #065f46; }
+    .vs-qqq.losing  { background: #fee2e2; color: #991b1b; }
+    .vs-qqq.flat    { background: #f4f4f5; color: #52525b; }
 
     .accent-emerald { --accent: #10b981; --accent-bg: #ecfdf5; --accent-text: #047857; --accent-border: #a7f3d0; }
     .accent-orange  { --accent: #f97316; --accent-bg: #fff7ed; --accent-text: #c2410c; --accent-border: #fed7aa; }
@@ -149,6 +155,7 @@
     {% endif %}
 
     {% for r in leaderboard %}
+    {% set vs_qqq = (r.ret_pct - benchmark.ret_pct) if benchmark else None %}
     <div class="kpi-card accent-{{ r.accent }}">
       <div class="kpi-bar"></div>
       <div class="flex items-center justify-between mb-3">
@@ -164,6 +171,13 @@
       <div class="kpi-pct {% if r.ret_pct > 0 %}text-emerald-600{% elif r.ret_pct < 0 %}text-rose-600{% else %}text-zinc-500{% endif %}">
         {% if r.ret_pct > 0 %}+{% endif %}{{ "%.2f"|format(r.ret_pct) }}%
       </div>
+      {% if vs_qqq is not none %}
+      <div class="mt-2">
+        <span class="vs-qqq {% if vs_qqq > 0.005 %}beating{% elif vs_qqq < -0.005 %}losing{% else %}flat{% endif %}">
+          {% if vs_qqq > 0 %}▲ +{% elif vs_qqq < 0 %}▼ {% else %}— {% endif %}{{ "%.2f"|format(vs_qqq) }}% vs QQQ
+        </span>
+      </div>
+      {% endif %}
       <div class="mt-3 flex items-center justify-between">
         <div class="kpi-nav">${{ "{:,.0f}".format(r.portfolio_value) }}</div>
         <div class="kpi-sub">on ${{ "{:,.0f}".format(r.cost_basis) }} invested</div>
