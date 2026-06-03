@@ -18,6 +18,16 @@
        1/3 of the page. clamp(min, fluid, max) with conservative caps. */
     .hero-num { font-family: 'JetBrains Mono', monospace; font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; letter-spacing: -0.04em; line-height: 1; white-space: nowrap; overflow: hidden; text-overflow: clip; }
 
+    /* KPI cards — mobile-first, big-% layout. The % return is the hero;
+       NAV is secondary. Designed to look right in a 9:16 screenshot. */
+    .kpi-pct { font-family: 'JetBrains Mono', monospace; font-size: clamp(56px, 14vw, 92px); font-weight: 900; letter-spacing: -0.05em; line-height: 0.95; white-space: nowrap; }
+    .kpi-nav { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; color: #18181b; }
+    .kpi-sub { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #71717a; font-weight: 600; }
+    .kpi-card { background: linear-gradient(160deg, var(--accent-bg) 0%, #fff 70%); border: 1px solid var(--accent-border); border-radius: 20px; padding: 22px 24px; position: relative; overflow: hidden; }
+    .kpi-card.bench { background: #fafafa; border: 1px dashed #a1a1aa; }
+    .kpi-card .kpi-bar { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--accent); }
+    .kpi-card.bench .kpi-bar { background: repeating-linear-gradient(90deg, #a1a1aa 0 6px, transparent 6px 12px); }
+
     .accent-emerald { --accent: #10b981; --accent-bg: #ecfdf5; --accent-text: #047857; --accent-border: #a7f3d0; }
     .accent-orange  { --accent: #f97316; --accent-bg: #fff7ed; --accent-text: #c2410c; --accent-border: #fed7aa; }
     .accent-blue    { --accent: #3b82f6; --accent-bg: #eff6ff; --accent-text: #1d4ed8; --accent-border: #bfdbfe; }
@@ -73,7 +83,7 @@
 </head>
 <body class="text-zinc-900">
 
-<div class="max-w-7xl mx-auto px-6 py-8">
+<div class="max-w-3xl mx-auto px-4 py-6 md:py-8">
 
   <!-- Header strip -->
   <div class="flex items-center justify-between mb-10">
@@ -89,14 +99,14 @@
 
   <!-- Title -->
   <div class="text-center mb-10">
-    <h1 class="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.95]">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter leading-[0.95]">
       <span class="bg-gradient-to-br from-emerald-500 to-emerald-700 bg-clip-text text-transparent">ChatGPT</span>
       vs
       <span class="bg-gradient-to-br from-orange-500 to-orange-700 bg-clip-text text-transparent">Claude</span>
       vs
       <span class="bg-gradient-to-br from-blue-500 to-blue-700 bg-clip-text text-transparent">Gemini</span>
     </h1>
-    <p class="mt-6 text-zinc-600 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+    <p class="mt-4 text-zinc-600 text-sm md:text-base leading-relaxed">
       Three AIs. $100,000 each. One trade per day. 30 days.
       <strong class="text-zinc-900 whitespace-nowrap">Whoever ends highest wins.</strong>
     </p>
@@ -118,69 +128,49 @@
     {% for t in universe %}<span class="num font-semibold text-zinc-700">{{ t }}</span>{% if not loop.last %}<span class="text-zinc-300">·</span>{% endif %}{% endfor %}
   </div>
 
-  <!-- Benchmark strip — what $100k in QQQ on launch day is worth today -->
-  {% if benchmark %}
-  <div class="bench-card p-4 mb-4 flex items-center justify-between gap-4 flex-wrap">
-    <div class="flex items-center gap-4">
-      <div class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">🏛️ Benchmark</div>
-      <div class="flex items-center gap-2">
-        <span class="text-base font-extrabold text-zinc-900">{{ benchmark.label }}</span>
-        <span class="text-xs text-zinc-500">$100k on launch day</span>
+  <!-- KPI grid: QQQ + 3 AIs as 4 stacked/grid cards. Big % is the hero. -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 max-w-2xl mx-auto">
+    {# QQQ first so the eye anchors on the benchmark before scanning rankings. #}
+    {% if benchmark %}
+    <div class="kpi-card bench accent-zinc">
+      <div class="kpi-bar"></div>
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-base font-extrabold tracking-tight text-zinc-700">🏛️ QQQ</span>
+        <span class="kpi-sub">Benchmark</span>
+      </div>
+      <div class="kpi-pct {% if benchmark.ret_pct > 0 %}text-emerald-600{% elif benchmark.ret_pct < 0 %}text-rose-600{% else %}text-zinc-500{% endif %}">
+        {% if benchmark.ret_pct > 0 %}+{% endif %}{{ "%.2f"|format(benchmark.ret_pct) }}%
+      </div>
+      <div class="mt-3 flex items-center justify-between">
+        <div class="kpi-nav">${{ "{:,.0f}".format(benchmark.nav) }}</div>
+        <div class="kpi-sub">$100k fully deployed</div>
       </div>
     </div>
-    <div class="flex items-center gap-6">
-      <div class="text-right">
-        <div class="num text-2xl font-extrabold text-zinc-700">${{ "{:,.0f}".format(benchmark.nav) }}</div>
-        <div class="text-[10px] uppercase tracking-widest text-zinc-500">$100k fully deployed</div>
-      </div>
-      <div class="text-right">
-        <div class="num text-2xl font-extrabold {% if benchmark.ret_pct > 0 %}text-emerald-600{% elif benchmark.ret_pct < 0 %}text-rose-600{% else %}text-zinc-500{% endif %}">
-          {% if benchmark.ret_pct > 0 %}+{% endif %}{{ "%.2f"|format(benchmark.ret_pct) }}%
-        </div>
-        <div class="text-[10px] uppercase tracking-widest text-zinc-500">return</div>
-      </div>
-      <div class="text-right">
-        <div class="num text-2xl font-extrabold text-zinc-900">{{ benchmark.ais_ahead }}/{{ benchmark.ais_total }}</div>
-        <div class="text-[10px] uppercase tracking-widest text-zinc-500">AIs beating QQQ</div>
-      </div>
-    </div>
-  </div>
-  {% endif %}
+    {% endif %}
 
-  <!-- Leaderboard 3-up -->
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
     {% for r in leaderboard %}
-    <div class="ai-card accent-{{ r.accent }}">
-      <div class="accent-bar"></div>
-      <div class="p-6">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center gap-3">
-            <span class="rank-chip rank-{{ r.rank }}">{{ r.rank }}</span>
-            <span class="text-xl font-extrabold tracking-tight">{{ r.label }}</span>
-          </div>
-          {% if r.days_first > 0 %}
-          <span class="text-[10px] uppercase tracking-widest text-zinc-500" title="Days finished in 1st place">👑 {{ r.days_first }} day{% if r.days_first != 1 %}s{% endif %} #1</span>
-          {% endif %}
+    <div class="kpi-card accent-{{ r.accent }}">
+      <div class="kpi-bar"></div>
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <span class="rank-chip rank-{{ r.rank }}">{{ r.rank }}</span>
+          <span class="text-base font-extrabold tracking-tight">{{ r.label }}</span>
         </div>
-        <div class="hero-num" style="color: var(--accent)">
-          ${{ "{:,.0f}".format(r.portfolio_value) }}
-        </div>
-        <div class="mt-2 num text-sm font-bold {% if r.ret_pct > 0 %}text-emerald-600{% elif r.ret_pct < 0 %}text-rose-600{% else %}text-zinc-500{% endif %}">
-          {% if r.ret_pct > 0 %}+{% endif %}{{ "%.2f"|format(r.ret_pct) }}% <span class="text-zinc-500 font-medium">on ${{ "{:,.0f}".format(r.cost_basis) }} invested</span>
-        </div>
-        <div class="mt-5 pt-4 border-t border-zinc-200/60 text-xs text-zinc-600 grid grid-cols-2 gap-2">
-          <div>📦 Positions <span class="num text-zinc-900 font-semibold">{{ r.n_positions }}</span></div>
-          <div>💵 Dry powder <span class="num text-zinc-900 font-semibold">${{ "{:,.0f}".format(r.cash) }}</span></div>
-        </div>
-        <div class="mt-3">
-          <div class="flex justify-between text-[10px] uppercase tracking-widest text-zinc-500 mb-1">
-            <span>🪙 LLM spend</span>
-            <span class="num">${{ "%.2f"|format(r.spent_usd) }} / ${{ "%.0f"|format(r.budget_usd) }}</span>
-          </div>
-          <div class="h-1.5 rounded-full bg-zinc-200/60 overflow-hidden">
-            <div class="h-full" style="width: {{ r.budget_pct }}%; background: var(--accent)"></div>
-          </div>
-        </div>
+        <span class="kpi-sub">
+          {% for pos in r.positions %}{{ pos.ticker }}{% if not loop.last %} · {% endif %}{% endfor %}
+          {% if not r.positions %}all cash{% endif %}
+        </span>
+      </div>
+      <div class="kpi-pct {% if r.ret_pct > 0 %}text-emerald-600{% elif r.ret_pct < 0 %}text-rose-600{% else %}text-zinc-500{% endif %}">
+        {% if r.ret_pct > 0 %}+{% endif %}{{ "%.2f"|format(r.ret_pct) }}%
+      </div>
+      <div class="mt-3 flex items-center justify-between">
+        <div class="kpi-nav">${{ "{:,.0f}".format(r.portfolio_value) }}</div>
+        <div class="kpi-sub">on ${{ "{:,.0f}".format(r.cost_basis) }} invested</div>
+      </div>
+      <div class="mt-3 pt-3 border-t border-zinc-200/60 flex items-center justify-between text-[10px] uppercase tracking-widest text-zinc-500">
+        <span>💵 Dry powder <span class="num font-semibold text-zinc-700">${{ "{:,.0f}".format(r.cash) }}</span></span>
+        <span class="num">🪙 ${{ "%.2f"|format(r.spent_usd) }} / ${{ "%.0f"|format(r.budget_usd) }}</span>
       </div>
     </div>
     {% endfor %}
@@ -191,7 +181,7 @@
     <h3 class="text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500">💼 Current holdings</h3>
     <p class="text-sm text-zinc-600 mt-1 mb-4">What each AI owns right now (from latest EOD snapshot)</p>
   </div>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+  <div class="grid grid-cols-1 gap-4 mb-6">
     {% for r in leaderboard %}
     <div class="card p-5 accent-{{ r.accent }}">
       <div class="flex items-center justify-between mb-3">
@@ -242,7 +232,7 @@
     <h3 class="text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500">🧠 Today's thinking</h3>
     <p class="text-sm text-zinc-600 mt-1 mb-4">What each AI researched and decided</p>
   </div>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+  <div class="grid grid-cols-1 gap-4 mb-6">
     {% for d in today_decisions %}
     {% set p = providers[loop.index0] %}
     <div class="ai-card accent-{{ p.accent }}">
@@ -324,7 +314,7 @@
   <div class="card p-6 mb-6">
     <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">🛠 Tool usage</h3>
     <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-4">How each AI investigates</p>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 gap-4">
       {% for u in tool_usage %}
       <div class="border border-zinc-200 rounded-lg p-4 accent-{{ u.accent }}">
         <div class="flex items-center justify-between mb-3">
@@ -406,7 +396,7 @@
       <p class="text-sm text-zinc-600 mt-1">Day-by-day narrative of what each AI saw, decided, and how it played out. Newest day at the top.</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+    <div class="grid grid-cols-1 gap-4 mb-6">
       {% for ai in journal %}
       <div class="journal-col accent-{{ ai.accent }}">
         <div class="journal-col-head">
