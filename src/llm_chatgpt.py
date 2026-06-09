@@ -34,17 +34,18 @@ from src.tools import (
 )
 
 NAME = "chatgpt"
-MODEL = os.environ.get("OPENAI_MODEL", "gpt-5")
+# Downgraded from gpt-5 to gpt-5-mini: 5x cheaper ($0.25/M in, $2/M out).
+# Still a reasoning model, still tool-using, but with lighter internal
+# thinking budget — ~3x less output token waste per iteration.
+MODEL = os.environ.get("OPENAI_MODEL", "gpt-5-mini")
 MAX_TOOL_ITERATIONS = 5
-# GPT-5 is a reasoning model — internal reasoning consumes max_completion_tokens
-# BEFORE any visible output (including tool calls). Reasoning easily eats
-# 1000-3000 tokens, so we raise caps high enough that the final tool call
-# still has room to emit.
-RESEARCH_MAX_TOKENS = 8000
-DECISION_MAX_TOKENS = 4000
+# gpt-5-mini's reasoning budget is smaller than gpt-5's, so we can cap
+# tighter and still leave headroom for the final tool call.
+RESEARCH_MAX_TOKENS = 4000
+DECISION_MAX_TOKENS = 2000
 
-INPUT_PRICE_PER_M = float(os.environ.get("OPENAI_INPUT_PRICE", "1.25"))
-OUTPUT_PRICE_PER_M = float(os.environ.get("OPENAI_OUTPUT_PRICE", "10.0"))
+INPUT_PRICE_PER_M = float(os.environ.get("OPENAI_INPUT_PRICE", "0.25"))
+OUTPUT_PRICE_PER_M = float(os.environ.get("OPENAI_OUTPUT_PRICE", "2.0"))
 
 
 def _to_openai(schema: dict) -> dict:

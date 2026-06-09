@@ -34,13 +34,17 @@ from src.tools import (
 )
 
 NAME = "claude"
-MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-4-6")
+# Downgraded from sonnet-4-6 to haiku-4-5: 3x cheaper ($1/M in, $5/M out).
+# Sonnet was burning ~90% of cost on input due to multi-turn tool loops
+# re-sending prior tool results. Haiku is fast and capable enough for
+# this 9-ticker decision space.
+MODEL = os.environ.get("CLAUDE_MODEL", "claude-haiku-4-5-20251001")
 MAX_TOOL_ITERATIONS = 5
-RESEARCH_MAX_TOKENS = 4000
-DECISION_MAX_TOKENS = 1000
+RESEARCH_MAX_TOKENS = 3000
+DECISION_MAX_TOKENS = 800
 
-INPUT_PRICE_PER_M = float(os.environ.get("CLAUDE_INPUT_PRICE", "3.0"))
-OUTPUT_PRICE_PER_M = float(os.environ.get("CLAUDE_OUTPUT_PRICE", "15.0"))
+INPUT_PRICE_PER_M = float(os.environ.get("CLAUDE_INPUT_PRICE", "1.0"))
+OUTPUT_PRICE_PER_M = float(os.environ.get("CLAUDE_OUTPUT_PRICE", "5.0"))
 
 
 def _to_anthropic(schema: dict) -> dict:

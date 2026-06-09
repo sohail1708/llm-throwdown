@@ -19,16 +19,16 @@ from src.prompt import (
 from src.tools import TOOL_SCHEMAS, call_tool
 
 NAME = "gemini"
-MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-pro")
+# Downgraded from 2.5-pro to 2.5-flash: 4x cheaper ($0.30/M in, $2.50/M out).
+# 2.5-flash still does "thinking" but the budget is smaller; visible
+# output usually lands in under 1000 tokens.
+MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
 MAX_TOOL_ITERATIONS = 5
-# Gemini 2.5 Pro has built-in "thinking" that consumes output tokens BEFORE
-# any user-visible text. Empirically it can eat 1000-3000 tokens of thinking.
-# We raise the caps high enough that the visible JSON output isn't truncated.
-RESEARCH_MAX_TOKENS = 8000
-DECISION_MAX_TOKENS = 4000
+RESEARCH_MAX_TOKENS = 4000
+DECISION_MAX_TOKENS = 2000
 
-INPUT_PRICE_PER_M = float(os.environ.get("GEMINI_INPUT_PRICE", "1.25"))
-OUTPUT_PRICE_PER_M = float(os.environ.get("GEMINI_OUTPUT_PRICE", "5.0"))
+INPUT_PRICE_PER_M = float(os.environ.get("GEMINI_INPUT_PRICE", "0.30"))
+OUTPUT_PRICE_PER_M = float(os.environ.get("GEMINI_OUTPUT_PRICE", "2.50"))
 
 
 def _to_gemini_tools() -> list[types.Tool]:

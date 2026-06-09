@@ -182,10 +182,15 @@ def run(*, dry_run: bool = False) -> int:
         rows.append(row)
         total_cost += row.get("cost_usd") or 0
 
-    with DECISIONS_PATH.open("a") as f:
-        for row in rows:
-            f.write(json.dumps(row) + "\n")
-    print(f"\n[daily] logged {len(rows)} decisions to {DECISIONS_PATH}")
+    # Dry-run rows used to leak into decisions.jsonl and pollute the journal —
+    # gate the write on dry_run so smoke tests stay separate from real data.
+    if dry_run:
+        print(f"\n[daily] dry-run: NOT writing to {DECISIONS_PATH}")
+    else:
+        with DECISIONS_PATH.open("a") as f:
+            for row in rows:
+                f.write(json.dumps(row) + "\n")
+        print(f"\n[daily] logged {len(rows)} decisions to {DECISIONS_PATH}")
     print(f"[daily] total LLM cost today: ${total_cost:.4f}")
     return 0
 

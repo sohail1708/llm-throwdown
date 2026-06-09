@@ -29,7 +29,12 @@ def _safe(fn: Callable[..., dict]) -> Callable[..., dict]:
 
 
 @_safe
-def get_history(ticker: str, days: int = 30) -> dict:
+def get_history(ticker: str, days: int = 14) -> dict:
+    """Default trimmed to 14 days (was 30) and volume removed — each row
+    drops from ~60 tokens to ~30 tokens, cutting tool result size in half.
+    14 days is enough for any short-term technical read (RSI, breakouts,
+    pullbacks); deeper history is rarely used by the models in practice.
+    """
     t = yf.Ticker(ticker)
     h = t.history(period=f"{max(days, 5)}d", auto_adjust=False)
     if h.empty:
@@ -39,53 +44,52 @@ def get_history(ticker: str, days: int = 30) -> dict:
         out.append({
             "date": d.strftime("%Y-%m-%d"),
             "open": round(float(row["Open"]), 2),
-            "close": round(float(row["Close"]), 2),
             "high": round(float(row["High"]), 2),
             "low": round(float(row["Low"]), 2),
-            "volume": int(row["Volume"]),
+            "close": round(float(row["Close"]), 2),
         })
     return {"ticker": ticker, "history": out}
 
 
 @_safe
-def get_news(ticker: str, n: int = 5) -> dict:
+def get_news(ticker: str, n: int = 3) -> dict:
+    """Default trimmed to 3 headlines (was 5). Publishers dropped — they're
+    almost never load-bearing for the decision and add ~10 tokens per row."""
     t = yf.Ticker(ticker)
     news = (t.news or [])[:n]
     items = []
     for it in news:
         title = it.get("title") or it.get("content", {}).get("title")
-        publisher = (
-            it.get("publisher")
-            or it.get("content", {}).get("provider", {}).get("displayName")
-        )
         if title:
-            items.append({"title": title, "publisher": publisher})
-    return {"ticker": ticker, "news": items}
+            items.append(title)
+    return {"ticker": ticker, "headlines": items}
 
 
 @_safe
 def get_financials(ticker: str) -> dict:
+    """Slimmed: dropped operating_margin (redundant w/ profit_margin) and
+    dividend_yield (irrelevant for these growth names). Net ~25% smaller."""
     t = yf.Ticker(ticker)
     info = t.info or {}
     return {
         "ticker": ticker,
-        "pe_ratio": info.get("trailingPE"),
+        "pe": info.get("trailingPE"),
         "forward_pe": info.get("forwardPE"),
         "market_cap": info.get("marketCap"),
-        "revenue_growth": info.get("revenueGrowth"),
+        "rev_growth": info.get("revenueGrowth"),
         "profit_margin": info.get("profitMargins"),
-        "operating_margin": info.get("operatingMargins"),
-        "debt_to_equity": info.get("debtToEquity"),
+        "debt_equity": info.get("debtToEquity"),
         "free_cashflow": info.get("freeCashflow"),
-        "dividend_yield": info.get("dividendYield"),
     }
 
 
 @_safe
 def get_analyst_ratings(ticker: str) -> dict:
+    """Slimmed: removed last_period buy/sell distribution (the
+    recommendation_mean already summarises it numerically). Saves ~80 tokens."""
     t = yf.Ticker(ticker)
     info = t.info or {}
-    out: dict[str, Any] = {
+    return {
         "ticker": ticker,
         "current_price": info.get("currentPrice"),
         "target_mean": info.get("targetMeanPrice"),
@@ -94,20 +98,6 @@ def get_analyst_ratings(ticker: str) -> dict:
         "recommendation_mean": info.get("recommendationMean"),
         "number_of_analysts": info.get("numberOfAnalystOpinions"),
     }
-    try:
-        recs = t.recommendations
-        if recs is not None and not recs.empty:
-            r = recs.iloc[-1]
-            out["last_period"] = {
-                "strong_buy": int(r.get("strongBuy", 0) or 0),
-                "buy": int(r.get("buy", 0) or 0),
-                "hold": int(r.get("hold", 0) or 0),
-                "sell": int(r.get("sell", 0) or 0),
-                "strong_sell": int(r.get("strongSell", 0) or 0),
-            }
-    except Exception:
-        pass
-    return out
 
 
 @_safe
@@ -148,14 +138,14 @@ TOOL_SCHEMAS: list[dict] = [
     {
         "name": "get_history",
         "description": (
-            "Return up to N days of daily OHLCV for a ticker. Use to inspect price "
-            "action, recent gaps, support/resistance. Max 60 days."
+            "Daily OHLC bars for a ticker. Use to inspect price action, gaps, "
+            "support/resistance. Default 14 days; max 60."
         ),
         "input_schema": {
             "type": "object",
             "properties": {
                 "ticker": {"type": "string", "description": "Ticker, e.g. AAPL"},
-                "days":   {"type": "integer", "description": "How many trading days back", "default": 30},
+                "days":   {"type": "integer", "description": "Trading days back", "default": 14},
             },
             "required": ["ticker"],
         },
@@ -167,7 +157,7 @@ TOOL_SCHEMAS: list[dict] = [
             "type": "object",
             "properties": {
                 "ticker": {"type": "string"},
-                "n":      {"type": "integer", "default": 5},
+                "n":      {"type": "integer", "default": 3},
             },
             "required": ["ticker"],
         },
