@@ -155,21 +155,22 @@
     {% endif %}
 
     {% for r in leaderboard %}
-    {% set vs_qqq = (r.ret_pct - benchmark.ret_pct) if benchmark else None %}
+    {% set vs_qqq = (r.total_ret_pct - benchmark.ret_pct) if benchmark else None %}
     <div class="kpi-card accent-{{ r.accent }}">
       <div class="kpi-bar"></div>
       <div class="flex items-center justify-between mb-3">
         <div class="flex items-center gap-2">
           <span class="rank-chip rank-{{ r.rank }}">{{ r.rank }}</span>
           <span class="text-base font-extrabold tracking-tight">{{ r.label }}</span>
+          {% if r.is_leveraged %}<span title="Bought beyond available cash — running on Alpaca paper margin" class="text-[10px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded bg-rose-100 text-rose-700">⚠ Leveraged</span>{% endif %}
         </div>
         <span class="kpi-sub">
           {% for pos in r.positions %}{{ pos.ticker }}{% if not loop.last %} · {% endif %}{% endfor %}
           {% if not r.positions %}all cash{% endif %}
         </span>
       </div>
-      <div class="kpi-pct {% if r.ret_pct > 0 %}text-emerald-600{% elif r.ret_pct < 0 %}text-rose-600{% else %}text-zinc-500{% endif %}">
-        {% if r.ret_pct > 0 %}+{% endif %}{{ "%.2f"|format(r.ret_pct) }}%
+      <div class="kpi-pct {% if r.total_ret_pct > 0 %}text-emerald-600{% elif r.total_ret_pct < 0 %}text-rose-600{% else %}text-zinc-500{% endif %}">
+        {% if r.total_ret_pct > 0 %}+{% endif %}{{ "%.2f"|format(r.total_ret_pct) }}%
       </div>
       {% if vs_qqq is not none %}
       <div class="mt-2">
@@ -179,12 +180,12 @@
       </div>
       {% endif %}
       <div class="mt-3 flex items-center justify-between">
-        <div class="kpi-nav">${{ "{:,.0f}".format(r.portfolio_value) }}</div>
-        <div class="kpi-sub">on ${{ "{:,.0f}".format(r.cost_basis) }} invested</div>
+        <div class="kpi-nav">${{ "{:,.0f}".format(r.total_equity) }}</div>
+        <div class="kpi-sub">total equity ({{ r.n_positions }} pos)</div>
       </div>
       <div class="mt-3 pt-3 border-t border-zinc-200/60 flex items-center justify-between text-[10px] uppercase tracking-widest text-zinc-500">
-        <span>💵 Dry powder <span class="num font-semibold text-zinc-700">${{ "{:,.0f}".format(r.cash) }}</span></span>
-        <span class="num">🪙 ${{ "%.2f"|format(r.spent_usd) }} / ${{ "%.0f"|format(r.budget_usd) }}</span>
+        <span>💵 Cash <span class="num font-semibold {% if r.cash < -1 %}text-rose-600{% else %}text-zinc-700{% endif %}">${{ "{:,.0f}".format(r.cash) }}</span></span>
+        <span class="num">📦 Positions ${{ "{:,.0f}".format(r.portfolio_value) }}</span>
       </div>
     </div>
     {% endfor %}

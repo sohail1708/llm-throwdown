@@ -151,6 +151,7 @@ def _decide(
     decision = parse_decision_dict(
         dict(tool_calls[0].input),
         nav=nav,
+        cash=cash,
         positions_by_ticker={p["ticker"]: p["market_value"] for p in positions},
     )
     return decision, {"input": resp.usage.input_tokens, "output": resp.usage.output_tokens}

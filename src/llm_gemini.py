@@ -139,7 +139,7 @@ def _decide(client: genai.Client, research_json: str, *, nav: float, cash: float
             f"gemini decision returned empty text; finish_reasons={finish_reasons}"
         )
     decision = parse_and_validate_decision(
-        text, nav=nav,
+        text, nav=nav, cash=cash,
         positions_by_ticker={p["ticker"]: p["market_value"] for p in positions},
     )
     usage = getattr(resp, "usage_metadata", None)

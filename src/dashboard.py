@@ -118,10 +118,23 @@ def _leaderboard(nav_history: list[dict], cost_by_ai: dict[str, float]) -> list[
                     day_returns[r["ai"]] = _rp
             if day_returns and max(day_returns.values()) == day_returns.get(p.name, float("-inf")):
                 days_first += 1
+        # TRUE total return — account equity (cash + positions) vs starting
+        # capital. This is the honest "did the AI make money since Jun 1"
+        # number. It captures realized losses from sells (which only show up
+        # as reduced cash) AND any margin abuse (negative cash drags the
+        # equity down). The earlier "position-level return" was misleading:
+        # it ignored cash drag, ignored realized P/L, and made a leveraged
+        # AI look like a better picker than it was.
+        total_equity = round(cash + portfolio_value, 2)
+        total_ret_pct = round((total_equity / STARTING_CASH - 1) * 100, 2)
         rows.append({
             "name": p.name,
             "label": p.label,
             "accent": p.accent,
+            # Hero metric: true return on $100k starting capital.
+            "total_equity": total_equity,
+            "total_ret_pct": total_ret_pct,
+            # Secondary: position-level pick quality (open positions only).
             "portfolio_value": round(portfolio_value, 2),
             "cost_basis": round(cost_basis, 2),
             "ret_pct": round(ret_pct, 2),
@@ -132,8 +145,11 @@ def _leaderboard(nav_history: list[dict], cost_by_ai: dict[str, float]) -> list[
             "budget_usd": BUDGET_PER_AI,
             "budget_pct": min(100, round(spent / BUDGET_PER_AI * 100, 1)),
             "positions": positions,
+            # Margin flag: cash < 0 means the AI bought beyond its means.
+            "is_leveraged": cash < -1.0,
         })
-    rows.sort(key=lambda r: r["ret_pct"], reverse=True)
+    # Rank by TRUE total return (the experiment's actual scoreboard).
+    rows.sort(key=lambda r: r["total_ret_pct"], reverse=True)
     for rank, r in enumerate(rows, start=1):
         r["rank"] = rank
     return rows
@@ -302,7 +318,10 @@ def _benchmark_card(nav_history: list[dict], leaderboard: list[dict]) -> dict | 
     latest = bench_rows[-1]
     nav = latest["nav"]
     ret_pct = (nav / STARTING_CASH - 1) * 100
-    leaders_beating = sum(1 for r in leaderboard if r["ret_pct"] > ret_pct)
+    # Compare against TRUE total return (cash + positions vs $100k), the
+    # same scale QQQ is measured on (its $100k fully deployed). Position-
+    # level return is incomparable since QQQ has no cash.
+    leaders_beating = sum(1 for r in leaderboard if r["total_ret_pct"] > ret_pct)
     return {
         "label": BENCHMARK_LABEL,
         "accent": BENCHMARK_ACCENT,
@@ -334,14 +353,15 @@ def render_dashboard(*, nav_history: list[dict], decisions: list[dict]) -> None:
         hist = series_per_ai.get(p.name) or []
         points = []
         for r in hist:
-            pv, cb, rp, _ = _position_metrics(r)
-            # No positions yet → flat at 0% (vs reporting NaN). Once deployed,
-            # ret_pct is the position-level return so the line is comparable
-            # to the QQQ benchmark.
+            # Total return: full account equity (cash + positions) vs $100k.
+            # This is what matches the QQQ benchmark line (which is also a
+            # total-return-on-$100k number).
+            total_eq = float(r.get("nav", STARTING_CASH))
+            total_ret = (total_eq / STARTING_CASH - 1) * 100
             points.append({
                 "date": r["date"],
-                "ret_pct": round(rp if cb else 0.0, 2),
-                "portfolio_value": round(pv, 2),
+                "ret_pct": round(total_ret, 2),
+                "portfolio_value": round(total_eq, 2),
             })
         chart_series.append({
             "name": p.name,

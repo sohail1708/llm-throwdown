@@ -165,6 +165,7 @@ def _decide(
     decision = parse_decision_dict(
         args,
         nav=nav,
+        cash=cash,
         positions_by_ticker={p["ticker"]: p["market_value"] for p in positions},
     )
     tok = {
