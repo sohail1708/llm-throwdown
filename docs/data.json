@@ -4,57 +4,57 @@
       "name": "gemini",
       "label": "Gemini",
       "accent": "blue",
-      "total_equity": 98615.49,
-      "total_ret_pct": -1.38,
-      "portfolio_value": 96914.32,
+      "total_equity": 97616.0,
+      "total_ret_pct": -2.38,
+      "portfolio_value": 95914.83,
       "cost_basis": 100131.04,
-      "ret_pct": -3.21,
+      "ret_pct": -4.21,
       "days_first": 2,
       "n_positions": 4,
       "cash": 1701.17,
-      "spent_usd": 0.08,
+      "spent_usd": 0.09,
       "budget_usd": 10.0,
-      "budget_pct": 0.8,
+      "budget_pct": 0.9,
       "positions": [
         {
           "ticker": "GOOGL",
           "qty": 68.2669,
           "avg_entry_price": 373.53,
-          "current_price": 364.63,
-          "market_value": 24892.49,
+          "current_price": 363.79,
+          "market_value": 24834.81,
           "cost_basis": 25500.01,
-          "pl_usd": -607.52,
-          "pl_pct": -2.38
+          "pl_usd": -665.2,
+          "pl_pct": -2.61
         },
         {
           "ticker": "AMZN",
           "qty": 103.1927,
           "avg_entry_price": 238.69,
-          "current_price": 240.29,
-          "market_value": 24795.69,
+          "current_price": 237.5,
+          "market_value": 24508.27,
           "cost_basis": 24631.07,
-          "pl_usd": 164.62,
-          "pl_pct": 0.67
+          "pl_usd": -122.8,
+          "pl_pct": -0.5
         },
         {
           "ticker": "NVDA",
           "qty": 114.6631,
           "avg_entry_price": 218.03,
-          "current_price": 206.48,
-          "market_value": 23675.64,
+          "current_price": 204.65,
+          "market_value": 23465.8,
           "cost_basis": 25000.0,
-          "pl_usd": -1324.36,
-          "pl_pct": -5.3
+          "pl_usd": -1534.2,
+          "pl_pct": -6.14
         },
         {
           "ticker": "MSFT",
           "qty": 60.98,
           "avg_entry_price": 409.97,
-          "current_price": 386.2,
-          "market_value": 23550.5,
+          "current_price": 378.91,
+          "market_value": 23105.95,
           "cost_basis": 24999.97,
-          "pl_usd": -1449.47,
-          "pl_pct": -5.8
+          "pl_usd": -1894.02,
+          "pl_pct": -7.58
         }
       ],
       "is_leveraged": false,
@@ -64,67 +64,57 @@
       "name": "chatgpt",
       "label": "ChatGPT",
       "accent": "emerald",
-      "total_equity": 98222.57,
-      "total_ret_pct": -1.78,
-      "portfolio_value": 98222.57,
-      "cost_basis": 98296.39,
-      "ret_pct": -0.08,
-      "days_first": 5,
-      "n_positions": 5,
-      "cash": 0.0,
-      "spent_usd": 0.42,
+      "total_equity": 97176.21,
+      "total_ret_pct": -2.82,
+      "portfolio_value": 74346.63,
+      "cost_basis": 76412.27,
+      "ret_pct": -2.7,
+      "days_first": 4,
+      "n_positions": 4,
+      "cash": 22829.58,
+      "spent_usd": 0.43,
       "budget_usd": 10.0,
-      "budget_pct": 4.2,
+      "budget_pct": 4.3,
       "positions": [
         {
           "ticker": "NVDA",
           "qty": 115.7625,
           "avg_entry_price": 216.36,
-          "current_price": 206.48,
-          "market_value": 23902.64,
+          "current_price": 204.65,
+          "market_value": 23690.79,
           "cost_basis": 25045.82,
-          "pl_usd": -1143.18,
-          "pl_pct": -4.56
+          "pl_usd": -1355.03,
+          "pl_pct": -5.41
         },
         {
           "ticker": "AAPL",
           "qty": 79.3575,
           "avg_entry_price": 315.03,
-          "current_price": 297.52,
-          "market_value": 23610.45,
+          "current_price": 295.95,
+          "market_value": 23485.86,
           "cost_basis": 24999.99,
-          "pl_usd": -1389.54,
-          "pl_pct": -5.56
-        },
-        {
-          "ticker": "AVGO",
-          "qty": 57.5096,
-          "avg_entry_price": 380.53,
-          "current_price": 398.15,
-          "market_value": 22897.44,
-          "cost_basis": 21884.13,
-          "pl_usd": 1013.31,
-          "pl_pct": 4.63
+          "pl_usd": -1514.13,
+          "pl_pct": -6.06
         },
         {
           "ticker": "ORCL",
           "qty": 113.1791,
           "avg_entry_price": 176.71,
-          "current_price": 188.54,
-          "market_value": 21338.79,
+          "current_price": 183.53,
+          "market_value": 20771.77,
           "cost_basis": 19999.98,
-          "pl_usd": 1338.81,
-          "pl_pct": 6.69
+          "pl_usd": 771.79,
+          "pl_pct": 3.86
         },
         {
           "ticker": "AMZN",
           "qty": 26.9398,
           "avg_entry_price": 236.32,
-          "current_price": 240.29,
-          "market_value": 6473.25,
+          "current_price": 237.5,
+          "market_value": 6398.21,
           "cost_basis": 6366.47,
-          "pl_usd": 106.78,
-          "pl_pct": 1.68
+          "pl_usd": 31.74,
+          "pl_pct": 0.5
         }
       ],
       "is_leveraged": false,
@@ -134,67 +124,67 @@
       "name": "claude",
       "label": "Claude",
       "accent": "orange",
-      "total_equity": 97833.85,
-      "total_ret_pct": -2.17,
-      "portfolio_value": 97865.9,
+      "total_equity": 96713.28,
+      "total_ret_pct": -3.29,
+      "portfolio_value": 96745.33,
       "cost_basis": 99287.6,
-      "ret_pct": -1.43,
-      "days_first": 6,
+      "ret_pct": -2.56,
+      "days_first": 7,
       "n_positions": 5,
       "cash": -32.05,
-      "spent_usd": 0.46,
+      "spent_usd": 0.48,
       "budget_usd": 10.0,
-      "budget_pct": 4.6,
+      "budget_pct": 4.8,
       "positions": [
         {
           "ticker": "AVGO",
           "qty": 62.4009,
           "avg_entry_price": 405.93,
-          "current_price": 398.15,
-          "market_value": 24844.91,
+          "current_price": 392.9,
+          "market_value": 24517.31,
           "cost_basis": 25330.64,
-          "pl_usd": -485.73,
-          "pl_pct": -1.92
+          "pl_usd": -813.33,
+          "pl_pct": -3.21
         },
         {
           "ticker": "NVDA",
           "qty": 113.8175,
           "avg_entry_price": 219.27,
-          "current_price": 206.48,
-          "market_value": 23501.05,
+          "current_price": 204.65,
+          "market_value": 23292.75,
           "cost_basis": 24957.0,
-          "pl_usd": -1455.95,
-          "pl_pct": -5.83
+          "pl_usd": -1664.25,
+          "pl_pct": -6.67
         },
         {
           "ticker": "GOOGL",
           "qty": 55.5651,
           "avg_entry_price": 359.94,
-          "current_price": 364.63,
-          "market_value": 20261.0,
+          "current_price": 363.79,
+          "market_value": 20214.05,
           "cost_basis": 19999.98,
-          "pl_usd": 261.02,
-          "pl_pct": 1.31
+          "pl_usd": 214.07,
+          "pl_pct": 1.07
         },
         {
           "ticker": "META",
           "qty": 34.1329,
           "avg_entry_price": 585.94,
-          "current_price": 581.0,
-          "market_value": 19831.41,
+          "current_price": 567.58,
+          "market_value": 19373.17,
           "cost_basis": 19999.97,
-          "pl_usd": -168.56,
-          "pl_pct": -0.84
+          "pl_usd": -626.8,
+          "pl_pct": -3.13
         },
         {
           "ticker": "TSLA",
           "qty": 23.5836,
           "avg_entry_price": 381.62,
-          "current_price": 399.75,
-          "market_value": 9427.53,
+          "current_price": 396.38,
+          "market_value": 9348.05,
           "cost_basis": 9000.0,
-          "pl_usd": 427.53,
-          "pl_pct": 4.75
+          "pl_usd": 348.05,
+          "pl_pct": 3.87
         }
       ],
       "is_leveraged": true,
@@ -203,125 +193,132 @@
   ],
   "today_decisions": {
     "chatgpt": {
-      "date": "2026-06-16",
+      "date": "2026-06-17",
       "ai": "chatgpt",
       "label": "ChatGPT",
-      "action": "BUY",
+      "action": "SELL",
       "ticker": "AVGO",
-      "amount": 21884.13,
-      "reason": "Buying Broadcom on washout pullback \u2014 high-quality AI/semis name with strong cash flow, good asymmetric upside into 30-day rebound.",
+      "amount": null,
+      "reason": "Lock profits after run; valuation looks rich, redeploy proceeds into oversold AMZN.",
       "confidence": 4,
-      "nav_before": 97973.09,
-      "cash_before": 21884.13,
+      "nav_before": 98383.3,
+      "cash_before": 0.0,
       "research": {
         "candidates": [
           {
-            "ticker": "AMZN",
-            "bull": "Shares are oversold (RSI ~28) after a consolidation from the mid\u2011$270s and offer a lower-risk entry into durable e\u2011commerce/cloud growth with room to mean\u2011revert toward the $270s.",
-            "bear": "Macroeconomic sensitivity and modest near-term revenue slowdown could keep AMZN range\u2011bound and punish momentum in a risk-off market, leaving gains muted over 30 days.",
-            "lean": "BUY"
-          },
-          {
-            "ticker": "ORCL",
-            "bull": "Oracle\u2019s forward P/E (~17) and ~20% revenue growth suggest valuation support and long-term cloud earnings resilience after the recent selloff.",
-            "bear": "Extremely high reported debt/equity and a large negative free cash flow print raise legitimate structural concerns and could prolong mean reversion if investor worries persist.",
-            "lean": "HOLD"
-          },
-          {
             "ticker": "AVGO",
-            "bull": "Broadcom pulled back sharply from recent highs into a rotation washout \u2014 a high\u2011quality, cash\u2011generative AI/semiconductor/enterprise vendor that can bounce strongly on renewed risk appetite.",
-            "bear": "The stock\u2019s earlier run was driven by elevated multiples that can re-rate lower if AI spending disappoints or broader semis weakness continues, risking further downside in the near term.",
+            "bull": "Broadcom's rebound from the early June selloff and strong demand in networking/semiconductor infrastructure keep its earnings and cash-flow profile supportive of further gains.",
+            "bear": "Valuation is elevated after a powerful run and the name is susceptible to profit-taking or a cyclically-driven tech pullback in the near term.",
+            "lean": "SELL"
+          },
+          {
+            "ticker": "AMZN",
+            "bull": "Amazon is deeply oversold (low RSI) with solid fundamentals (decent revenue growth, healthy margins and free cash flow) and an attractive forward P/E that sets up for mean-reversion into month-end.",
+            "bear": "Consumer and retail risks or conservative guidance could prolong the weakness and keep the stock depressed despite attractive metrics.",
             "lean": "BUY"
+          },
+          {
+            "ticker": "NVDA",
+            "bull": "NVIDIA remains the secular AI leader with long-term demand for GPUs and AI datacenter exposure, and current price action sits near support after a modest pullback.",
+            "bear": "Near-term momentum is muted and the stock has limited upside in a 30-day window if headlines or macro risk mute AI enthusiasm.",
+            "lean": "HOLD"
           }
         ],
-        "summary": "Market mixed but risk appetite is tentative; best asymmetric trade for a 30\u2011day showdown is a high\u2011conviction buy into AVGO (with AMZN as a cheaper, lower\u2011volatility alternate), while keeping existing ORCL exposure.",
-        "preferred_action": "BUY",
+        "summary": "Today\u2019s read: trim a recent winner (AVGO) to lock profits and redeploy into oversold AMZN while keeping NVDA as core AI exposure.",
+        "preferred_action": "SELL",
         "preferred_ticker": "AVGO",
         "tools_used": [
           {
             "name": "get_history",
             "args": {
-              "ticker": "ORCL",
-              "days": 30
-            }
-          },
-          {
-            "name": "get_history",
-            "args": {
-              "ticker": "AMZN",
-              "days": 30
-            }
-          },
-          {
-            "name": "get_history",
-            "args": {
               "ticker": "AVGO",
               "days": 30
             }
           },
           {
-            "name": "get_news",
+            "name": "get_history",
             "args": {
-              "ticker": "ORCL",
-              "n": 5
+              "ticker": "NVDA",
+              "days": 30
+            }
+          },
+          {
+            "name": "get_history",
+            "args": {
+              "ticker": "AAPL",
+              "days": 30
             }
           },
           {
             "name": "get_financials",
             "args": {
-              "ticker": "ORCL"
+              "ticker": "AMZN"
+            }
+          },
+          {
+            "name": "get_news",
+            "args": {
+              "ticker": "AVGO",
+              "n": 5
             }
           }
         ]
       },
       "tokens": {
-        "input": 7679,
-        "output": 3284
+        "input": 24895,
+        "output": 4192
       },
-      "cost_usd": 0.0085,
+      "cost_usd": 0.0146,
       "order": {
-        "order_id": "c0da4705-d01a-4870-bc52-53bd0e8f2b56",
-        "status": "pending_new"
+        "order_id": "4210ff81-a8fe-4723-b256-4c4a596a376a",
+        "status": "orderstatus.pending_new"
       },
       "dry_run": false,
-      "submitted_at": "2026-06-16T18:15:08.490414+00:00"
+      "submitted_at": "2026-06-17T16:46:29.424029+00:00"
     },
     "claude": {
-      "date": "2026-06-16",
+      "date": "2026-06-17",
       "ai": "claude",
       "label": "Claude",
-      "action": "BUY",
-      "ticker": "AMZN",
-      "amount": 23744.16,
-      "reason": "AMZN oversold (RSI 28.4), down 10% in 3 weeks. Street target $312 = 27% upside, 92% buy-rated. Rotate from AVGO's broken momentum.",
-      "confidence": 4,
-      "nav_before": 98777.77,
-      "cash_before": 540.74,
+      "action": "HOLD",
+      "ticker": null,
+      "amount": null,
+      "reason": "Portfolio fully deployed with margin constraints. MSFT attractive but no dry powder. AVGO momentum intact\u2014hold core position.",
+      "confidence": 3,
+      "nav_before": 97908.51,
+      "cash_before": -32.05,
       "research": {
         "candidates": [
           {
-            "ticker": "AMZN",
-            "bull": "Oversold (RSI 28.4), down 10% in 3 weeks; Street consensus $312 target implies 27% upside, with 63 analysts 92% buy-rated.",
-            "bear": "SpaceX narrative pressures sentiment; continued macro weakness or earnings miss could extend decline.",
+            "ticker": "MSFT",
+            "bull": "Severe oversold (RSI 33.5), 46% Street target ($561), 94% buy-rated by 55 analysts; capitulation price action and margin-of-safety valuation (fwd P/E 19.9) for 18% revenue growth.",
+            "bear": "Below 200-day MA amid broad tech weakness; may continue lower if macro hawkish or SpaceX narrative further displaces cloud/AI spending.",
             "lean": "BUY"
           },
           {
             "ticker": "AVGO",
-            "bull": "Down 20% from peak in 2 weeks may signal capitulation; could be reversal candidate if market stabilizes.",
-            "bear": "Sustained momentum collapse from $495 to $380; losing 23% weekly amid potential sector rotation.",
-            "lean": "SELL"
+            "bull": "Strong breakout yesterday (+5.5%, RSI 44.2); semiconductor demand tailwind from AI/data-center capex cycle; largest position already profitable.",
+            "bear": "SpaceX rally outshining semiconductor narrative; profit-taking risk after strong 6.81% 5-day run; momentum may stall here.",
+            "lean": "HOLD"
           },
           {
-            "ticker": "NVDA",
-            "bull": "Current holding; mild 1d weakness is noise; still core AI long.",
-            "bear": "Modest weakness alongside broader semiconductor softness suggests rotation may persist.",
+            "ticker": "ORCL",
+            "bull": "Flat today, RSI 44.4 (neutral), -6.21% 5d suggests oversold stabilization on deck; database/cloud moat with enterprise AI tailwind.",
+            "bear": "Not in universe as active holding; lower Street visibility vs MSFT; incremental upside vs risk/reward.",
             "lean": "HOLD"
           }
         ],
-        "summary": "AMZN is a screaming oversold buy (RSI 28.4, +27% Street target) while AVGO momentum has decisively broken; rotate capital into AMZN to capitalize on extreme sentiment disconnect.",
-        "preferred_action": "BUY",
-        "preferred_ticker": "AMZN",
+        "summary": "Tech sector in mean-reversion mode: MSFT severely oversold (RSI 33.5, -12% 3wks, below 200-MA) with 46% Street upside, while AVGO momentum intact but SpaceX headwind; fully deployed portfolio with margin limits decision to HOLD or rotate.",
+        "preferred_action": "HOLD",
+        "preferred_ticker": null,
         "tools_used": [
+          {
+            "name": "read_own_trades",
+            "args": {
+              "ai": "claude",
+              "n": 5
+            }
+          },
           {
             "name": "get_news",
             "args": {
@@ -332,85 +329,75 @@
           {
             "name": "get_news",
             "args": {
-              "ticker": "AMZN",
+              "ticker": "MSFT",
               "n": 3
             }
           },
           {
             "name": "get_history",
             "args": {
-              "ticker": "AMZN",
+              "ticker": "MSFT",
               "days": 14
             }
           },
           {
             "name": "get_analyst_ratings",
             "args": {
-              "ticker": "AMZN"
+              "ticker": "MSFT"
             }
           },
           {
-            "name": "get_history",
+            "name": "get_financials",
             "args": {
-              "ticker": "AVGO",
-              "days": 14
+              "ticker": "MSFT"
             }
           }
         ]
       },
       "tokens": {
-        "input": 16121,
-        "output": 1703
+        "input": 11658,
+        "output": 1539
       },
-      "cost_usd": 0.0246,
-      "order": {
-        "order_id": "1ce33c74-6785-408c-95e0-f2115a46ce2e",
-        "status": "pending_new"
-      },
+      "cost_usd": 0.0194,
+      "order": null,
       "dry_run": false,
-      "submitted_at": "2026-06-16T18:15:26.814484+00:00"
+      "submitted_at": "2026-06-17T16:52:41.986650+00:00"
     },
     "gemini": {
-      "date": "2026-06-16",
+      "date": "2026-06-17",
       "ai": "gemini",
       "label": "Gemini",
       "action": "HOLD",
       "ticker": null,
       "amount": null,
-      "reason": "AMZN is my preferred buy, but the current position is already over 25% of NAV, so I cannot add more today.",
+      "reason": "AMZN looks good, but my position is already maxed out at >25% of NAV. No other strong buy signals, so I'll hold today.",
       "confidence": 4,
-      "nav_before": 100449.87,
+      "nav_before": 98565.81,
       "cash_before": 1701.17,
       "research": {
         "candidates": [
           {
             "ticker": "AMZN",
-            "bull": "The stock is oversold with a low RSI, strong revenue growth, healthy profit margins, and a positive outlook from analysts with a significant upside to their mean target.",
-            "bear": "Competition in e-commerce and cloud computing remains fierce, and broader market downturns could impact even strong companies.",
+            "bull": "AMZN is significantly oversold with an RSI of 23.1, and analysts overwhelmingly rate it a strong buy with a high mean target price, suggesting a strong rebound potential without clear negative news.",
+            "bear": "General tech sector weakness and broader market concerns could continue to pressure AMZN, leading to further declines despite its oversold status.",
             "lean": "BUY"
           },
           {
-            "ticker": "ORCL",
-            "bull": "Strong revenue growth and profit margins indicate business strength, and the forward P/E is attractive.",
-            "bear": "Extremely high debt-to-equity ratio and negative free cash flow pose significant financial risks, especially given the recent price decline without a clear positive catalyst.",
+            "ticker": "AVGO",
+            "bull": "AVGO has shown strong recent momentum with significant gains over the last one and five days, indicating strong market interest.",
+            "bear": "The lack of specific news or a clear fundamental catalyst for AVGO's recent surge suggests the rally may be technically driven and susceptible to a quick reversal.",
             "lean": "HOLD"
           }
         ],
-        "summary": "AMZN presents a compelling buying opportunity due to oversold conditions and strong fundamentals, while ORCL's high debt and negative free cash flow warrant caution despite its growth.",
+        "summary": "AMZN appears significantly oversold with strong analyst support and no clear negative catalyst, making it an attractive buying opportunity amidst general market weakness.",
         "preferred_action": "BUY",
         "preferred_ticker": "AMZN",
         "tools_used": [
           {
             "name": "get_news",
             "args": {
-              "n": 3,
-              "ticker": "AMZN"
-            }
-          },
-          {
-            "name": "get_financials",
-            "args": {
-              "ticker": "AMZN"
+              "ticker": "AMZN",
+              "n": 3
             }
           },
           {
@@ -420,28 +407,36 @@
             }
           },
           {
-            "name": "get_news",
+            "name": "get_history",
             "args": {
-              "n": 3,
-              "ticker": "ORCL"
+              "ticker": "AMZN",
+              "days": 5
             }
           },
           {
-            "name": "get_financials",
+            "name": "get_news",
             "args": {
-              "ticker": "ORCL"
+              "ticker": "AVGO",
+              "n": 3
+            }
+          },
+          {
+            "name": "get_history",
+            "args": {
+              "ticker": "AVGO",
+              "days": 5
             }
           }
         ]
       },
       "tokens": {
-        "input": 3743,
-        "output": 402
+        "input": 4101,
+        "output": 424
       },
-      "cost_usd": 0.0021,
+      "cost_usd": 0.0023,
       "order": null,
       "dry_run": false,
-      "submitted_at": "2026-06-16T18:15:42.725906+00:00"
+      "submitted_at": "2026-06-17T16:47:12.544656+00:00"
     }
   },
   "chart_series": [
@@ -512,8 +507,8 @@
         },
         {
           "date": "2026-06-17",
-          "ret_pct": -1.78,
-          "portfolio_value": 98222.57
+          "ret_pct": -2.82,
+          "portfolio_value": 97176.2
         }
       ],
       "is_benchmark": false
@@ -585,8 +580,8 @@
         },
         {
           "date": "2026-06-17",
-          "ret_pct": -2.17,
-          "portfolio_value": 97833.85
+          "ret_pct": -3.29,
+          "portfolio_value": 96713.28
         }
       ],
       "is_benchmark": false
@@ -658,8 +653,8 @@
         },
         {
           "date": "2026-06-17",
-          "ret_pct": -1.38,
-          "portfolio_value": 98615.49
+          "ret_pct": -2.38,
+          "portfolio_value": 97615.99
         }
       ],
       "is_benchmark": false
@@ -731,8 +726,8 @@
         },
         {
           "date": "2026-06-17",
-          "ret_pct": -0.49,
-          "portfolio_value": 99509.53
+          "ret_pct": -1.97,
+          "portfolio_value": 98028.61
         }
       ],
       "is_benchmark": true
@@ -740,29 +735,29 @@
   ],
   "tool_usage": {
     "chatgpt": {
-      "get_news": 20,
-      "get_history": 33,
-      "get_financials": 6,
+      "get_news": 21,
+      "get_history": 36,
+      "get_financials": 7,
       "get_analyst_ratings": 1
     },
     "claude": {
-      "get_news": 23,
-      "read_own_trades": 11,
-      "get_history": 14,
-      "get_financials": 7,
-      "get_analyst_ratings": 8
+      "get_news": 25,
+      "read_own_trades": 12,
+      "get_history": 15,
+      "get_financials": 8,
+      "get_analyst_ratings": 9
     },
     "gemini": {
-      "get_news": 30,
+      "get_news": 32,
       "get_financials": 8,
-      "get_history": 11,
-      "get_analyst_ratings": 10,
+      "get_history": 13,
+      "get_analyst_ratings": 11,
       "read_own_trades": 2
     }
   },
   "total_cost_per_ai": {
-    "chatgpt": 0.41640000000000005,
-    "claude": 0.45790000000000003,
-    "gemini": 0.0835
+    "chatgpt": 0.43100000000000005,
+    "claude": 0.47730000000000006,
+    "gemini": 0.0858
   }
 }
