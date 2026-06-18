@@ -332,7 +332,7 @@ def _benchmark_card(nav_history: list[dict], leaderboard: list[dict]) -> dict | 
     }
 
 
-def render_dashboard(*, nav_history: list[dict], decisions: list[dict]) -> None:
+def render_dashboard(*, nav_history: list[dict], decisions: list[dict], orders: list[dict] | None = None) -> None:
     env = Environment(
         loader=FileSystemLoader(str(TEMPLATE_DIR)),
         autoescape=select_autoescape(["html"]),
@@ -392,6 +392,22 @@ def render_dashboard(*, nav_history: list[dict], decisions: list[dict]) -> None:
 
     journal = _journal(decisions, nav_history)
 
+    # Group orders by AI — ground truth from Alpaca, newest first per AI.
+    orders_by_ai: dict[str, list[dict]] = defaultdict(list)
+    for o in (orders or []):
+        orders_by_ai[o.get("ai")].append(o)
+    for ai in orders_by_ai:
+        orders_by_ai[ai].sort(key=lambda o: (o.get("submitted_at") or ""), reverse=True)
+    orders_per_ai = [
+        {
+            "ai": p.name,
+            "label": p.label,
+            "accent": p.accent,
+            "orders": orders_by_ai.get(p.name, []),
+        }
+        for p in PROVIDERS
+    ]
+
     OUT_HTML.parent.mkdir(parents=True, exist_ok=True)
     html = tpl.render(
         day=_day_label(date.today()),
@@ -402,6 +418,7 @@ def render_dashboard(*, nav_history: list[dict], decisions: list[dict]) -> None:
         providers=[{"name": p.name, "label": p.label, "accent": p.accent} for p in PROVIDERS],
         chart_series=chart_series,
         decisions=list(reversed(_enrich_decisions_with_fills(decisions, nav_history)))[:30],
+        orders_per_ai=orders_per_ai,
         tool_usage=[{"ai": p.name, "label": p.label, "accent": p.accent, "counts": tool_usage.get(p.name, {})} for p in PROVIDERS],
         generated_at=datetime.now(timezone.utc).isoformat(timespec="seconds"),
         starting_cash=STARTING_CASH,
@@ -415,4 +432,5 @@ def render_dashboard(*, nav_history: list[dict], decisions: list[dict]) -> None:
         "chart_series": chart_series,
         "tool_usage": tool_usage,
         "total_cost_per_ai": cost_by_ai,
+        "orders_per_ai": orders_per_ai,
     }, default=str, indent=2))

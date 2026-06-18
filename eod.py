@@ -26,6 +26,7 @@ from src.providers import PROVIDERS
 
 NAV_PATH = Path(__file__).parent / "data" / "nav.jsonl"
 DECISIONS_PATH = Path(__file__).parent / "data" / "decisions.jsonl"
+ORDERS_PATH = Path(__file__).parent / "data" / "orders.jsonl"
 
 BENCHMARK_TICKER = "QQQ"
 BENCHMARK_SLUG = "qqq"
@@ -112,6 +113,70 @@ def _qqq_snapshot() -> dict | None:
         return None
 
 
+def _fetch_orders_for_ai(provider) -> list[dict]:
+    """Pull filled orders from Alpaca for this AI, oldest→newest. Mirrors
+    what shows up in the broker's "Recent Orders" panel so the dashboard
+    matches Alpaca exactly (including manual interventions like the
+    Day 13 Claude AMZN unwind that have no decisions.jsonl counterpart).
+    """
+    import os
+    from alpaca.trading.client import TradingClient
+    from alpaca.trading.requests import GetOrdersRequest
+    from alpaca.trading.enums import QueryOrderStatus
+    client = TradingClient(
+        os.environ[provider.alpaca_key_env],
+        os.environ[provider.alpaca_secret_env],
+        paper=True,
+    )
+    # Alpaca caps a single request at 500 orders — plenty for a 30-day run.
+    req = GetOrdersRequest(status=QueryOrderStatus.ALL, limit=500, direction="desc")
+    out: list[dict] = []
+    for o in client.get_orders(filter=req):
+        if str(o.status.value).lower() not in ("filled", "partially_filled"):
+            continue
+        filled_qty = float(o.filled_qty) if o.filled_qty else 0
+        if filled_qty <= 0:
+            continue
+        out.append({
+            "ai": provider.name,
+            "label": provider.label,
+            "order_id": str(o.id),
+            "side": str(o.side.value).lower(),
+            "symbol": o.symbol,
+            "filled_qty": round(filled_qty, 4),
+            "filled_avg_price": round(float(o.filled_avg_price or 0), 4),
+            "notional": round(filled_qty * float(o.filled_avg_price or 0), 2),
+            "status": str(o.status.value).lower(),
+            "submitted_at": str(o.submitted_at) if o.submitted_at else None,
+            "filled_at": str(o.filled_at) if o.filled_at else None,
+        })
+    return out
+
+
+def snapshot_orders() -> int:
+    """Refresh data/orders.jsonl with every filled order from all 3 Alpaca
+    accounts. Overwrites the file in full so manual interventions and
+    pre-existing fills are always reflected.
+    """
+    rows: list[dict] = []
+    for provider in PROVIDERS:
+        try:
+            ai_rows = _fetch_orders_for_ai(provider)
+            print(f"  {provider.label:10s} orders fetched: {len(ai_rows)}")
+            rows.extend(ai_rows)
+        except Exception as e:
+            print(f"  {provider.label:10s} orders ERROR: {e!r}")
+    # Sort newest-first across all AIs (the dashboard filter will re-slice
+    # by AI).
+    rows.sort(key=lambda r: (r.get("submitted_at") or ""), reverse=True)
+    ORDERS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with ORDERS_PATH.open("w") as f:
+        for r in rows:
+            f.write(json.dumps(r) + "\n")
+    print(f"[eod] wrote {len(rows)} order rows to {ORDERS_PATH}")
+    return 0
+
+
 def snapshot() -> int:
     today = date.today().isoformat()
     NAV_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -188,8 +253,9 @@ def snapshot() -> int:
 def rebuild() -> int:
     nav_history = _load_jsonl(NAV_PATH)
     decisions = _load_jsonl(DECISIONS_PATH)
-    render_dashboard(nav_history=nav_history, decisions=decisions)
-    print(f"[eod] rebuilt dashboard ({len(nav_history)} nav rows, {len(decisions)} decisions)")
+    orders = _load_jsonl(ORDERS_PATH)
+    render_dashboard(nav_history=nav_history, decisions=decisions, orders=orders)
+    print(f"[eod] rebuilt dashboard ({len(nav_history)} nav, {len(decisions)} decisions, {len(orders)} orders)")
     return 0
 
 
@@ -200,6 +266,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     if not args.rebuild_only:
         snapshot()
+        snapshot_orders()
     return rebuild()
 
 

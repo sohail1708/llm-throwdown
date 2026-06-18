@@ -354,51 +354,59 @@
   </div>
   {% endif %}
 
-  <!-- Recent activity -->
+  <!-- Recent ORDERS (ground truth from Alpaca) -->
   <div class="card p-6 mb-6">
-    <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">🗓️ Recent moves</h3>
-    <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-4">Last 30 actions across all 3 AIs</p>
-    {% if decisions %}
-    <div class="overflow-x-auto">
-      <table class="w-full text-sm">
-        <thead class="text-[10px] uppercase tracking-widest text-zinc-500 border-b border-zinc-200">
-          <tr>
-            <th class="text-left py-2 px-2">Date</th>
-            <th class="text-left py-2 px-2">AI</th>
-            <th class="text-left py-2 px-2">Move</th>
-            <th class="text-left py-2 px-2">Ticker</th>
-            <th class="text-right py-2 px-2">Fill</th>
-            <th class="text-right py-2 px-2">Size</th>
-            <th class="text-left py-2 px-2">Reason</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for d in decisions %}
-          <tr class="border-b border-zinc-100 align-top">
-            <td class="py-3 px-2 text-zinc-500 text-xs num">{{ d.date }}</td>
-            <td class="py-3 px-2 font-bold">{{ d.label }}</td>
-            <td class="py-3 px-2">
-              {% if d.action == 'BUY' %}<span class="chip c-buy">Buy</span>
-              {% elif d.action == 'SELL' %}<span class="chip c-sell">Sell</span>
-              {% elif d.action == 'HOLD' %}<span class="chip c-hold">Hold</span>
-              {% else %}<span class="chip c-error">Error</span>{% endif %}
-            </td>
-            <td class="py-3 px-2 font-bold text-xs">{{ d.ticker or '—' }}</td>
-            <td class="py-3 px-2 text-right num text-xs">
-              {% if d.fill_price %}${{ "%.2f"|format(d.fill_price) }}{% else %}—{% endif %}
-            </td>
-            <td class="py-3 px-2 text-right num text-xs">
-              {% if d.amount %}${{ "{:,.0f}".format(d.amount) }}{% else %}—{% endif %}
-            </td>
-            <td class="py-3 px-2 text-zinc-600 text-xs">{{ d.reason }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+    <div class="flex items-start justify-between mb-4 gap-3 flex-wrap">
+      <div>
+        <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">🏦 Recent orders</h3>
+        <p class="text-sm font-semibold text-zinc-900 mt-0.5">Every filled buy/sell — straight from each AI's Alpaca account</p>
+      </div>
+      <select id="orders-ai-select" class="text-sm font-semibold border border-zinc-300 rounded-lg px-3 py-2 bg-white hover:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-300">
+        {% for o in orders_per_ai %}
+        <option value="{{ o.ai }}">{{ o.label }} ({{ o.orders | length }} orders)</option>
+        {% endfor %}
+      </select>
     </div>
-    {% else %}
-    <div class="text-zinc-400 italic text-sm py-12 text-center">First moves land at 09:30 ET on launch day.</div>
-    {% endif %}
+
+    {% for o in orders_per_ai %}
+    <div class="orders-pane" data-ai="{{ o.ai }}" {% if not loop.first %}style="display:none"{% endif %}>
+      {% if o.orders %}
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="text-[10px] uppercase tracking-widest text-zinc-500 border-b border-zinc-200">
+            <tr>
+              <th class="text-left py-2 px-2">Date</th>
+              <th class="text-left py-2 px-2">Side</th>
+              <th class="text-left py-2 px-2">Ticker</th>
+              <th class="text-right py-2 px-2">Qty</th>
+              <th class="text-right py-2 px-2">Fill price</th>
+              <th class="text-right py-2 px-2">Notional</th>
+              <th class="text-left py-2 px-2">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in o.orders %}
+            <tr class="border-b border-zinc-100">
+              <td class="py-2 px-2 text-zinc-500 text-xs num whitespace-nowrap">{{ row.filled_at[:10] if row.filled_at else row.submitted_at[:10] }}</td>
+              <td class="py-2 px-2">
+                {% if row.side == 'buy' %}<span class="chip c-buy">Buy</span>
+                {% else %}<span class="chip c-sell">Sell</span>{% endif %}
+              </td>
+              <td class="py-2 px-2 font-bold text-xs" style="color: var(--accent-text)">{{ row.symbol }}</td>
+              <td class="py-2 px-2 text-right num text-xs">{{ "%.4f"|format(row.filled_qty) }}</td>
+              <td class="py-2 px-2 text-right num text-xs">${{ "%.2f"|format(row.filled_avg_price) }}</td>
+              <td class="py-2 px-2 text-right num text-xs font-semibold">${{ "{:,.0f}".format(row.notional) }}</td>
+              <td class="py-2 px-2 text-[10px] uppercase tracking-widest text-zinc-500">{{ row.status }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <div class="text-zinc-400 italic text-sm py-8 text-center">No filled orders yet for {{ o.label }}.</div>
+      {% endif %}
+    </div>
+    {% endfor %}
   </div>
 
   </div><!-- /tab-dashboard -->
@@ -739,6 +747,17 @@ class ALPACA,PAGES out
         if (target === 'architecture') renderMermaidOnce();
       });
     });
+
+    // Recent orders: AI dropdown shows/hides per-AI panes.
+    const ordersSelect = document.getElementById('orders-ai-select');
+    if (ordersSelect) {
+      ordersSelect.addEventListener('change', () => {
+        const target = ordersSelect.value;
+        document.querySelectorAll('.orders-pane').forEach(pane => {
+          pane.style.display = (pane.dataset.ai === target) ? '' : 'none';
+        });
+      });
+    }
   });
 
   document.addEventListener('DOMContentLoaded', () => {
