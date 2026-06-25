@@ -4,11 +4,11 @@
       "name": "gemini",
       "label": "Gemini",
       "accent": "blue",
-      "total_equity": 94551.72,
-      "total_ret_pct": -5.45,
-      "portfolio_value": 92850.55,
+      "total_equity": 92550.7,
+      "total_ret_pct": -7.45,
+      "portfolio_value": 90849.53,
       "cost_basis": 100131.04,
-      "ret_pct": -7.27,
+      "ret_pct": -9.27,
       "days_first": 2,
       "n_positions": 4,
       "cash": 1701.17,
@@ -17,184 +17,174 @@
       "budget_pct": 1.0,
       "positions": [
         {
-          "ticker": "AMZN",
-          "qty": 103.1927,
-          "avg_entry_price": 238.69,
-          "current_price": 234.27,
-          "market_value": 24174.96,
-          "cost_basis": 24631.07,
-          "pl_usd": -456.11,
-          "pl_pct": -1.85
-        },
-        {
           "ticker": "GOOGL",
           "qty": 68.2669,
           "avg_entry_price": 373.53,
-          "current_price": 345.29,
-          "market_value": 23571.87,
+          "current_price": 343.71,
+          "market_value": 23464.01,
           "cost_basis": 25500.01,
-          "pl_usd": -1928.14,
-          "pl_pct": -7.56
+          "pl_usd": -2036.0,
+          "pl_pct": -7.98
+        },
+        {
+          "ticker": "AMZN",
+          "qty": 103.1927,
+          "avg_entry_price": 238.69,
+          "current_price": 227.01,
+          "market_value": 23425.78,
+          "cost_basis": 24631.07,
+          "pl_usd": -1205.29,
+          "pl_pct": -4.89
         },
         {
           "ticker": "NVDA",
           "qty": 114.6631,
           "avg_entry_price": 218.03,
-          "current_price": 199.0,
-          "market_value": 22817.95,
+          "current_price": 195.74,
+          "market_value": 22444.15,
           "cost_basis": 25000.0,
-          "pl_usd": -2182.05,
-          "pl_pct": -8.73
+          "pl_usd": -2555.85,
+          "pl_pct": -10.22
         },
         {
           "ticker": "MSFT",
           "qty": 60.98,
           "avg_entry_price": 409.97,
-          "current_price": 365.46,
-          "market_value": 22285.77,
+          "current_price": 352.83,
+          "market_value": 21515.59,
           "cost_basis": 24999.97,
-          "pl_usd": -2714.2,
-          "pl_pct": -10.86
+          "pl_usd": -3484.38,
+          "pl_pct": -13.94
         }
       ],
       "is_leveraged": false,
       "rank": 1
     },
     {
-      "name": "chatgpt",
-      "label": "ChatGPT",
-      "accent": "emerald",
-      "total_equity": 93918.63,
-      "total_ret_pct": -6.08,
-      "portfolio_value": 93918.62,
-      "cost_basis": 98267.43,
-      "ret_pct": -4.43,
-      "days_first": 7,
+      "name": "claude",
+      "label": "Claude",
+      "accent": "orange",
+      "total_equity": 92378.52,
+      "total_ret_pct": -7.62,
+      "portfolio_value": 92324.31,
+      "cost_basis": 99487.58,
+      "ret_pct": -7.2,
+      "days_first": 10,
       "n_positions": 5,
-      "cash": 0.01,
-      "spent_usd": 0.47,
+      "cash": 54.21,
+      "spent_usd": 0.6,
       "budget_usd": 10.0,
-      "budget_pct": 4.7,
+      "budget_pct": 6.0,
       "positions": [
         {
-          "ticker": "AAPL",
-          "qty": 79.3575,
-          "avg_entry_price": 315.03,
-          "current_price": 293.08,
-          "market_value": 23258.1,
-          "cost_basis": 24999.99,
-          "pl_usd": -1741.89,
-          "pl_pct": -6.97
+          "ticker": "AVGO",
+          "qty": 62.4009,
+          "avg_entry_price": 405.93,
+          "current_price": 378.91,
+          "market_value": 23644.32,
+          "cost_basis": 25330.64,
+          "pl_usd": -1686.32,
+          "pl_pct": -6.66
         },
         {
           "ticker": "NVDA",
-          "qty": 115.7625,
-          "avg_entry_price": 216.36,
-          "current_price": 199.0,
-          "market_value": 23036.73,
-          "cost_basis": 25045.82,
-          "pl_usd": -2009.09,
-          "pl_pct": -8.02
+          "qty": 113.8175,
+          "avg_entry_price": 219.27,
+          "current_price": 195.74,
+          "market_value": 22278.64,
+          "cost_basis": 24957.0,
+          "pl_usd": -2678.36,
+          "pl_pct": -10.73
         },
         {
-          "ticker": "ORCL",
-          "qty": 136.8943,
-          "avg_entry_price": 159.65,
-          "current_price": 157.53,
-          "market_value": 21564.95,
-          "cost_basis": 21855.17,
-          "pl_usd": -290.22,
-          "pl_pct": -1.33
+          "ticker": "GOOGL",
+          "qty": 55.5651,
+          "avg_entry_price": 359.94,
+          "current_price": 343.71,
+          "market_value": 19098.3,
+          "cost_basis": 19999.98,
+          "pl_usd": -901.68,
+          "pl_pct": -4.51
+        },
+        {
+          "ticker": "META",
+          "qty": 34.1329,
+          "avg_entry_price": 585.94,
+          "current_price": 542.87,
+          "market_value": 18529.75,
+          "cost_basis": 19999.97,
+          "pl_usd": -1470.22,
+          "pl_pct": -7.35
         },
         {
           "ticker": "MSFT",
-          "qty": 54.035,
-          "avg_entry_price": 370.13,
-          "current_price": 365.46,
-          "market_value": 19747.65,
-          "cost_basis": 19999.97,
-          "pl_usd": -252.32,
-          "pl_pct": -1.26
-        },
-        {
-          "ticker": "AMZN",
-          "qty": 26.9398,
-          "avg_entry_price": 236.32,
-          "current_price": 234.27,
-          "market_value": 6311.19,
-          "cost_basis": 6366.47,
-          "pl_usd": -55.28,
-          "pl_pct": -0.87
+          "qty": 24.8655,
+          "avg_entry_price": 369.99,
+          "current_price": 352.83,
+          "market_value": 8773.3,
+          "cost_basis": 9199.99,
+          "pl_usd": -426.69,
+          "pl_pct": -4.64
         }
       ],
       "is_leveraged": false,
       "rank": 2
     },
     {
-      "name": "claude",
-      "label": "Claude",
-      "accent": "orange",
-      "total_equity": 93853.75,
-      "total_ret_pct": -6.15,
-      "portfolio_value": 93799.54,
-      "cost_basis": 99487.58,
-      "ret_pct": -5.72,
-      "days_first": 9,
-      "n_positions": 5,
-      "cash": 54.21,
-      "spent_usd": 0.58,
+      "name": "chatgpt",
+      "label": "ChatGPT",
+      "accent": "emerald",
+      "total_equity": 90527.09,
+      "total_ret_pct": -9.47,
+      "portfolio_value": 69675.35,
+      "cost_basis": 76412.26,
+      "ret_pct": -8.82,
+      "days_first": 7,
+      "n_positions": 4,
+      "cash": 20851.74,
+      "spent_usd": 0.48,
       "budget_usd": 10.0,
-      "budget_pct": 5.8,
+      "budget_pct": 4.8,
       "positions": [
         {
-          "ticker": "AVGO",
-          "qty": 62.4009,
-          "avg_entry_price": 405.93,
-          "current_price": 382.07,
-          "market_value": 23841.51,
-          "cost_basis": 25330.64,
-          "pl_usd": -1489.13,
-          "pl_pct": -5.88
-        },
-        {
           "ticker": "NVDA",
-          "qty": 113.8175,
-          "avg_entry_price": 219.27,
-          "current_price": 199.0,
-          "market_value": 22649.68,
-          "cost_basis": 24957.0,
-          "pl_usd": -2307.32,
-          "pl_pct": -9.25
+          "qty": 115.7625,
+          "avg_entry_price": 216.36,
+          "current_price": 195.74,
+          "market_value": 22659.34,
+          "cost_basis": 25045.82,
+          "pl_usd": -2386.48,
+          "pl_pct": -9.53
         },
         {
-          "ticker": "GOOGL",
-          "qty": 55.5651,
-          "avg_entry_price": 359.94,
-          "current_price": 345.29,
-          "market_value": 19186.09,
-          "cost_basis": 19999.98,
-          "pl_usd": -813.89,
-          "pl_pct": -4.07
-        },
-        {
-          "ticker": "META",
-          "qty": 34.1329,
-          "avg_entry_price": 585.94,
-          "current_price": 557.67,
-          "market_value": 19034.91,
-          "cost_basis": 19999.97,
-          "pl_usd": -965.06,
-          "pl_pct": -4.83
+          "ticker": "AAPL",
+          "qty": 79.3575,
+          "avg_entry_price": 315.03,
+          "current_price": 275.15,
+          "market_value": 21835.22,
+          "cost_basis": 24999.99,
+          "pl_usd": -3164.77,
+          "pl_pct": -12.66
         },
         {
           "ticker": "MSFT",
-          "qty": 24.8655,
-          "avg_entry_price": 369.99,
-          "current_price": 365.46,
-          "market_value": 9087.35,
-          "cost_basis": 9199.99,
-          "pl_usd": -112.64,
-          "pl_pct": -1.22
+          "qty": 54.035,
+          "avg_entry_price": 370.13,
+          "current_price": 352.83,
+          "market_value": 19065.18,
+          "cost_basis": 19999.97,
+          "pl_usd": -934.79,
+          "pl_pct": -4.67
+        },
+        {
+          "ticker": "AMZN",
+          "qty": 26.9398,
+          "avg_entry_price": 236.32,
+          "current_price": 227.01,
+          "market_value": 6115.61,
+          "cost_basis": 6366.47,
+          "pl_usd": -250.86,
+          "pl_pct": -3.94
         }
       ],
       "is_leveraged": false,
@@ -203,46 +193,46 @@
   ],
   "today_decisions": {
     "chatgpt": {
-      "date": "2026-06-24",
+      "date": "2026-06-25",
       "ai": "chatgpt",
       "label": "ChatGPT",
-      "action": "BUY",
+      "action": "SELL",
       "ticker": "ORCL",
-      "amount": 21855.18,
-      "reason": "ORCL's two-week collapse looks like an asymmetric buy; deploying cash to add exposure to AI/value while risk-managing position size.",
-      "confidence": 3,
-      "nav_before": 95515.29,
-      "cash_before": 21855.18,
+      "amount": null,
+      "reason": "ORCL is technically shattered with balance-sheet risks; trimming full position reduces capital risk and frees NAV for safer reallocations.",
+      "confidence": 4,
+      "nav_before": 91012.16,
+      "cash_before": 0.0,
       "research": {
         "candidates": [
           {
             "ticker": "ORCL",
-            "bull": "Massive two-week collapse to $159 (closed 6/24) leaves ORCL deeply oversold with a forward P/E ~14.6 and >20% revenue growth \u2014 a high-reward dip into value/AI exposure.",
-            "bear": "Sharp gap down and rapidly falling price imply either real fundamental worry or liquidity-driven selling; negative free cash flow and an outsized debt/equity metric raise solvency/capex concerns and risk of further downside.",
-            "lean": "BUY"
+            "bull": "Strong revenue growth and low forward P/E (~14) with data-center demand could spark a sharp mean-reversion rally from deeply oversold levels.",
+            "bear": "Extreme recent selling, RSI ~9 and stretched technical breakdown plus very high reported debt/FCF concerns make further downside and capital risk likely in the near term.",
+            "lean": "SELL"
+          },
+          {
+            "ticker": "AAPL",
+            "bull": "Oversold after a headline-driven pullback (RSI ~24) and still-strong cash flow/brand could offer a favorable risk-reward to add on weakness.",
+            "bear": "New price hikes and Apple shifting AI chip cost to consumers may pressure demand/margins, prolonging the downtrend before recovery.",
+            "lean": "HOLD"
           },
           {
             "ticker": "MSFT",
-            "bull": "Microsoft is technically oversold (RSI ~20) after a pullback from its June highs but still benefits from durable cloud/AI revenue streams and a quick intraday rebound to ~$373.",
-            "bear": "Recent profit-taking and a broader risk-off in mega-cap tech could extend the decline; valuation remains elevated versus cyclicals and downside persists if market sentiment weakens.",
-            "lean": "BUY"
-          },
-          {
-            "ticker": "AMZN",
-            "bull": "Amazon showed a clean rebound today (~+3%), AWS strength supports fundamentals and pullback to ~$241 looks like a reasonable re-entry after consolidation.",
-            "bear": "Retail and ad cycles can compress near-term margins; if macro risk appetite fades the stock can revisit lower consolidation levels around $232\u2013$238.",
-            "lean": "BUY"
+            "bull": "Big AI exposure and franchise durability make downside a buying opportunity if margins stabilize and the pullback abates.",
+            "bear": "Street worries about FY27 gross-margin pressure and competitive cloud/AI hardware entrants could keep selling pressure and volatility high.",
+            "lean": "HOLD"
           }
         ],
-        "summary": "Market rotating \u2014 megacaps are oversold and showing bounces; ORCL\u2019s deep gap-down is the most asymmetric, offering high upside vs high risk.",
-        "preferred_action": "BUY",
+        "summary": "Market is headline-driven and oversold across big tech; ORCL is most stretched and highest conviction trim candidate given technical collapse and balance-sheet flags.",
+        "preferred_action": "SELL",
         "preferred_ticker": "ORCL",
         "tools_used": [
           {
             "name": "get_history",
             "args": {
               "ticker": "ORCL",
-              "days": 60
+              "days": 30
             }
           },
           {
@@ -259,142 +249,140 @@
             }
           },
           {
-            "name": "get_history",
-            "args": {
-              "ticker": "MSFT",
-              "days": 60
-            }
-          },
-          {
-            "name": "get_history",
-            "args": {
-              "ticker": "AMZN",
-              "days": 60
-            }
-          }
-        ]
-      },
-      "tokens": {
-        "input": 11517,
-        "output": 2757
-      },
-      "cost_usd": 0.0084,
-      "order": {
-        "order_id": "ecc18fab-77b2-4119-9697-e4e97f0cf7a3",
-        "status": "pending_new"
-      },
-      "dry_run": false,
-      "submitted_at": "2026-06-24T15:41:33.214933+00:00"
-    },
-    "claude": {
-      "date": "2026-06-24",
-      "ai": "claude",
-      "label": "Claude",
-      "action": "HOLD",
-      "ticker": null,
-      "amount": null,
-      "reason": "MSFT oversold capitulation tempting, but cash-constrained (near-zero liquidity) + AVGO already capped. Hold.",
-      "confidence": 3,
-      "nav_before": 94926.77,
-      "cash_before": 54.21,
-      "research": {
-        "candidates": [
-          {
-            "ticker": "MSFT",
-            "bull": "Extreme oversold (RSI 19.6) with 52% analyst upside; reversal underway after conviction entry yesterday.",
-            "bear": "Sector headwinds and AI capex concerns could extend downside into tech capitulation.",
-            "lean": "BUY"
-          },
-          {
-            "ticker": "ORCL",
-            "bull": "Extreme valuation compression offers long-term deep-value opportunity.",
-            "bear": "Free-fall momentum (down 30% in 2w), RSI 15 panic, AI consolidation risk\u2014toxic near-term.",
-            "lean": "SELL"
-          },
-          {
-            "ticker": "AVGO",
-            "bull": "Relative strength (up 2.27% 5d) while sector falls; AI semiconductor leader, RSI 30.9 stable.",
-            "bear": "Portfolio cap constraint (25%) limits additional upside capture; already 25% of NAV.",
-            "lean": "HOLD"
-          }
-        ],
-        "summary": "MSFT oversold capitulation is the core conviction; ORCL in free fall (avoid); hold AVGO/NVDA at cap; cash-constrained portfolio near full deployment.",
-        "preferred_action": "HOLD",
-        "preferred_ticker": null,
-        "tools_used": [
-          {
             "name": "get_news",
             "args": {
               "ticker": "MSFT",
-              "n": 3
+              "n": 5
             }
           },
           {
             "name": "get_news",
             "args": {
-              "ticker": "NVDA",
-              "n": 3
-            }
-          },
-          {
-            "name": "get_history",
-            "args": {
-              "ticker": "MSFT",
-              "days": 14
-            }
-          },
-          {
-            "name": "get_history",
-            "args": {
-              "ticker": "ORCL",
-              "days": 14
-            }
-          },
-          {
-            "name": "read_own_trades",
-            "args": {
-              "ai": "claude",
+              "ticker": "AAPL",
               "n": 5
             }
           }
         ]
       },
       "tokens": {
-        "input": 7992,
-        "output": 1486
+        "input": 10952,
+        "output": 3417
       },
-      "cost_usd": 0.0154,
+      "cost_usd": 0.0096,
+      "order": {
+        "order_id": "2a4c9d16-c8f1-4310-89fa-6ce00748b36a",
+        "status": "orderstatus.pending_new"
+      },
+      "dry_run": false,
+      "submitted_at": "2026-06-25T15:59:42.886129+00:00"
+    },
+    "claude": {
+      "date": "2026-06-25",
+      "ai": "claude",
+      "label": "Claude",
+      "action": "HOLD",
+      "ticker": null,
+      "amount": null,
+      "reason": "MSFT just added at RSI 9.5 capitulation; ORCL RSI 9.1 tempting but cash-constrained. Hold conviction, monitor bounce.",
+      "confidence": 4,
+      "nav_before": 92786.97,
+      "cash_before": 54.21,
+      "research": {
+        "candidates": [
+          {
+            "ticker": "ORCL",
+            "bull": "RSI 9.1 panic capitulation + 66% analyst upside target ($252.6) with strong-buy consensus (1.53 rating); contract backlog headlines support durable growth recovery.",
+            "bear": "Underperformance streak (-17% in 5d) may reflect fundamental weakness; rotation into ORCL risks competing with core convictions.",
+            "lean": "BUY"
+          },
+          {
+            "ticker": "AAPL",
+            "bull": "RSI 24 oversold, -6% 5-day drop, but $315 mean analyst target = 13% upside; Street slightly bullish (2.06 rating), classic bounce candidate.",
+            "bear": "No near-term catalyst; slower earnings growth trajectory vs NVDA/META means lower conviction multiple expansion.",
+            "lean": "HOLD"
+          },
+          {
+            "ticker": "MSFT",
+            "bull": "Just added 6/22 at RSI 9.5 capitulation; oversold conviction play aligns with current portfolio thesis.",
+            "bear": "Position too recent; need time to prove out bounce thesis before averaging up.",
+            "lean": "HOLD"
+          }
+        ],
+        "summary": "Broad tech selloff into oversold extremes; ORCL shows panic-level RSI 9.1 with 66% analyst upside, but I'm cash-constrained and already positioned in MSFT post-capitulation\u2014hold conviction and monitor bounce.",
+        "preferred_action": "HOLD",
+        "preferred_ticker": null,
+        "tools_used": [
+          {
+            "name": "read_own_trades",
+            "args": {
+              "ai": "claude",
+              "n": 10
+            }
+          },
+          {
+            "name": "get_history",
+            "args": {
+              "ticker": "AAPL",
+              "days": 14
+            }
+          },
+          {
+            "name": "get_news",
+            "args": {
+              "ticker": "ORCL",
+              "n": 3
+            }
+          },
+          {
+            "name": "get_analyst_ratings",
+            "args": {
+              "ticker": "AAPL"
+            }
+          },
+          {
+            "name": "get_analyst_ratings",
+            "args": {
+              "ticker": "ORCL"
+            }
+          }
+        ]
+      },
+      "tokens": {
+        "input": 17095,
+        "output": 1812
+      },
+      "cost_usd": 0.0262,
       "order": null,
       "dry_run": false,
-      "submitted_at": "2026-06-24T15:41:52.781154+00:00"
+      "submitted_at": "2026-06-25T16:00:02.765402+00:00"
     },
     "gemini": {
-      "date": "2026-06-24",
+      "date": "2026-06-25",
       "ai": "gemini",
       "label": "Gemini",
       "action": "HOLD",
       "ticker": null,
       "amount": null,
-      "reason": "Cash is too low to jump on ORCL. No compelling sells either, so holding tight.",
+      "reason": "Not enough cash to initiate the recommended buy without violating position sizing rules. Holding today.",
       "confidence": 3,
-      "nav_before": 96304.84,
+      "nav_before": 92834.99,
       "cash_before": 1701.17,
       "research": {
         "candidates": [
           {
             "ticker": "ORCL",
-            "bull": "The stock has seen a significant, unexplained decline, pushing its price well below analyst consensus targets and into deeply oversold territory, suggesting a strong rebound potential.",
-            "bear": "The lack of specific news explaining the drop could indicate an underlying, uncommunicated fundamental issue or a prolonged period of consolidation before recovery.",
+            "bull": "Oracle is extremely oversold with an RSI of 9.1 and strong analyst ratings suggesting significant upside from its current price, supported by positive news about AI data centers and contract backlogs.",
+            "bear": "Despite the positive long-term outlook, the recent steep decline suggests potential underlying short-term concerns or continued market pressure that could drive the price lower before a rebound.",
             "lean": "BUY"
           },
           {
-            "ticker": "MSFT",
-            "bull": "MSFT is a strong company with a recent dip not tied to specific negative company news, potentially offering an attractive entry point or a strong hold for existing shares.",
-            "bear": "The broader market sentiment around AI could be cooling, leading to further price weakness, even for fundamentally strong companies like MSFT.",
-            "lean": "HOLD"
+            "ticker": "AAPL",
+            "bull": "Apple is significantly oversold with an RSI of 24.0 and analyst targets indicate reasonable upside potential from current levels.",
+            "bear": "While oversold, the recent market downturn for tech stocks might continue to weigh on Apple, and its analyst upside is less compelling than other candidates.",
+            "lean": "BUY"
           }
         ],
-        "summary": "Oracle appears heavily oversold with no company-specific negative news, presenting a compelling rebound opportunity, while Microsoft is experiencing a broader tech pullback.",
+        "summary": "The market is heavily oversold across major tech names, with Oracle presenting a particularly compelling rebound opportunity due to its extreme capitulation and strong analyst support.",
         "preferred_action": "BUY",
         "preferred_ticker": "ORCL",
         "tools_used": [
@@ -412,36 +400,28 @@
             }
           },
           {
-            "name": "get_history",
-            "args": {
-              "ticker": "ORCL",
-              "days": 14
-            }
-          },
-          {
             "name": "get_news",
             "args": {
-              "ticker": "MSFT",
+              "ticker": "AAPL",
               "n": 3
             }
           },
           {
-            "name": "get_history",
+            "name": "get_analyst_ratings",
             "args": {
-              "ticker": "AVGO",
-              "days": 14
+              "ticker": "AAPL"
             }
           }
         ]
       },
       "tokens": {
-        "input": 5161,
-        "output": 407
+        "input": 3585,
+        "output": 389
       },
-      "cost_usd": 0.0026,
+      "cost_usd": 0.002,
       "order": null,
       "dry_run": false,
-      "submitted_at": "2026-06-24T15:42:10.230334+00:00"
+      "submitted_at": "2026-06-25T16:00:16.193364+00:00"
     }
   },
   "chart_series": [
@@ -539,6 +519,11 @@
           "date": "2026-06-24",
           "ret_pct": -6.08,
           "portfolio_value": 93918.64
+        },
+        {
+          "date": "2026-06-25",
+          "ret_pct": -9.47,
+          "portfolio_value": 90527.1
         }
       ],
       "is_benchmark": false
@@ -637,6 +622,11 @@
           "date": "2026-06-24",
           "ret_pct": -6.15,
           "portfolio_value": 93853.75
+        },
+        {
+          "date": "2026-06-25",
+          "ret_pct": -7.62,
+          "portfolio_value": 92378.51
         }
       ],
       "is_benchmark": false
@@ -735,6 +725,11 @@
           "date": "2026-06-24",
           "ret_pct": -5.45,
           "portfolio_value": 94551.72
+        },
+        {
+          "date": "2026-06-25",
+          "ret_pct": -7.45,
+          "portfolio_value": 92550.69
         }
       ],
       "is_benchmark": false
@@ -833,6 +828,11 @@
           "date": "2026-06-24",
           "ret_pct": -3.58,
           "portfolio_value": 96415.39
+        },
+        {
+          "date": "2026-06-25",
+          "ret_pct": -2.8,
+          "portfolio_value": 97196.9
         }
       ],
       "is_benchmark": true
@@ -840,30 +840,30 @@
   ],
   "tool_usage": {
     "chatgpt": {
-      "get_news": 27,
-      "get_history": 47,
-      "get_financials": 14,
+      "get_news": 30,
+      "get_history": 48,
+      "get_financials": 15,
       "get_analyst_ratings": 2
     },
     "claude": {
-      "get_news": 33,
-      "read_own_trades": 17,
-      "get_history": 22,
+      "get_news": 34,
+      "read_own_trades": 18,
+      "get_history": 23,
       "get_financials": 8,
-      "get_analyst_ratings": 14
+      "get_analyst_ratings": 16
     },
     "gemini": {
-      "get_news": 43,
+      "get_news": 45,
       "get_financials": 9,
       "get_history": 21,
-      "get_analyst_ratings": 16,
+      "get_analyst_ratings": 18,
       "read_own_trades": 2
     }
   },
   "total_cost_per_ai": {
-    "chatgpt": 0.4716000000000001,
-    "claude": 0.5781000000000001,
-    "gemini": 0.1
+    "chatgpt": 0.48120000000000007,
+    "claude": 0.6043000000000001,
+    "gemini": 0.10200000000000001
   },
   "orders_per_ai": [
     {
@@ -871,6 +871,19 @@
       "label": "ChatGPT",
       "accent": "emerald",
       "orders": [
+        {
+          "ai": "chatgpt",
+          "label": "ChatGPT",
+          "order_id": "2a4c9d16-c8f1-4310-89fa-6ce00748b36a",
+          "side": "sell",
+          "symbol": "ORCL",
+          "filled_qty": 136.8943,
+          "filled_avg_price": 152.32,
+          "notional": 20851.74,
+          "status": "filled",
+          "submitted_at": "2026-06-25 15:59:42.886184+00:00",
+          "filled_at": "2026-06-25 15:59:43.606659+00:00"
+        },
         {
           "ai": "chatgpt",
           "label": "ChatGPT",
