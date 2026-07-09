@@ -539,70 +539,72 @@
   <!-- ============== ARCHITECTURE TAB ============== -->
   <div id="tab-architecture" class="tab-panel">
 
+    <!-- Diagram -->
     <div class="card p-6 mb-6">
       <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">🏗️ How it works</h3>
-      <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-1">Daily pipeline — same rails for every AI</p>
-      <p class="text-xs text-zinc-600 mb-6">Two GitHub Actions cron jobs drive the whole thing. Identical prompts, identical tools, identical validators across all three players — the only difference is the model behind the wheel.</p>
+      <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-1">Two cron jobs, three players, one set of rails</p>
+      <p class="text-xs text-zinc-600 mb-6">A morning job fans the market snapshot out to all three AIs in parallel — each runs the same research → decision → validate → order pipeline. An evening job pulls fresh NAV, orders, and the QQQ benchmark from the source of truth, then regenerates this static page. Same prompts, same tools, same validators — the model is the only variable.</p>
 
       <div class="mermaid-wrap">
         <div class="mermaid">
 flowchart TD
 
-CRON[Morning cron - 13:30 UTC Mon-Fri]
-ORCH[daily.py + market snapshot via yfinance]
-CRON --> ORCH
+subgraph MORNING [Morning cycle · 13:30 UTC Mon-Fri]
+  CRON1[GitHub Actions cron - 3 redundant fires]
+  DAILY[daily.py]
+  SNAP[Market snapshot via yfinance]
+  CRON1 --> DAILY --> SNAP
+end
 
-CG[ChatGPT gpt-5]
-CL[Claude sonnet-4-6]
-GM[Gemini gemini-2.5-pro]
-ORCH --> CG
-ORCH --> CL
-ORCH --> GM
+CG[ChatGPT · gpt-5-mini]
+CL[Claude · haiku-4-5]
+GM[Gemini · 2.5-flash]
+SNAP --> CG
+SNAP --> CL
+SNAP --> GM
 
-R[Research agent - up to 5 tool iterations]
+subgraph PIPELINE [Two-phase pipeline · runs 3x per day, one per AI]
+  R[Research phase - up to 5 tool iterations]
+  TOOLS[Tools - get_history, get_news, get_financials, get_analyst_ratings, read_own_trades]
+  SR[submit_research - structured output]
+  D[Decision phase - no tools]
+  SD[submit_decision - action, ticker, amount, reason, confidence]
+  GATE{Validator - universe / min 5k / max 25% NAV / cash cap}
+  R <--> TOOLS
+  R --> SR --> D --> SD --> GATE
+end
+
 CG --> R
 CL --> R
 GM --> R
 
-TOOLS[Tools - get_history, get_news, get_financials, get_analyst_ratings, read_own_trades]
-R <--> TOOLS
-
-SR[submit_research - structured output]
-R --> SR
-
-D[Decision agent - no tools]
-SR --> D
-
-SD[submit_decision - action, ticker, amount, reason, confidence]
-D --> SD
-
-GATE{Validator - universe / min 5k / max 25 pct NAV}
-SD --> GATE
-
-ALPACA[Alpaca paper - market order DAY TIF]
-LOG[(decisions.jsonl)]
+ALPACA[Alpaca paper - market order, DAY TIF]
+DLOG[(decisions.jsonl)]
 GATE --> ALPACA
-GATE --> LOG
-ALPACA --> LOG
+GATE --> DLOG
 
-ECRON[Evening cron - 20:30 UTC Mon-Fri]
-EOD[eod.py]
-ECRON --> EOD
+subgraph EVENING [Evening cycle · 20:05 UTC Mon-Fri]
+  CRON2[GitHub Actions cron - 3 redundant fires]
+  EOD[eod.py]
+  NAVAI[NAV + open positions per AI]
+  QQQ[QQQ benchmark via yfinance]
+  ORD[Filled orders per AI]
+  NLOG[(nav.jsonl)]
+  OLOG[(orders.jsonl)]
+  CRON2 --> EOD
+  EOD --> NAVAI --> NLOG
+  EOD --> QQQ --> NLOG
+  EOD --> ORD --> OLOG
+end
 
-NAVAI[NAV per AI from Alpaca]
-QQQ[QQQ benchmark from yfinance]
-EOD --> NAVAI
-EOD --> QQQ
+ALPACA -.-> NAVAI
+ALPACA -.-> ORD
 
-NLOG[(nav.jsonl)]
-NAVAI --> NLOG
-QQQ --> NLOG
-
-JINJA[Jinja2 render]
-NLOG --> JINJA
-LOG -.-> JINJA
-
+JINJA[Jinja2 render → docs/index.html]
 PAGES[GitHub Pages publish]
+NLOG --> JINJA
+DLOG --> JINJA
+OLOG --> JINJA
 JINJA --> PAGES
 
 classDef cron     fill:#18181b,stroke:#18181b,color:#fff
@@ -617,8 +619,8 @@ classDef gate     fill:#fee2e2,stroke:#dc2626,color:#7f1d1d
 classDef store    fill:#fef9c3,stroke:#ca8a04,color:#713f12
 classDef out      fill:#dbeafe,stroke:#2563eb,color:#1e3a8a
 
-class CRON,ECRON cron
-class ORCH,EOD,JINJA orch
+class CRON1,CRON2 cron
+class DAILY,EOD,JINJA,SNAP orch
 class CG chatgpt
 class CL claude
 class GM gemini
@@ -626,22 +628,72 @@ class R,D agent
 class TOOLS tool
 class SR,SD sentinel
 class GATE gate
-class LOG,NLOG,NAVAI,QQQ store
+class DLOG,NLOG,OLOG,NAVAI,QQQ,ORD store
 class ALPACA,PAGES out
         </div>
+      </div>
+    </div>
+
+    <!-- Component reference -->
+    <div class="card p-6 mb-6">
+      <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">🧩 Component reference</h3>
+      <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-4">What each piece actually does</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+
+        <div class="arch-step">
+          <h4>🌅 daily.py</h4>
+          <p>Morning orchestrator. Pulls the market snapshot from <code>yfinance</code>, then invokes each provider in <code>src/providers.py</code> sequentially. Records the decision, tokens, and cost into <code>decisions.jsonl</code>. Guarded so redundant crons on the same day don't double-trade.</p>
+        </div>
+
+        <div class="arch-step">
+          <h4>🌇 eod.py</h4>
+          <p>Evening orchestrator. Pulls fresh NAV + open positions from each Alpaca account (marked to consolidated NMS close via <code>yfinance</code>, not the paper feed), snapshots QQQ, fetches every filled order, then rebuilds the static dashboard. Idempotent — safe to re-fire.</p>
+        </div>
+
+        <div class="arch-step">
+          <h4>🧠 src/prompt.py</h4>
+          <p>The two system prompts <em>every</em> AI sees — <code>RESEARCH_SYSTEM_PROMPT</code> and <code>DECISION_SYSTEM_PROMPT</code>. Identical wording, identical instructions. The only variable in the whole experiment is which model reads them.</p>
+        </div>
+
+        <div class="arch-step">
+          <h4>🛠 src/tools.py</h4>
+          <p>The 5-function toolkit: <code>get_history</code>, <code>get_news</code>, <code>get_financials</code>, <code>get_analyst_ratings</code>, <code>read_own_trades</code>. Shared JSON schema is exported to all three SDKs (OpenAI, Anthropic, google-genai) so every player calls the exact same functions with the exact same arguments.</p>
+        </div>
+
+        <div class="arch-step">
+          <h4>🚧 src/decision.py</h4>
+          <p>The central validator. Runs after each AI emits its decision: enforces universe membership, $5k minimum trade, 25%-of-NAV cap per position, and cash availability (patched mid-run when Claude silently used $23k of Alpaca margin — no more accidental leverage).</p>
+        </div>
+
+        <div class="arch-step">
+          <h4>👥 src/providers.py</h4>
+          <p>The 3-player registry. Each entry pairs an LLM module (<code>llm_chatgpt.py</code>, <code>llm_claude.py</code>, <code>llm_gemini.py</code>) with its own Alpaca paper credentials env vars and a display accent color.</p>
+        </div>
+
+        <div class="arch-step">
+          <h4>💼 src/broker.py</h4>
+          <p>Thin wrapper on <code>alpaca-py</code>. Submits market orders with DAY time-in-force, reads back the account cash + open positions. Same interface every AI uses — no special sauce per player.</p>
+        </div>
+
+        <div class="arch-step">
+          <h4>🎨 src/dashboard.py</h4>
+          <p>Jinja2 renderer. Aggregates <code>nav.jsonl</code> + <code>decisions.jsonl</code> + <code>orders.jsonl</code> into the 4-up KPI grid, the total-return chart, the Journal timeline, and the per-AI Recent orders panel. Writes to <code>docs/index.html</code>; GitHub Pages serves it.</p>
+        </div>
+
       </div>
     </div>
 
     <!-- Per-day call budget -->
     <div class="card p-6 mb-6">
       <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">🔢 Per-day call budget</h3>
-      <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-4">How many calls fire in one trading day</p>
+      <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-4">Rough ceiling for a single trading day</p>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
-        <div class="border border-zinc-200 rounded-lg p-3"><div class="num text-2xl font-extrabold text-zinc-900">21</div><div class="text-zinc-500 mt-1">LLM round-trips max<br>(7 per AI × 3)</div></div>
-        <div class="border border-zinc-200 rounded-lg p-3"><div class="num text-2xl font-extrabold text-zinc-900">30</div><div class="text-zinc-500 mt-1">yfinance / local tool<br>invocations max</div></div>
-        <div class="border border-zinc-200 rounded-lg p-3"><div class="num text-2xl font-extrabold text-zinc-900">6</div><div class="text-zinc-500 mt-1">sentinel commits<br>(submit_research + submit_decision)</div></div>
+        <div class="border border-zinc-200 rounded-lg p-3"><div class="num text-2xl font-extrabold text-zinc-900">21</div><div class="text-zinc-500 mt-1">LLM round-trips max<br>(≤7 per AI × 3)</div></div>
+        <div class="border border-zinc-200 rounded-lg p-3"><div class="num text-2xl font-extrabold text-zinc-900">30</div><div class="text-zinc-500 mt-1">Tool invocations max<br>(≤10 per AI, yfinance / local)</div></div>
+        <div class="border border-zinc-200 rounded-lg p-3"><div class="num text-2xl font-extrabold text-zinc-900">6</div><div class="text-zinc-500 mt-1">Structured outputs<br>(<code>submit_research</code> + <code>submit_decision</code>)</div></div>
         <div class="border border-zinc-200 rounded-lg p-3"><div class="num text-2xl font-extrabold text-zinc-900">3</div><div class="text-zinc-500 mt-1">Alpaca order submits<br>(one per AI)</div></div>
       </div>
+      <p class="text-xs text-zinc-500 mt-3 italic">Actual usage is well under the ceiling — see the per-AI cost breakdown in the repo.</p>
     </div>
 
     <!-- Fairness manifest -->
@@ -650,30 +702,77 @@ class ALPACA,PAGES out
       <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-4">What's identical across the three players</p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-sm">
         <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Prompts</span> — same <code class="text-xs">RESEARCH_SYSTEM_PROMPT</code> and <code class="text-xs">DECISION_SYSTEM_PROMPT</code></span></div>
-        <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Tools</span> — same 5 functions, same JSON-Schema</span></div>
+        <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Tools</span> — same 5 functions, same JSON Schema</span></div>
         <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Tool budget</span> — 5 iterations max each</span></div>
-        <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Structured output</span> — sentinel tools for ChatGPT &amp; Claude; native JSON mode for Gemini</span></div>
-        <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Validators</span> — universe, $5k min, 25% NAV cap</span></div>
+        <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Structured output</span> — sentinel tools for ChatGPT &amp; Claude, native JSON mode for Gemini</span></div>
+        <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Validators</span> — universe, $5k min, 25% NAV cap, cash-only (no margin)</span></div>
         <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Starting capital</span> — $100,000 paper cash each</span></div>
         <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Market data</span> — yfinance, same snapshot per cron</span></div>
-        <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Broker</span> — Alpaca paper, market order, day TIF</span></div>
+        <div class="flex items-start gap-2"><span class="text-emerald-600 font-bold">✓</span><span class="text-zinc-700"><span class="font-semibold">Broker</span> — Alpaca paper, market order, DAY TIF</span></div>
       </div>
-      <p class="text-xs text-zinc-500 mt-4 italic">The only variable is which model is reading the prompt.</p>
+      <p class="text-xs text-zinc-500 mt-4 italic">Whatever advantage a model gets comes from its reasoning, not its harness.</p>
     </div>
 
     <!-- Stack -->
     <div class="card p-6 mb-6">
-      <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">🧱 Stack</h3>
-      <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-4">No servers. No databases. All static.</p>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
-        <div class="border border-zinc-200 rounded-lg p-3"><div class="font-bold text-zinc-900 mb-1">LLMs</div><div class="text-zinc-600">OpenAI · Anthropic · Google GenAI</div></div>
-        <div class="border border-zinc-200 rounded-lg p-3"><div class="font-bold text-zinc-900 mb-1">Market data</div><div class="text-zinc-600">yfinance (free)</div></div>
-        <div class="border border-zinc-200 rounded-lg p-3"><div class="font-bold text-zinc-900 mb-1">Broker</div><div class="text-zinc-600">Alpaca paper · 3 accounts</div></div>
-        <div class="border border-zinc-200 rounded-lg p-3"><div class="font-bold text-zinc-900 mb-1">Scheduler</div><div class="text-zinc-600">GitHub Actions cron</div></div>
-        <div class="border border-zinc-200 rounded-lg p-3"><div class="font-bold text-zinc-900 mb-1">Storage</div><div class="text-zinc-600">JSONL in repo (git-versioned)</div></div>
-        <div class="border border-zinc-200 rounded-lg p-3"><div class="font-bold text-zinc-900 mb-1">Templating</div><div class="text-zinc-600">Jinja2</div></div>
-        <div class="border border-zinc-200 rounded-lg p-3"><div class="font-bold text-zinc-900 mb-1">Frontend</div><div class="text-zinc-600">Tailwind · Chart.js · Mermaid</div></div>
-        <div class="border border-zinc-200 rounded-lg p-3"><div class="font-bold text-zinc-900 mb-1">Hosting</div><div class="text-zinc-600">GitHub Pages</div></div>
+      <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">🧱 Tech stack</h3>
+      <p class="text-sm font-semibold text-zinc-900 mt-0.5 mb-4">No servers. No databases. Static output, git-versioned state.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+
+        <div class="border border-zinc-200 rounded-lg p-3">
+          <div class="font-bold text-zinc-900 mb-1">🤖 LLMs</div>
+          <div class="text-zinc-600">
+            <span class="font-semibold text-emerald-700">OpenAI</span> <code>gpt-5-mini</code> ($0.25 / $2.00 per M)<br>
+            <span class="font-semibold text-orange-700">Anthropic</span> <code>claude-haiku-4-5</code> ($1.00 / $5.00 per M)<br>
+            <span class="font-semibold text-blue-700">Google</span> <code>gemini-2.5-flash</code> ($0.30 / $2.50 per M)
+          </div>
+        </div>
+
+        <div class="border border-zinc-200 rounded-lg p-3">
+          <div class="font-bold text-zinc-900 mb-1">📈 Market data</div>
+          <div class="text-zinc-600"><code>yfinance ≥ 0.2.63</code> — consolidated NMS closes so numbers match Yahoo / Google / Schwab (not Alpaca's IEX-only paper feed)</div>
+        </div>
+
+        <div class="border border-zinc-200 rounded-lg p-3">
+          <div class="font-bold text-zinc-900 mb-1">💼 Broker</div>
+          <div class="text-zinc-600"><code>alpaca-py ≥ 0.30</code> — three separate paper accounts, market orders, DAY TIF</div>
+        </div>
+
+        <div class="border border-zinc-200 rounded-lg p-3">
+          <div class="font-bold text-zinc-900 mb-1">⏰ Scheduler</div>
+          <div class="text-zinc-600">GitHub Actions cron · 3 redundant fires per cycle so a runner backlog can't skip a day</div>
+        </div>
+
+        <div class="border border-zinc-200 rounded-lg p-3">
+          <div class="font-bold text-zinc-900 mb-1">💾 State</div>
+          <div class="text-zinc-600">Plain JSONL committed to the repo: <code>nav.jsonl</code>, <code>decisions.jsonl</code>, <code>orders.jsonl</code> — full audit trail in git history</div>
+        </div>
+
+        <div class="border border-zinc-200 rounded-lg p-3">
+          <div class="font-bold text-zinc-900 mb-1">🎨 Templating</div>
+          <div class="text-zinc-600"><code>Jinja2 ≥ 3.1</code> — one HTML template rendered to <code>docs/index.html</code></div>
+        </div>
+
+        <div class="border border-zinc-200 rounded-lg p-3">
+          <div class="font-bold text-zinc-900 mb-1">🖥 Frontend</div>
+          <div class="text-zinc-600">Tailwind (CDN) · Chart.js (equity curves) · Mermaid (this diagram) — no build step, no bundler</div>
+        </div>
+
+        <div class="border border-zinc-200 rounded-lg p-3">
+          <div class="font-bold text-zinc-900 mb-1">🌐 Hosting</div>
+          <div class="text-zinc-600">GitHub Pages (free) — dashboard is a single static HTML file, updated by the evening cron</div>
+        </div>
+
+        <div class="border border-zinc-200 rounded-lg p-3">
+          <div class="font-bold text-zinc-900 mb-1">🐍 Runtime</div>
+          <div class="text-zinc-600">Python ≥ 3.11 · <code>python-dotenv</code> for secrets · runs on GitHub-hosted <code>ubuntu-latest</code></div>
+        </div>
+
+        <div class="border border-zinc-200 rounded-lg p-3">
+          <div class="font-bold text-zinc-900 mb-1">🔐 Secrets</div>
+          <div class="text-zinc-600">3 LLM API keys + 6 Alpaca creds (3 keys, 3 secrets) — all in GitHub Actions secrets, never in the repo</div>
+        </div>
+
       </div>
     </div>
 
