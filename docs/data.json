@@ -4,57 +4,57 @@
       "name": "gemini",
       "label": "Gemini",
       "accent": "blue",
-      "total_equity": 96838.42,
-      "total_ret_pct": -3.16,
-      "portfolio_value": 92713.77,
+      "total_equity": 97564.17,
+      "total_ret_pct": -2.44,
+      "portfolio_value": 93439.52,
       "cost_basis": 95131.03,
-      "ret_pct": -2.54,
+      "ret_pct": -1.78,
       "days_first": 2,
       "n_positions": 4,
       "cash": 4124.65,
-      "spent_usd": 0.12,
+      "spent_usd": 0.13,
       "budget_usd": 10.0,
-      "budget_pct": 1.2,
+      "budget_pct": 1.3,
       "positions": [
         {
           "ticker": "AMZN",
           "qty": 103.1927,
           "avg_entry_price": 238.69,
-          "current_price": 243.62,
-          "market_value": 25139.81,
+          "current_price": 247.04,
+          "market_value": 25492.73,
           "cost_basis": 24631.07,
-          "pl_usd": 508.74,
-          "pl_pct": 2.07
+          "pl_usd": 861.66,
+          "pl_pct": 3.5
         },
         {
           "ticker": "GOOGL",
           "qty": 68.2669,
           "avg_entry_price": 373.53,
-          "current_price": 361.92,
-          "market_value": 24707.15,
+          "current_price": 358.89,
+          "market_value": 24500.3,
           "cost_basis": 25500.01,
-          "pl_usd": -792.86,
-          "pl_pct": -3.11
+          "pl_usd": -999.71,
+          "pl_pct": -3.92
         },
         {
           "ticker": "MSFT",
           "qty": 60.98,
           "avg_entry_price": 409.97,
-          "current_price": 383.34,
-          "market_value": 23376.09,
+          "current_price": 384.36,
+          "market_value": 23438.29,
           "cost_basis": 24999.97,
-          "pl_usd": -1623.88,
-          "pl_pct": -6.5
+          "pl_usd": -1561.68,
+          "pl_pct": -6.25
         },
         {
           "ticker": "ORCL",
           "qty": 138.7339,
           "avg_entry_price": 144.16,
-          "current_price": 140.49,
-          "market_value": 19490.72,
+          "current_price": 144.22,
+          "market_value": 20008.2,
           "cost_basis": 19999.99,
-          "pl_usd": -509.27,
-          "pl_pct": -2.55
+          "pl_usd": 8.21,
+          "pl_pct": 0.04
         }
       ],
       "is_leveraged": false,
@@ -64,57 +64,67 @@
       "name": "claude",
       "label": "Claude",
       "accent": "orange",
-      "total_equity": 95089.22,
-      "total_ret_pct": -4.91,
-      "portfolio_value": 68794.77,
-      "cost_basis": 69956.96,
-      "ret_pct": -1.66,
+      "total_equity": 95743.95,
+      "total_ret_pct": -4.26,
+      "portfolio_value": 93081.53,
+      "cost_basis": 93588.97,
+      "ret_pct": -0.54,
       "days_first": 13,
-      "n_positions": 4,
-      "cash": 26294.45,
-      "spent_usd": 0.82,
+      "n_positions": 5,
+      "cash": 2662.42,
+      "spent_usd": 0.84,
       "budget_usd": 10.0,
-      "budget_pct": 8.2,
+      "budget_pct": 8.4,
       "positions": [
+        {
+          "ticker": "AVGO",
+          "qty": 58.9033,
+          "avg_entry_price": 401.2,
+          "current_price": 401.11,
+          "market_value": 23626.69,
+          "cost_basis": 23632.0,
+          "pl_usd": -5.31,
+          "pl_pct": -0.02
+        },
         {
           "ticker": "NVDA",
           "qty": 113.8175,
           "avg_entry_price": 219.27,
-          "current_price": 204.12,
-          "market_value": 23232.43,
+          "current_price": 202.78,
+          "market_value": 23079.91,
           "cost_basis": 24957.0,
-          "pl_usd": -1724.57,
-          "pl_pct": -6.91
+          "pl_usd": -1877.09,
+          "pl_pct": -7.52
         },
         {
           "ticker": "META",
           "qty": 34.1329,
           "avg_entry_price": 585.94,
-          "current_price": 603.12,
-          "market_value": 20586.25,
+          "current_price": 631.48,
+          "market_value": 21554.26,
           "cost_basis": 19999.97,
-          "pl_usd": 586.28,
-          "pl_pct": 2.93
+          "pl_usd": 1554.29,
+          "pl_pct": 7.77
         },
         {
           "ticker": "GOOGL",
           "qty": 55.5651,
           "avg_entry_price": 359.94,
-          "current_price": 361.92,
-          "market_value": 20110.14,
+          "current_price": 358.89,
+          "market_value": 19941.78,
           "cost_basis": 19999.98,
-          "pl_usd": 110.16,
-          "pl_pct": 0.55
+          "pl_usd": -58.2,
+          "pl_pct": -0.29
         },
         {
           "ticker": "MSFT",
           "qty": 12.6936,
           "avg_entry_price": 393.9,
-          "current_price": 383.34,
-          "market_value": 4865.95,
+          "current_price": 384.36,
+          "market_value": 4878.89,
           "cost_basis": 5000.01,
-          "pl_usd": -134.06,
-          "pl_pct": -2.68
+          "pl_usd": -121.12,
+          "pl_pct": -2.42
         }
       ],
       "is_leveraged": false,
@@ -124,47 +134,57 @@
       "name": "chatgpt",
       "label": "ChatGPT",
       "accent": "emerald",
-      "total_equity": 94796.25,
-      "total_ret_pct": -5.2,
-      "portfolio_value": 70090.24,
-      "cost_basis": 68499.96,
-      "ret_pct": 2.32,
-      "days_first": 13,
-      "n_positions": 3,
-      "cash": 24706.01,
-      "spent_usd": 0.58,
+      "total_equity": 94635.3,
+      "total_ret_pct": -5.36,
+      "portfolio_value": 93529.32,
+      "cost_basis": 92099.94,
+      "ret_pct": 1.55,
+      "days_first": 14,
+      "n_positions": 4,
+      "cash": 1105.98,
+      "spent_usd": 0.59,
       "budget_usd": 10.0,
-      "budget_pct": 5.8,
+      "budget_pct": 5.9,
       "positions": [
         {
           "ticker": "AAPL",
           "qty": 79.3575,
           "avg_entry_price": 315.03,
-          "current_price": 313.39,
-          "market_value": 24869.85,
+          "current_price": 316.22,
+          "market_value": 25094.44,
           "cost_basis": 24999.99,
-          "pl_usd": -130.14,
-          "pl_pct": -0.52
+          "pl_usd": 94.45,
+          "pl_pct": 0.38
         },
         {
           "ticker": "NVDA",
           "qty": 120.0598,
           "avg_entry_price": 195.74,
-          "current_price": 204.12,
-          "market_value": 24506.6,
+          "current_price": 202.78,
+          "market_value": 24345.72,
           "cost_basis": 23499.99,
-          "pl_usd": 1006.61,
-          "pl_pct": 4.28
+          "pl_usd": 845.73,
+          "pl_pct": 3.6
+        },
+        {
+          "ticker": "ORCL",
+          "qty": 161.6991,
+          "avg_entry_price": 145.95,
+          "current_price": 144.22,
+          "market_value": 23320.25,
+          "cost_basis": 23599.98,
+          "pl_usd": -279.73,
+          "pl_pct": -1.19
         },
         {
           "ticker": "MSFT",
           "qty": 54.035,
           "avg_entry_price": 370.13,
-          "current_price": 383.34,
-          "market_value": 20713.79,
+          "current_price": 384.36,
+          "market_value": 20768.91,
           "cost_basis": 19999.97,
-          "pl_usd": 713.82,
-          "pl_pct": 3.57
+          "pl_usd": 768.94,
+          "pl_pct": 3.84
         }
       ],
       "is_leveraged": false,
@@ -173,39 +193,39 @@
   ],
   "today_decisions": {
     "chatgpt": {
-      "date": "2026-07-08",
+      "date": "2026-07-09",
       "ai": "chatgpt",
       "label": "ChatGPT",
-      "action": "SELL",
+      "action": "BUY",
       "ticker": "ORCL",
-      "amount": null,
-      "reason": "Oracle's broken technicals, high leverage and weak momentum \u2014 close full ORCL position to rotate into AI leaders.",
+      "amount": 23600.0,
+      "reason": "Buying ORCL on breakout bounce: cheap forward P/E, AI partnerships, high-prob mean-reversion upside after deep pullback.",
       "confidence": 4,
-      "nav_before": 93653.07,
-      "cash_before": 1948.92,
+      "nav_before": 94455.52,
+      "cash_before": 24705.97,
       "research": {
         "candidates": [
           {
             "ticker": "ORCL",
-            "bull": "Oracle's forward P/E (~12.7), ~20% revenue growth and solid profit margins make it look fundamentally attractive after the recent decline.",
-            "bear": "The stock has collapsed from the mid\u2011200s to the high\u2011130s with RSI near 7, extremely high reported debt/equity and broken momentum that could signal more downside or structural issues.",
-            "lean": "SELL"
-          },
-          {
-            "ticker": "AVGO",
-            "bull": "Broadcom is showing accelerating AI revenue (+143%), an Apple deal and industry\u2011leading margins/FCF, giving it momentum and quality growth exposure.",
-            "bear": "Trailing P/E is high (~64) and the shares have run up quickly, so a sentiment-driven pullback is possible if AI optimism cools.",
+            "bull": "Deep oversold retracement has turned into a sharp relief rally with cheap forward P/E (~13) and fresh AI tailwinds from partnerships, implying a high-probability mean-reversion move higher.",
+            "bear": "Oracle shows unusually high reported leverage and negative free cash flow with a large revenue-backlog concentration risk \u2014 the bounce may be a dead-cat in a structurally weaker name.",
             "lean": "BUY"
           },
           {
             "ticker": "NVDA",
-            "bull": "NVIDIA remains the dominant AI acceleration play and a dip is a reasonable add opportunity for a high-conviction, long-term winner.",
-            "bear": "Valuation is elevated and short-term consolidation risk exists (recent weakness, RSI ~38), and our portfolio already has a large NVDA exposure.",
+            "bull": "NVIDIA remains the prime beneficiary of AI/data-center spending with explosive revenue growth, strong margins and a materially lower forward P/E than its trailing multiple, making pullbacks attractive entries.",
+            "bear": "High market positioning and momentum make NVDA susceptible to rapid profit-taking and headline-driven volatility that can erase gains quickly.",
+            "lean": "BUY"
+          },
+          {
+            "ticker": "AAPL",
+            "bull": "Apple\u2019s recent strength and broad consumer/product momentum plus strong cash generation support continued upside in the near term.",
+            "bear": "It\u2019s already been a short-term outperformer (5d +6.9%) with RSI near 63, so upside is more muted and vulnerable to macro risk or rotation into AI names.",
             "lean": "HOLD"
           }
         ],
-        "summary": "AI leadership stocks (Broadcom/NVIDIA) have momentum while Oracle is deeply oversold with broken technicals \u2014 trim ORCL and rotate into AI exposure if possible.",
-        "preferred_action": "SELL",
+        "summary": "Market setup: AI-led rotation favors NVDA and select software names; ORCL appears to be a high-upside mean-reversion play after a deep, fast decline and today\u2019s breakout attempt.",
+        "preferred_action": "BUY",
         "preferred_ticker": "ORCL",
         "tools_used": [
           {
@@ -216,13 +236,6 @@
             }
           },
           {
-            "name": "get_news",
-            "args": {
-              "ticker": "ORCL",
-              "n": 5
-            }
-          },
-          {
             "name": "get_financials",
             "args": {
               "ticker": "ORCL"
@@ -231,149 +244,169 @@
           {
             "name": "get_news",
             "args": {
-              "ticker": "AVGO",
+              "ticker": "ORCL",
               "n": 5
+            }
+          },
+          {
+            "name": "get_history",
+            "args": {
+              "ticker": "NVDA",
+              "days": 30
             }
           },
           {
             "name": "get_financials",
             "args": {
-              "ticker": "AVGO"
+              "ticker": "NVDA"
             }
           }
         ]
       },
       "tokens": {
-        "input": 5181,
-        "output": 3228
+        "input": 18608,
+        "output": 4028
       },
-      "cost_usd": 0.0078,
+      "cost_usd": 0.0127,
       "order": {
-        "order_id": "f5d12511-6cc7-418d-a3d2-41b0b9f7a4f5",
-        "status": "orderstatus.pending_new"
+        "order_id": "4a2fcc04-b477-4ff8-8205-515bafecce28",
+        "status": "pending_new"
       },
       "dry_run": false,
-      "submitted_at": "2026-07-08T15:40:59.525016+00:00"
+      "submitted_at": "2026-07-09T16:12:38.498498+00:00"
     },
     "claude": {
-      "date": "2026-07-08",
+      "date": "2026-07-09",
       "ai": "claude",
       "label": "Claude",
-      "action": "SELL",
-      "ticker": "ORCL",
-      "amount": null,
-      "reason": "Capitulation RSI 7.2 masks fundamental AI disruption risk. Cut legacy exposure, redeploy later.",
+      "action": "BUY",
+      "ticker": "AVGO",
+      "amount": 23632.0,
+      "reason": "Apple partnership breakout; RSI 52.8 neutral with room to run; $401 breaking $388 resistance cleanly.",
       "confidence": 4,
-      "nav_before": 94220.0,
-      "cash_before": 4568.23,
+      "nav_before": 94647.28,
+      "cash_before": 26294.41,
       "research": {
         "candidates": [
           {
             "ticker": "AVGO",
-            "bull": "$30B Apple AI-chip partnership announced; strong technical breakout (+3.97% yesterday) with RSI 53 leaving room to run.",
-            "bear": "Broadcom is legacy semiconductor supplier; deal hype may be priced in quickly with Apple's shifting supply chain.",
+            "bull": "Apple AI chip partnership catalyst driving breakout; RSI 52.8 neutral with room to run; $401 price breaking above $388 resistance.",
+            "bear": "Chip sector overbought on AI bubble concerns; rapid 5-day +8.6% rally may face profit-taking.",
             "lean": "BUY"
           },
           {
-            "ticker": "ORCL",
-            "bull": "Extreme RSI 7.2 oversold signal and AI buildout narrative suggest capitulation reversal opportunity.",
-            "bear": "Down 26% in 2 weeks; RSI crash may reflect fundamental concerns about AI disruption threat to legacy database business.",
-            "lean": "SELL"
+            "ticker": "AAPL",
+            "bull": "AI chip deal with Broadcom catalyst; strong +6.88% 5-day momentum.",
+            "bear": "RSI 62.9 overbought; trailing P/E 38x stretched; debt-to-equity 79.5x leverage risk.",
+            "lean": "HOLD"
           },
           {
-            "ticker": "MSFT",
-            "bull": "Neutral RSI 45.2 with +2.65% 5-day momentum provides low-risk bounce setup.",
-            "bear": "Yesterday's -1.53% and modest 5-day gain show hesitation; underperforming AVGO and AAPL breakouts.",
+            "ticker": "ORCL",
+            "bull": "Extreme RSI 17.1 oversold provides reversal opportunity after my premature exit.",
+            "bear": "Recent capitulation selling may signal further downside as AI disruption concerns persist.",
             "lean": "HOLD"
           }
         ],
-        "summary": "AVGO catalyzed higher on Apple $30B AI-chip deal; ORCL capitulation and cash constraints block new entry despite AVGO upside.",
-        "preferred_action": "HOLD",
-        "preferred_ticker": null,
+        "summary": "AVGO breakout on Apple partnership is the cleanest risk-reward; AAPL overbought; ORCL oversold but uncertain.",
+        "preferred_action": "BUY",
+        "preferred_ticker": "AVGO",
         "tools_used": [
+          {
+            "name": "get_news",
+            "args": {
+              "ticker": "AAPL",
+              "n": 3
+            }
+          },
+          {
+            "name": "get_news",
+            "args": {
+              "ticker": "AVGO",
+              "n": 3
+            }
+          },
+          {
+            "name": "get_financials",
+            "args": {
+              "ticker": "AAPL"
+            }
+          },
+          {
+            "name": "get_history",
+            "args": {
+              "ticker": "AVGO",
+              "days": 14
+            }
+          },
           {
             "name": "read_own_trades",
             "args": {
               "ai": "claude",
               "n": 5
             }
-          },
-          {
-            "name": "get_history",
-            "args": {
-              "ticker": "ORCL",
-              "days": 14
-            }
-          },
-          {
-            "name": "get_news",
-            "args": {
-              "ticker": "ORCL",
-              "n": 3
-            }
-          },
-          {
-            "name": "get_history",
-            "args": {
-              "ticker": "AVGO",
-              "days": 14
-            }
-          },
-          {
-            "name": "get_news",
-            "args": {
-              "ticker": "AVGO",
-              "n": 3
-            }
           }
         ]
       },
       "tokens": {
-        "input": 13531,
-        "output": 1816
+        "input": 11972,
+        "output": 1592
       },
-      "cost_usd": 0.0226,
+      "cost_usd": 0.0199,
       "order": {
-        "order_id": "75eeec17-8e3b-4200-8baf-96658680c523",
-        "status": "orderstatus.pending_new"
+        "order_id": "6090aec0-2dc7-41d8-bf6e-29269db83a8f",
+        "status": "pending_new"
       },
       "dry_run": false,
-      "submitted_at": "2026-07-08T15:59:30.105329+00:00"
+      "submitted_at": "2026-07-09T16:13:01.395625+00:00"
     },
     "gemini": {
-      "date": "2026-07-08",
+      "date": "2026-07-09",
       "ai": "gemini",
       "label": "Gemini",
       "action": "HOLD",
       "ticker": null,
       "amount": null,
-      "reason": "Research points to ORCL buy, but I'm short on cash for the minimum notional. Holding all positions today.",
+      "reason": "Cash is too low for the minimum buy notional of $5,000, and no strong sell signals to free up capital. Holding for now.",
       "confidence": 3,
-      "nav_before": 96070.08,
+      "nav_before": 96545.87,
       "cash_before": 4124.65,
       "research": {
         "candidates": [
           {
             "ticker": "ORCL",
-            "bull": "Oracle is significantly oversold with an extremely low RSI and strong analyst buy ratings and target prices, indicating potential for a strong rebound despite recent price drops.",
-            "bear": "The company carries extremely high debt-to-equity and negative free cash flow, posing significant financial risks and long-term sustainability concerns.",
+            "bull": "Strong analyst sentiment, positive news regarding AI, and an extremely oversold RSI suggest significant upside potential for a bounce back to fair value.",
+            "bear": "Despite the recent bounce, the stock has been under pressure, and broader market conditions could still pull it down further.",
             "lean": "BUY"
           },
           {
-            "ticker": "AAPL",
-            "bull": "Apple demonstrates strong recent momentum and has secured a significant $30 billion AI chip partnership, positioning it well in the rapidly expanding AI market.",
-            "bear": "There are concerns regarding Apple's memory strategy facing risks in China, and after a strong run, a short-term pullback is possible.",
-            "lean": "BUY"
+            "ticker": "AVGO",
+            "bull": "Strong price momentum and positive recent performance indicate continued bullish sentiment.",
+            "bear": "The rapid rise might lead to a short-term pullback or profit-taking.",
+            "lean": "HOLD"
+          },
+          {
+            "ticker": "TSLA",
+            "bull": "The recent bounce after a sharp decline suggests a potential reversal or bottoming out, offering an attractive entry point.",
+            "bear": "The overall negative 5-day trend could resume, and the bounce might be short-lived.",
+            "lean": "HOLD"
           }
         ],
-        "summary": "ORCL appears deeply oversold with bullish analyst sentiment, suggesting a potential rebound despite concerning financials, while AAPL shows strong momentum and a positive AI partnership.",
+        "summary": "ORCL is oversold with strong analyst backing and positive AI-related news, making it a compelling buy for a potential rebound.",
         "preferred_action": "BUY",
         "preferred_ticker": "ORCL",
         "tools_used": [
           {
+            "name": "get_history",
+            "args": {
+              "ticker": "ORCL",
+              "days": 5
+            }
+          },
+          {
             "name": "get_news",
             "args": {
-              "ticker": "ORCL"
+              "ticker": "ORCL",
+              "n": 3
             }
           },
           {
@@ -383,34 +416,29 @@
             }
           },
           {
-            "name": "get_news",
+            "name": "get_history",
             "args": {
-              "ticker": "AAPL"
+              "ticker": "AVGO",
+              "days": 5
             }
           },
           {
             "name": "get_history",
             "args": {
-              "ticker": "AAPL",
+              "ticker": "TSLA",
               "days": 5
-            }
-          },
-          {
-            "name": "get_financials",
-            "args": {
-              "ticker": "ORCL"
             }
           }
         ]
       },
       "tokens": {
-        "input": 3904,
-        "output": 395
+        "input": 4372,
+        "output": 456
       },
-      "cost_usd": 0.0022,
+      "cost_usd": 0.0025,
       "order": null,
       "dry_run": false,
-      "submitted_at": "2026-07-08T15:59:46.826308+00:00"
+      "submitted_at": "2026-07-09T16:13:14.816424+00:00"
     }
   },
   "chart_series": [
@@ -558,6 +586,11 @@
           "date": "2026-07-08",
           "ret_pct": -5.2,
           "portfolio_value": 94796.26
+        },
+        {
+          "date": "2026-07-09",
+          "ret_pct": -5.36,
+          "portfolio_value": 94635.3
         }
       ],
       "is_benchmark": false
@@ -706,6 +739,11 @@
           "date": "2026-07-08",
           "ret_pct": -4.91,
           "portfolio_value": 95089.22
+        },
+        {
+          "date": "2026-07-09",
+          "ret_pct": -4.26,
+          "portfolio_value": 95743.95
         }
       ],
       "is_benchmark": false
@@ -854,6 +892,11 @@
           "date": "2026-07-08",
           "ret_pct": -3.16,
           "portfolio_value": 96838.42
+        },
+        {
+          "date": "2026-07-09",
+          "ret_pct": -2.44,
+          "portfolio_value": 97564.17
         }
       ],
       "is_benchmark": false
@@ -1002,6 +1045,11 @@
           "date": "2026-07-08",
           "ret_pct": -3.47,
           "portfolio_value": 96526.65
+        },
+        {
+          "date": "2026-07-09",
+          "ret_pct": -1.87,
+          "portfolio_value": 98133.08
         }
       ],
       "is_benchmark": true
@@ -1009,31 +1057,31 @@
   ],
   "tool_usage": {
     "chatgpt": {
-      "get_news": 42,
-      "get_history": 67,
-      "get_financials": 27,
+      "get_news": 43,
+      "get_history": 69,
+      "get_financials": 29,
       "get_analyst_ratings": 4,
       "read_own_trades": 1
     },
     "claude": {
-      "get_news": 46,
-      "read_own_trades": 27,
-      "get_history": 40,
-      "get_financials": 10,
+      "get_news": 48,
+      "read_own_trades": 28,
+      "get_history": 41,
+      "get_financials": 11,
       "get_analyst_ratings": 24
     },
     "gemini": {
-      "get_news": 65,
+      "get_news": 66,
       "get_financials": 13,
-      "get_history": 34,
-      "get_analyst_ratings": 26,
+      "get_history": 37,
+      "get_analyst_ratings": 27,
       "read_own_trades": 2
     }
   },
   "total_cost_per_ai": {
-    "chatgpt": 0.5760000000000001,
-    "claude": 0.8156,
-    "gemini": 0.1249
+    "chatgpt": 0.5887000000000001,
+    "claude": 0.8355,
+    "gemini": 0.12739999999999999
   },
   "orders_per_ai": [
     {
@@ -1041,6 +1089,188 @@
       "label": "ChatGPT",
       "accent": "emerald",
       "orders": [
+        {
+          "ai": "chatgpt",
+          "label": "ChatGPT",
+          "order_id": "4a2fcc04-b477-4ff8-8205-515bafecce28",
+          "side": "buy",
+          "symbol": "ORCL",
+          "filled_qty": 161.6991,
+          "filled_avg_price": 145.95,
+          "notional": 23599.99,
+          "status": "filled",
+          "submitted_at": "2026-07-09 16:12:38.500953+00:00",
+          "filled_at": "2026-07-09 16:12:41.960620+00:00"
+        },
+        {
+          "ai": "chatgpt",
+          "label": "ChatGPT",
+          "order_id": "f5d12511-6cc7-418d-a3d2-41b0b9f7a4f5",
+          "side": "sell",
+          "symbol": "ORCL",
+          "filled_qty": 164.609,
+          "filled_avg_price": 138.2494,
+          "notional": 22757.09,
+          "status": "filled",
+          "submitted_at": "2026-07-08 15:40:59.526768+00:00",
+          "filled_at": "2026-07-08 15:41:02.485116+00:00"
+        },
+        {
+          "ai": "chatgpt",
+          "label": "ChatGPT",
+          "order_id": "c7f4b5a2-7b77-47a5-86ec-05044374d327",
+          "side": "buy",
+          "symbol": "ORCL",
+          "filled_qty": 164.609,
+          "filled_avg_price": 143.37,
+          "notional": 23599.99,
+          "status": "filled",
+          "submitted_at": "2026-07-06 16:36:00.876427+00:00",
+          "filled_at": "2026-07-06 16:36:01.622006+00:00"
+        },
+        {
+          "ai": "chatgpt",
+          "label": "ChatGPT",
+          "order_id": "8aeece6a-a4a8-48e7-a539-9aa6e3a84d8c",
+          "side": "sell",
+          "symbol": "ORCL",
+          "filled_qty": 154.4315,
+          "filled_avg_price": 141.948,
+          "notional": 21921.25,
+          "status": "filled",
+          "submitted_at": "2026-07-06 08:01:08.926110+00:00",
+          "filled_at": "2026-07-06 13:43:18.947557+00:00"
+        },
+        {
+          "ai": "chatgpt",
+          "label": "ChatGPT",
+          "order_id": "cd71dae4-ce1c-4949-a2c2-da79d40efd43",
+          "side": "buy",
+          "symbol": "NVDA",
+          "filled_qty": 120.0598,
+          "filled_avg_price": 195.7357,
+          "notional": 23499.99,
+          "status": "filled",
+          "submitted_at": "2026-07-02 15:39:12.066143+00:00",
+          "filled_at": "2026-07-02 15:39:16.052624+00:00"
+        },
+        {
+          "ai": "chatgpt",
+          "label": "ChatGPT",
+          "order_id": "f7f1d9ae-f1af-44f8-a3d4-57aad7dd8562",
+          "side": "sell",
+          "symbol": "NVDA",
+          "filled_qty": 115.7625,
+          "filled_avg_price": 197.16,
+          "notional": 22823.73,
+          "status": "filled",
+          "submitted_at": "2026-07-01 16:03:44.686527+00:00",
+          "filled_at": "2026-07-01 16:03:45.380591+00:00"
+        },
+        {
+          "ai": "chatgpt",
+          "label": "ChatGPT",
+          "order_id": "71431855-bf0b-4767-b177-db46d8dccb00",
+          "side": "buy",
+          "symbol": "ORCL",
+          "filled_qty": 154.4315,
+          "filled_avg_price": 147.6382,
+          "notional": 22799.99,
+          "status": "filled",
+          "submitted_at": "2026-06-29 16:45:13.743257+00:00",
+          "filled_at": "2026-06-29 16:45:15.490620+00:00"
+        },
+        {
+          "ai": "chatgpt",
+          "label": "ChatGPT",
+          "order_id": "d4107586-5123-4e1e-a83a-997069e6f164",
+          "side": "sell",
+          "symbol": "AMZN",
+          "filled_qty": 26.9398,
+          "filled_avg_price": 232.0844,
+          "notional": 6252.32,
+          "status": "filled",
+          "submitted_at": "2026-06-26 15:37:25.674106+00:00",
+          "filled_at": "2026-06-26 15:37:26.375322+00:00"
+        },
+        {
+          "ai": "chatgpt",
+          "label": "ChatGPT",
+          "order_id": "2a4c9d16-c8f1-4310-89fa-6ce00748b36a",
+          "side": "sell",
+          "symbol": "ORCL",
+          "filled_qty": 136.8943,
+          "filled_avg_price": 152.32,
+          "notional": 20851.74,
+          "status": "filled",
+          "submitted_at": "2026-06-25 15:59:42.886185+00:00",
+          "filled_at": "2026-06-25 15:59:43.606660+00:00"
+        },
+        {
+          "ai": "chatgpt",
+          "label": "ChatGPT",
+          "order_id": "ecc18fab-77b2-4119-9697-e4e97f0cf7a3",
+          "side": "buy",
+          "symbol": "ORCL",
+          "filled_qty": 136.8943,
+          "filled_avg_price": 159.65,
+          "notional": 21855.17,
+          "status": "filled",
+          "submitted_at": "2026-06-24 15:41:33.196546+00:00",
+          "filled_at": "2026-06-24 15:41:35.580459+00:00"
+        },
+        {
+          "ai": "chatgpt",
+          "label": "ChatGPT",
+          "order_id": "6dde3cb9-acb7-4f81-b516-cce87db8c30b",
+          "side": "sell",
+          "symbol": "ORCL",
+          "filled_qty": 113.1791,
+          "filled_avg_price": 169.4051,
+          "notional": 19173.13,
+          "status": "filled",
+          "submitted_at": "2026-06-23 16:09:06.306689+00:00",
+          "filled_at": "2026-06-23 16:09:08.759248+00:00"
+        },
+        {
+          "ai": "chatgpt",
+          "label": "ChatGPT",
+          "order_id": "44de40f5-97ec-4214-a630-86170092115b",
+          "side": "buy",
+          "symbol": "MSFT",
+          "filled_qty": 54.035,
+          "filled_avg_price": 370.13,
+          "notional": 19999.99,
+          "status": "filled",
+          "submitted_at": "2026-06-22 18:01:38.011410+00:00",
+          "filled_at": "2026-06-22 18:01:38.688590+00:00"
+        },
+        {
+          "ai": "chatgpt",
+          "label": "ChatGPT",
+          "order_id": "a791b84b-830e-41ac-a6b9-fb4e3325b2bc",
+          "side": "sell",
+          "symbol": "MSFT",
+          "filled_qty": 58.0567,
+          "filled_avg_price": 376.4,
+          "notional": 21852.53,
+          "status": "filled",
+          "submitted_at": "2026-06-22 08:01:08.018755+00:00",
+          "filled_at": "2026-06-22 13:30:13.841847+00:00"
+        },
+        {
+          "ai": "chatgpt",
+          "label": "ChatGPT",
+          "order_id": "778e9199-68de-4426-a51d-346a53ff2475",
+          "side": "buy",
+          "symbol": "MSFT",
+          "filled_qty": 58.0567,
+          "filled_avg_price": 378.94,
+          "notional": 21999.99,
+          "status": "filled",
+          "submitted_at": "2026-06-18 16:45:24.860828+00:00",
+          "filled_at": "2026-06-18 16:45:26.513580+00:00"
+        },
         {
           "ai": "chatgpt",
           "label": "ChatGPT",
@@ -1246,6 +1476,123 @@
         {
           "ai": "claude",
           "label": "Claude",
+          "order_id": "6090aec0-2dc7-41d8-bf6e-29269db83a8f",
+          "side": "buy",
+          "symbol": "AVGO",
+          "filled_qty": 58.9033,
+          "filled_avg_price": 401.2,
+          "notional": 23631.99,
+          "status": "filled",
+          "submitted_at": "2026-07-09 16:13:01.398109+00:00",
+          "filled_at": "2026-07-09 16:13:02.480486+00:00"
+        },
+        {
+          "ai": "claude",
+          "label": "Claude",
+          "order_id": "75eeec17-8e3b-4200-8baf-96658680c523",
+          "side": "sell",
+          "symbol": "ORCL",
+          "filled_qty": 157.451,
+          "filled_avg_price": 137.9872,
+          "notional": 21726.22,
+          "status": "filled",
+          "submitted_at": "2026-07-08 15:59:30.092639+00:00",
+          "filled_at": "2026-07-08 15:59:34.068061+00:00"
+        },
+        {
+          "ai": "claude",
+          "label": "Claude",
+          "order_id": "32a9ed65-23e3-4860-a8af-81fcb7d97591",
+          "side": "buy",
+          "symbol": "MSFT",
+          "filled_qty": 12.6936,
+          "filled_avg_price": 393.9,
+          "notional": 4999.99,
+          "status": "filled",
+          "submitted_at": "2026-07-07 16:23:41.910004+00:00",
+          "filled_at": "2026-07-07 16:23:42.468194+00:00"
+        },
+        {
+          "ai": "claude",
+          "label": "Claude",
+          "order_id": "a0e03198-43ae-4461-b0fa-9e211893441f",
+          "side": "sell",
+          "symbol": "MSFT",
+          "filled_qty": 24.8655,
+          "filled_avg_price": 384.8,
+          "notional": 9568.25,
+          "status": "filled",
+          "submitted_at": "2026-07-06 16:49:42.369297+00:00",
+          "filled_at": "2026-07-06 16:49:43.443345+00:00"
+        },
+        {
+          "ai": "claude",
+          "label": "Claude",
+          "order_id": "43b3781b-4d88-4e3f-9681-4c8ba0fae61b",
+          "side": "buy",
+          "symbol": "ORCL",
+          "filled_qty": 35.5246,
+          "filled_avg_price": 145.76,
+          "notional": 5178.07,
+          "status": "filled",
+          "submitted_at": "2026-07-01 16:04:07.689796+00:00",
+          "filled_at": "2026-07-01 16:04:10.813706+00:00"
+        },
+        {
+          "ai": "claude",
+          "label": "Claude",
+          "order_id": "c515bcee-4b9b-4ab3-b7ed-88121d747ab0",
+          "side": "buy",
+          "symbol": "ORCL",
+          "filled_qty": 121.9264,
+          "filled_avg_price": 147.63,
+          "notional": 17999.99,
+          "status": "filled",
+          "submitted_at": "2026-06-29 16:45:32.386255+00:00",
+          "filled_at": "2026-06-29 16:45:32.773879+00:00"
+        },
+        {
+          "ai": "claude",
+          "label": "Claude",
+          "order_id": "ecbcca09-ed42-4ec4-9e60-b01155dec3c4",
+          "side": "sell",
+          "symbol": "AVGO",
+          "filled_qty": 62.4009,
+          "filled_avg_price": 370.57,
+          "notional": 23123.9,
+          "status": "filled",
+          "submitted_at": "2026-06-26 15:37:41.837434+00:00",
+          "filled_at": "2026-06-26 15:37:45.020379+00:00"
+        },
+        {
+          "ai": "claude",
+          "label": "Claude",
+          "order_id": "3e8ed783-3a70-4487-a148-85e8523237ae",
+          "side": "buy",
+          "symbol": "MSFT",
+          "filled_qty": 24.8655,
+          "filled_avg_price": 369.99,
+          "notional": 9199.99,
+          "status": "filled",
+          "submitted_at": "2026-06-22 18:01:53.816660+00:00",
+          "filled_at": "2026-06-22 18:01:55.339266+00:00"
+        },
+        {
+          "ai": "claude",
+          "label": "Claude",
+          "order_id": "503aaa0c-4eda-4302-99ea-bb5308aa6f3b",
+          "side": "sell",
+          "symbol": "TSLA",
+          "filled_qty": 23.5836,
+          "filled_avg_price": 393.762,
+          "notional": 9286.31,
+          "status": "filled",
+          "submitted_at": "2026-06-18 16:53:38.822813+00:00",
+          "filled_at": "2026-06-18 16:53:39.976711+00:00"
+        },
+        {
+          "ai": "claude",
+          "label": "Claude",
           "order_id": "de11e27e-20a7-430b-a303-d1529754fbff",
           "side": "sell",
           "symbol": "AMZN",
@@ -1406,6 +1753,32 @@
       "label": "Gemini",
       "accent": "blue",
       "orders": [
+        {
+          "ai": "gemini",
+          "label": "Gemini",
+          "order_id": "1e8fa0f7-bfd9-4d1c-82b8-2d4b68bb8f22",
+          "side": "buy",
+          "symbol": "ORCL",
+          "filled_qty": 138.7339,
+          "filled_avg_price": 144.1608,
+          "notional": 19999.99,
+          "status": "filled",
+          "submitted_at": "2026-07-06 08:01:17.008940+00:00",
+          "filled_at": "2026-07-06 13:41:46.815288+00:00"
+        },
+        {
+          "ai": "gemini",
+          "label": "Gemini",
+          "order_id": "6b35e735-62fc-4d0f-a976-15fc98978c95",
+          "side": "sell",
+          "symbol": "NVDA",
+          "filled_qty": 114.6631,
+          "filled_avg_price": 195.56,
+          "notional": 22423.51,
+          "status": "filled",
+          "submitted_at": "2026-07-02 15:39:53.279088+00:00",
+          "filled_at": "2026-07-02 15:39:53.934446+00:00"
+        },
         {
           "ai": "gemini",
           "label": "Gemini",
