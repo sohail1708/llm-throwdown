@@ -163,15 +163,37 @@ def run_one(provider: Provider, snaps, *, dry_run: bool) -> dict:
 def run(*, dry_run: bool = False) -> int:
     today = date.today()
     print(f"[daily] {today.isoformat()}  dry_run={dry_run}")
+
+    # Short-circuit BEFORE fetching yfinance: if the primary cron already
+    # got every AI its trade in, this is a redundant fallback fire. Exit
+    # cleanly so we don't pointlessly hit Yahoo (which then rate-limits
+    # us and emails "workflow failed" for a run that had nothing to do).
+    DECISIONS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    already = set() if dry_run else _ais_already_traded_today(today.isoformat())
+    remaining = [p for p in PROVIDERS if p.name not in already]
+    if not remaining:
+        print(f"[daily] all AIs already traded today ({sorted(already)}) — nothing to do, exiting cleanly.")
+        return 0
+    if already:
+        print(f"[daily] already traded today (skipping): {sorted(already)}")
+
     print("[daily] fetching market snapshot...")
-    snaps = md.snapshots()
+    try:
+        snaps = md.snapshots()
+    except Exception as e:
+        # Yahoo Finance throttles GitHub runner IPs sporadically. If we
+        # can't get prices we can't trade — exit 0 so GitHub doesn't email
+        # a false-alarm; the next redundant cron fire will retry once
+        # Yahoo's cooldown passes. If every fire hits this, the missing
+        # dashboard update tomorrow makes it visible on its own.
+        name = type(e).__name__
+        if "RateLimit" in name or "429" in str(e):
+            print(f"[daily] ✗ market snapshot rate-limited ({name}) — exiting cleanly, next cron fire will retry")
+            return 0
+        raise
     for s in snaps:
         print(f"  {s.ticker:6s} ${s.last_close:>8.2f}  RSI={s.rsi_14}  1d={s.pct_1d}%  5d={s.pct_5d}%")
 
-    DECISIONS_PATH.parent.mkdir(parents=True, exist_ok=True)
-    already = set() if dry_run else _ais_already_traded_today(today.isoformat())
-    if already:
-        print(f"[daily] already traded today (skipping): {sorted(already)}")
     rows: list[dict] = []
     total_cost = 0.0
     for provider in PROVIDERS:
