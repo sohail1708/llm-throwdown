@@ -9,7 +9,7 @@
       "portfolio_value": 106031.91,
       "cost_basis": 106144.7,
       "ret_pct": -0.11,
-      "days_first": 12,
+      "days_first": 13,
       "n_positions": 5,
       "cash": 0.0,
       "spent_usd": 0.23,
@@ -752,6 +752,11 @@
           "date": "2026-08-26",
           "ret_pct": 3.5,
           "portfolio_value": 103504.61
+        },
+        {
+          "date": "2026-08-27",
+          "ret_pct": 3.5,
+          "portfolio_value": 103504.61
         }
       ],
       "is_benchmark": false
@@ -1068,6 +1073,11 @@
         },
         {
           "date": "2026-08-26",
+          "ret_pct": 0.68,
+          "portfolio_value": 100681.19
+        },
+        {
+          "date": "2026-08-27",
           "ret_pct": 0.68,
           "portfolio_value": 100681.19
         }
@@ -1388,6 +1398,11 @@
           "date": "2026-08-26",
           "ret_pct": 6.03,
           "portfolio_value": 106031.9
+        },
+        {
+          "date": "2026-08-27",
+          "ret_pct": 6.03,
+          "portfolio_value": 106031.9
         }
       ],
       "is_benchmark": false
@@ -1704,6 +1719,11 @@
         },
         {
           "date": "2026-08-26",
+          "ret_pct": -3.48,
+          "portfolio_value": 96517.15
+        },
+        {
+          "date": "2026-08-27",
           "ret_pct": -3.48,
           "portfolio_value": 96517.15
         }
