@@ -1,70 +1,60 @@
 {
   "leaderboard": [
     {
-      "name": "gemini",
-      "label": "Gemini",
-      "accent": "blue",
-      "total_equity": 118139.59,
-      "total_ret_pct": 18.14,
-      "portfolio_value": 117477.96,
-      "cost_basis": 116652.3,
-      "ret_pct": 0.71,
-      "days_first": 26,
-      "n_positions": 5,
-      "cash": 661.63,
-      "spent_usd": 0.3,
+      "name": "chatgpt",
+      "label": "ChatGPT",
+      "accent": "emerald",
+      "total_equity": NaN,
+      "total_ret_pct": NaN,
+      "portfolio_value": NaN,
+      "cost_basis": 101499.97,
+      "ret_pct": NaN,
+      "days_first": 50,
+      "n_positions": 4,
+      "cash": 6284.96,
+      "spent_usd": 1.25,
       "budget_usd": 10.0,
-      "budget_pct": 3.0,
+      "budget_pct": 12.5,
       "positions": [
         {
+          "ticker": "AAPL",
+          "qty": 74.3361,
+          "avg_entry_price": 336.31,
+          "current_price": NaN,
+          "market_value": NaN,
+          "cost_basis": 24999.97,
+          "pl_usd": NaN,
+          "pl_pct": NaN
+        },
+        {
           "ticker": "GOOGL",
-          "qty": 84.5784,
-          "avg_entry_price": 365.27,
-          "current_price": 347.68,
-          "market_value": 29406.21,
-          "cost_basis": 30894.22,
-          "pl_usd": -1488.01,
-          "pl_pct": -4.82
-        },
-        {
-          "ticker": "AVGO",
-          "qty": 77.6787,
-          "avg_entry_price": 358.78,
-          "current_price": 375.81,
-          "market_value": 29192.45,
-          "cost_basis": 27869.58,
-          "pl_usd": 1322.87,
-          "pl_pct": 4.75
-        },
-        {
-          "ticker": "AMZN",
-          "qty": 109.1063,
-          "avg_entry_price": 247.47,
-          "current_price": 256.29,
-          "market_value": 27962.85,
-          "cost_basis": 26999.99,
-          "pl_usd": 962.86,
-          "pl_pct": 3.57
+          "qty": 73.0503,
+          "avg_entry_price": 342.23,
+          "current_price": NaN,
+          "market_value": NaN,
+          "cost_basis": 25000.0,
+          "pl_usd": NaN,
+          "pl_pct": NaN
         },
         {
           "ticker": "NVDA",
-          "qty": 103.9803,
-          "avg_entry_price": 240.43,
-          "current_price": 239.24,
-          "market_value": 24876.25,
-          "cost_basis": 24999.98,
-          "pl_usd": -123.73,
-          "pl_pct": -0.49
+          "qty": 103.9717,
+          "avg_entry_price": 240.45,
+          "current_price": NaN,
+          "market_value": NaN,
+          "cost_basis": 25000.0,
+          "pl_usd": NaN,
+          "pl_pct": NaN
         },
         {
-          "ticker": "TSLA",
-          "qty": 15.8669,
-          "avg_entry_price": 371.12,
-          "current_price": 380.68,
-          "market_value": 6040.2,
-          "cost_basis": 5888.52,
-          "pl_usd": 151.68,
-          "pl_pct": 2.58
+          "ticker": "ORCL",
+          "qty": 187.0025,
+          "avg_entry_price": 141.71,
+          "current_price": NaN,
+          "market_value": NaN,
+          "cost_basis": 26499.99,
+          "pl_usd": NaN,
+          "pl_pct": NaN
         }
       ],
       "is_leveraged": false,
@@ -74,11 +64,11 @@
       "name": "claude",
       "label": "Claude",
       "accent": "orange",
-      "total_equity": 108946.47,
-      "total_ret_pct": 8.95,
-      "portfolio_value": 108770.47,
+      "total_equity": NaN,
+      "total_ret_pct": NaN,
+      "portfolio_value": NaN,
       "cost_basis": 106522.25,
-      "ret_pct": 2.11,
+      "ret_pct": NaN,
       "days_first": 14,
       "n_positions": 5,
       "cash": 176.0,
@@ -87,114 +77,124 @@
       "budget_pct": 22.2,
       "positions": [
         {
-          "ticker": "GOOGL",
-          "qty": 79.1263,
-          "avg_entry_price": 351.24,
-          "current_price": 347.68,
-          "market_value": 27510.63,
-          "cost_basis": 27792.03,
-          "pl_usd": -281.4,
-          "pl_pct": -1.01
-        },
-        {
           "ticker": "AVGO",
           "qty": 72.5838,
           "avg_entry_price": 358.21,
-          "current_price": 375.81,
-          "market_value": 27277.71,
+          "current_price": NaN,
+          "market_value": NaN,
           "cost_basis": 25999.99,
-          "pl_usd": 1277.72,
-          "pl_pct": 4.91
+          "pl_usd": NaN,
+          "pl_pct": NaN
+        },
+        {
+          "ticker": "GOOGL",
+          "qty": 79.1263,
+          "avg_entry_price": 351.24,
+          "current_price": NaN,
+          "market_value": NaN,
+          "cost_basis": 27792.03,
+          "pl_usd": NaN,
+          "pl_pct": NaN
         },
         {
           "ticker": "META",
           "qty": 26.8391,
           "avg_entry_price": 745.18,
-          "current_price": 738.88,
-          "market_value": 19830.9,
+          "current_price": NaN,
+          "market_value": NaN,
           "cost_basis": 19999.96,
-          "pl_usd": -169.06,
-          "pl_pct": -0.85
+          "pl_usd": NaN,
+          "pl_pct": NaN
         },
         {
           "ticker": "MSFT",
           "qty": 33.9058,
           "avg_entry_price": 510.24,
-          "current_price": 529.3,
-          "market_value": 17946.34,
+          "current_price": NaN,
+          "market_value": NaN,
           "cost_basis": 17299.98,
-          "pl_usd": 646.36,
-          "pl_pct": 3.74
+          "pl_usd": NaN,
+          "pl_pct": NaN
         },
         {
           "ticker": "ORCL",
           "qty": 111.9354,
           "avg_entry_price": 137.85,
-          "current_price": 144.77,
-          "market_value": 16204.89,
+          "current_price": NaN,
+          "market_value": NaN,
           "cost_basis": 15430.29,
-          "pl_usd": 774.6,
-          "pl_pct": 5.02
+          "pl_usd": NaN,
+          "pl_pct": NaN
         }
       ],
       "is_leveraged": false,
       "rank": 2
     },
     {
-      "name": "chatgpt",
-      "label": "ChatGPT",
-      "accent": "emerald",
-      "total_equity": 108430.38,
-      "total_ret_pct": 8.43,
-      "portfolio_value": 102145.42,
-      "cost_basis": 101499.97,
-      "ret_pct": 0.64,
-      "days_first": 50,
-      "n_positions": 4,
-      "cash": 6284.96,
-      "spent_usd": 1.25,
+      "name": "gemini",
+      "label": "Gemini",
+      "accent": "blue",
+      "total_equity": NaN,
+      "total_ret_pct": NaN,
+      "portfolio_value": NaN,
+      "cost_basis": 116652.3,
+      "ret_pct": NaN,
+      "days_first": 26,
+      "n_positions": 5,
+      "cash": 661.63,
+      "spent_usd": 0.3,
       "budget_usd": 10.0,
-      "budget_pct": 12.5,
+      "budget_pct": 3.0,
       "positions": [
         {
-          "ticker": "ORCL",
-          "qty": 187.0025,
-          "avg_entry_price": 141.71,
-          "current_price": 144.77,
-          "market_value": 27072.36,
-          "cost_basis": 26499.99,
-          "pl_usd": 572.37,
-          "pl_pct": 2.16
+          "ticker": "AMZN",
+          "qty": 109.1063,
+          "avg_entry_price": 247.47,
+          "current_price": NaN,
+          "market_value": NaN,
+          "cost_basis": 26999.99,
+          "pl_usd": NaN,
+          "pl_pct": NaN
+        },
+        {
+          "ticker": "AVGO",
+          "qty": 77.6787,
+          "avg_entry_price": 358.78,
+          "current_price": NaN,
+          "market_value": NaN,
+          "cost_basis": 27869.58,
+          "pl_usd": NaN,
+          "pl_pct": NaN
         },
         {
           "ticker": "GOOGL",
-          "qty": 73.0503,
-          "avg_entry_price": 342.23,
-          "current_price": 347.68,
-          "market_value": 25398.11,
-          "cost_basis": 25000.0,
-          "pl_usd": 398.11,
-          "pl_pct": 1.59
+          "qty": 84.5784,
+          "avg_entry_price": 365.27,
+          "current_price": NaN,
+          "market_value": NaN,
+          "cost_basis": 30894.22,
+          "pl_usd": NaN,
+          "pl_pct": NaN
         },
         {
           "ticker": "NVDA",
-          "qty": 103.9717,
-          "avg_entry_price": 240.45,
-          "current_price": 239.24,
-          "market_value": 24874.18,
-          "cost_basis": 25000.0,
-          "pl_usd": -125.82,
-          "pl_pct": -0.5
+          "qty": 103.9803,
+          "avg_entry_price": 240.43,
+          "current_price": NaN,
+          "market_value": NaN,
+          "cost_basis": 24999.98,
+          "pl_usd": NaN,
+          "pl_pct": NaN
         },
         {
-          "ticker": "AAPL",
-          "qty": 74.3361,
-          "avg_entry_price": 336.31,
-          "current_price": 333.63,
-          "market_value": 24800.77,
-          "cost_basis": 24999.97,
-          "pl_usd": -199.2,
-          "pl_pct": -0.8
+          "ticker": "TSLA",
+          "qty": 15.8669,
+          "avg_entry_price": 371.12,
+          "current_price": NaN,
+          "market_value": NaN,
+          "cost_basis": 5888.52,
+          "pl_usd": NaN,
+          "pl_pct": NaN
         }
       ],
       "is_leveraged": false,
@@ -909,6 +909,11 @@
           "date": "2026-10-06",
           "ret_pct": 8.43,
           "portfolio_value": 108430.39
+        },
+        {
+          "date": "2026-10-07",
+          "ret_pct": NaN,
+          "portfolio_value": NaN
         }
       ],
       "is_benchmark": false
@@ -1372,6 +1377,11 @@
           "date": "2026-10-06",
           "ret_pct": 8.95,
           "portfolio_value": 108946.48
+        },
+        {
+          "date": "2026-10-07",
+          "ret_pct": NaN,
+          "portfolio_value": NaN
         }
       ],
       "is_benchmark": false
@@ -1835,6 +1845,11 @@
           "date": "2026-10-06",
           "ret_pct": 18.14,
           "portfolio_value": 118139.6
+        },
+        {
+          "date": "2026-10-07",
+          "ret_pct": NaN,
+          "portfolio_value": NaN
         }
       ],
       "is_benchmark": false
@@ -2298,6 +2313,11 @@
           "date": "2026-10-06",
           "ret_pct": 3.07,
           "portfolio_value": 103069.03
+        },
+        {
+          "date": "2026-10-07",
+          "ret_pct": NaN,
+          "portfolio_value": NaN
         }
       ],
       "is_benchmark": true
