@@ -1,134 +1,14 @@
 {
   "leaderboard": [
     {
-      "name": "chatgpt",
-      "label": "ChatGPT",
-      "accent": "emerald",
-      "total_equity": NaN,
-      "total_ret_pct": NaN,
-      "portfolio_value": NaN,
-      "cost_basis": 54999.96,
-      "ret_pct": NaN,
-      "days_first": 56,
-      "n_positions": 3,
-      "cash": 54099.26,
-      "spent_usd": 1.4,
-      "budget_usd": 10.0,
-      "budget_pct": 14.0,
-      "positions": [
-        {
-          "ticker": "META",
-          "qty": 38.7729,
-          "avg_entry_price": 644.78,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 24999.99,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        },
-        {
-          "ticker": "MSFT",
-          "qty": 9.408,
-          "avg_entry_price": 531.46,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 4999.98,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        },
-        {
-          "ticker": "NVDA",
-          "qty": 103.9717,
-          "avg_entry_price": 240.45,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 25000.0,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        }
-      ],
-      "is_leveraged": false,
-      "rank": 1
-    },
-    {
-      "name": "claude",
-      "label": "Claude",
-      "accent": "orange",
-      "total_equity": NaN,
-      "total_ret_pct": NaN,
-      "portfolio_value": NaN,
-      "cost_basis": 105091.95,
-      "ret_pct": NaN,
-      "days_first": 19,
-      "n_positions": 5,
-      "cash": 694.83,
-      "spent_usd": 2.55,
-      "budget_usd": 10.0,
-      "budget_pct": 25.5,
-      "positions": [
-        {
-          "ticker": "AVGO",
-          "qty": 72.5838,
-          "avg_entry_price": 358.21,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 25999.99,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        },
-        {
-          "ticker": "GOOGL",
-          "qty": 79.1263,
-          "avg_entry_price": 351.24,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 27792.03,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        },
-        {
-          "ticker": "META",
-          "qty": 26.8391,
-          "avg_entry_price": 745.18,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 19999.96,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        },
-        {
-          "ticker": "MSFT",
-          "qty": 33.9058,
-          "avg_entry_price": 510.24,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 17299.98,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        },
-        {
-          "ticker": "NVDA",
-          "qty": 64.126,
-          "avg_entry_price": 218.32,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 13999.99,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        }
-      ],
-      "is_leveraged": false,
-      "rank": 2
-    },
-    {
       "name": "gemini",
       "label": "Gemini",
       "accent": "blue",
-      "total_equity": NaN,
-      "total_ret_pct": NaN,
-      "portfolio_value": NaN,
+      "total_equity": 110459.44,
+      "total_ret_pct": 10.46,
+      "portfolio_value": 109532.12,
       "cost_basis": 116295.14,
-      "ret_pct": NaN,
+      "ret_pct": -5.82,
       "days_first": 26,
       "n_positions": 4,
       "cash": 927.32,
@@ -137,44 +17,174 @@
       "budget_pct": 3.4,
       "positions": [
         {
+          "ticker": "NVDA",
+          "qty": 129.4458,
+          "avg_entry_price": 235.86,
+          "current_price": 217.94,
+          "market_value": 28211.41,
+          "cost_basis": 30531.35,
+          "pl_usd": -2319.94,
+          "pl_pct": -7.6
+        },
+        {
           "ticker": "AMZN",
           "qty": 109.1063,
           "avg_entry_price": 247.47,
-          "current_price": NaN,
-          "market_value": NaN,
+          "current_price": 253.1,
+          "market_value": 27614.8,
           "cost_basis": 26999.99,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        },
-        {
-          "ticker": "AVGO",
-          "qty": 77.6787,
-          "avg_entry_price": 358.78,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 27869.58,
-          "pl_usd": NaN,
-          "pl_pct": NaN
+          "pl_usd": 614.81,
+          "pl_pct": 2.28
         },
         {
           "ticker": "GOOGL",
           "qty": 84.5784,
           "avg_entry_price": 365.27,
-          "current_price": NaN,
-          "market_value": NaN,
+          "current_price": 320.58,
+          "market_value": 27114.14,
           "cost_basis": 30894.22,
-          "pl_usd": NaN,
-          "pl_pct": NaN
+          "pl_usd": -3780.08,
+          "pl_pct": -12.24
+        },
+        {
+          "ticker": "AVGO",
+          "qty": 77.6787,
+          "avg_entry_price": 358.78,
+          "current_price": 342.33,
+          "market_value": 26591.77,
+          "cost_basis": 27869.58,
+          "pl_usd": -1277.81,
+          "pl_pct": -4.58
+        }
+      ],
+      "is_leveraged": false,
+      "rank": 1
+    },
+    {
+      "name": "chatgpt",
+      "label": "ChatGPT",
+      "accent": "emerald",
+      "total_equity": 105703.97,
+      "total_ret_pct": 5.7,
+      "portfolio_value": 76604.71,
+      "cost_basis": 79999.96,
+      "ret_pct": -4.24,
+      "days_first": 57,
+      "n_positions": 4,
+      "cash": 29099.26,
+      "spent_usd": 1.41,
+      "budget_usd": 10.0,
+      "budget_pct": 14.1,
+      "positions": [
+        {
+          "ticker": "GOOGL",
+          "qty": 77.6711,
+          "avg_entry_price": 321.87,
+          "current_price": 320.58,
+          "market_value": 24899.79,
+          "cost_basis": 25000.0,
+          "pl_usd": -100.21,
+          "pl_pct": -0.4
+        },
+        {
+          "ticker": "META",
+          "qty": 38.7729,
+          "avg_entry_price": 644.78,
+          "current_price": 620.19,
+          "market_value": 24046.56,
+          "cost_basis": 24999.99,
+          "pl_usd": -953.43,
+          "pl_pct": -3.81
         },
         {
           "ticker": "NVDA",
-          "qty": 129.4458,
-          "avg_entry_price": 235.86,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 30531.35,
-          "pl_usd": NaN,
-          "pl_pct": NaN
+          "qty": 103.9717,
+          "avg_entry_price": 240.45,
+          "current_price": 217.94,
+          "market_value": 22659.59,
+          "cost_basis": 25000.0,
+          "pl_usd": -2340.41,
+          "pl_pct": -9.36
+        },
+        {
+          "ticker": "MSFT",
+          "qty": 9.408,
+          "avg_entry_price": 531.46,
+          "current_price": 531.33,
+          "market_value": 4998.77,
+          "cost_basis": 4999.98,
+          "pl_usd": -1.21,
+          "pl_pct": -0.02
+        }
+      ],
+      "is_leveraged": false,
+      "rank": 2
+    },
+    {
+      "name": "claude",
+      "label": "Claude",
+      "accent": "orange",
+      "total_equity": 99544.9,
+      "total_ret_pct": -0.46,
+      "portfolio_value": 98850.07,
+      "cost_basis": 105091.95,
+      "ret_pct": -5.94,
+      "days_first": 19,
+      "n_positions": 5,
+      "cash": 694.83,
+      "spent_usd": 2.57,
+      "budget_usd": 10.0,
+      "budget_pct": 25.7,
+      "positions": [
+        {
+          "ticker": "GOOGL",
+          "qty": 79.1263,
+          "avg_entry_price": 351.24,
+          "current_price": 320.58,
+          "market_value": 25366.31,
+          "cost_basis": 27792.03,
+          "pl_usd": -2425.72,
+          "pl_pct": -8.73
+        },
+        {
+          "ticker": "AVGO",
+          "qty": 72.5838,
+          "avg_entry_price": 358.21,
+          "current_price": 342.33,
+          "market_value": 24847.6,
+          "cost_basis": 25999.99,
+          "pl_usd": -1152.39,
+          "pl_pct": -4.43
+        },
+        {
+          "ticker": "MSFT",
+          "qty": 33.9058,
+          "avg_entry_price": 510.24,
+          "current_price": 531.33,
+          "market_value": 18015.17,
+          "cost_basis": 17299.98,
+          "pl_usd": 715.19,
+          "pl_pct": 4.13
+        },
+        {
+          "ticker": "META",
+          "qty": 26.8391,
+          "avg_entry_price": 745.18,
+          "current_price": 620.19,
+          "market_value": 16645.37,
+          "cost_basis": 19999.96,
+          "pl_usd": -3354.59,
+          "pl_pct": -16.77
+        },
+        {
+          "ticker": "NVDA",
+          "qty": 64.126,
+          "avg_entry_price": 218.32,
+          "current_price": 217.94,
+          "market_value": 13975.62,
+          "cost_basis": 13999.99,
+          "pl_usd": -24.37,
+          "pl_pct": -0.17
         }
       ],
       "is_leveraged": false,
@@ -183,40 +193,40 @@
   ],
   "today_decisions": {
     "chatgpt": {
-      "date": "2026-10-26",
+      "date": "2026-10-27",
       "ai": "chatgpt",
       "label": "ChatGPT",
       "action": "BUY",
-      "ticker": "MSFT",
-      "amount": 5000.0,
-      "reason": "Buy small MSFT for defensive AI/cloud exposure; NVDA already near 25% cap, so add limited, lower-volatility exposure.",
-      "confidence": 3,
-      "nav_before": 106073.44,
-      "cash_before": 59099.25,
+      "ticker": "GOOGL",
+      "amount": 25000.0,
+      "reason": "Buying cheap AI/search exposure while oversold; strong margins and FCF make GOOGL a value dip to own.",
+      "confidence": 4,
+      "nav_before": 105839.87,
+      "cash_before": 54099.25,
       "research": {
         "candidates": [
           {
             "ticker": "NVDA",
-            "bull": "Oversold technicals (RSI low, recent support ~210) and a Street mean target ~329 vs current ~216 imply strong mean-reversion upside for AI/GPU exposure.",
-            "bear": "Price is still below its September/early\u2011October highs and has formed lower highs; semiconductor cyclicality or disappointing demand could push it lower before a rebound.",
+            "bull": "NVDA is trading on a short-term pullback (RSI ~31) with very strong margins, large FCF and a low forward P/E (~13.7), making it an attractive buy-the-dip for AI secular exposure.",
+            "bear": "AI-cycle risk, inventory corrections or macro-driven capex pauses could prolong the decline and keep multiples under pressure despite fundamentals.",
+            "lean": "BUY"
+          },
+          {
+            "ticker": "GOOGL",
+            "bull": "GOOGL appears oversold (RSI ~26) with strong profit margins, solid free cash flow and cheaper valuation relative to growth, offering lower-volatility exposure to search/ads + AI upside.",
+            "bear": "Slower ad recovery or weaker ad monetization on new AI features could keep revenue growth and targets muted, delaying re-rating.",
             "lean": "BUY"
           },
           {
             "ticker": "META",
-            "bull": "Pullback to the low 600s after a parabolic run offers cheaper exposure to core ad monetization and AI investments that drove earlier gains.",
-            "bear": "A steep 5\u2011day drop (~\u201110%) signals near\u2011term seller dominance \u2014 weak ad trends or downbeat guidance could extend the decline.",
-            "lean": "HOLD"
-          },
-          {
-            "ticker": "MSFT",
-            "bull": "Relative strength and a tight base around $520\u2013540 provide lower\u2011volatility exposure to AI/cloud secular growth if risk appetite slips.",
-            "bear": "Rich expectations for AI/cloud are priced in; macro/rotation risk or a guidance miss would limit upside in the near term.",
+            "bull": "META is deeply oversold (RSI ~24) after a sharp pullback and still has strong long-term ad/AI fundamentals that support a recovery over time.",
+            "bear": "Recent heavy selling and evident near-term ad weakness raise the risk that the downtrend continues, so averaging down could compound losses.",
             "lean": "HOLD"
           }
         ],
-        "summary": "Market is choppy with large pullbacks in growth names; NVDA looks like the highest\u2011reward setup today (oversold vs high analyst targets) while META is a wash for now and MSFT is a defensive hold.",
+        "summary": "The market is handing back recent winners; selective buys look attractive \u2014 GOOGL for value/AI exposure and NVDA for a dip play while keeping META as a wait-and-see.",
         "preferred_action": "BUY",
-        "preferred_ticker": "NVDA",
+        "preferred_ticker": "GOOGL",
         "tools_used": [
           {
             "name": "get_history",
@@ -226,79 +236,78 @@
             }
           },
           {
-            "name": "get_history",
-            "args": {
-              "ticker": "META",
-              "days": 30
-            }
-          },
-          {
-            "name": "get_history",
-            "args": {
-              "ticker": "MSFT",
-              "days": 30
-            }
-          },
-          {
             "name": "get_news",
             "args": {
-              "ticker": "META",
+              "ticker": "GOOGL",
               "n": 5
             }
           },
           {
-            "name": "get_analyst_ratings",
+            "name": "get_financials",
             "args": {
               "ticker": "NVDA"
+            }
+          },
+          {
+            "name": "get_financials",
+            "args": {
+              "ticker": "GOOGL"
+            }
+          },
+          {
+            "name": "get_history",
+            "args": {
+              "ticker": "META",
+              "days": 30
             }
           }
         ]
       },
       "tokens": {
-        "input": 7404,
-        "output": 3114
+        "input": 17027,
+        "output": 4291
       },
-      "cost_usd": 0.0081,
+      "cost_usd": 0.0128,
       "order": {
-        "order_id": "c255454d-c9c4-4bd4-8fde-53853eaebb61",
+        "order_id": "9cd8d46e-1594-4539-8a77-60b3636f6266",
         "status": "pending_new"
       },
       "dry_run": false,
-      "submitted_at": "2026-10-26T19:28:29.673199+00:00"
+      "submitted_at": "2026-10-27T18:48:44.046606+00:00"
     },
     "claude": {
-      "date": "2026-10-26",
+      "date": "2026-10-27",
       "ai": "claude",
       "label": "Claude",
       "action": "HOLD",
       "ticker": null,
       "amount": null,
-      "reason": "Portfolio already loaded with oversold mean-reversion plays (GOOGL, AVGO, META at RSI <24). Cash-constrained; let thesis play out.",
+      "reason": "Mean-reversion thesis intact on oversold names; TSLA overbought, META still capitulating\u2014let it play out.",
       "confidence": 4,
-      "nav_before": 98478.99,
+      "nav_before": 99802.71,
       "cash_before": 694.83,
       "research": {
         "candidates": [
           {
-            "ticker": "GOOGL",
-            "bull": "Extreme oversold at RSI 23.3 with -7.96% 5d drawdown offers asymmetric mean-reversion bounce; analyst consensus bullish (1.38 mean) with 35.5% upside to $429.12 target.",
-            "bear": "Continued tech selloff could push past $316.80 support; macro headwinds may delay reversal.",
-            "lean": "BUY"
-          },
-          {
             "ticker": "TSLA",
-            "bull": "Momentum-positive at +6.4% 5d, +5.21% 1d with RSI 55.1 suggesting further upside; analyst mean target $409.27 (+4.5% upside) implies institutional accumulation.",
-            "bear": "Relative strength diverges from oversold tech cohort; near-term pullback if broader rally stalls.",
-            "lean": "BUY"
+            "bull": "Strong momentum breakout above 397 resistance with +9% 5d run; analyst targets suggest modest upside to 410.",
+            "bear": "RSI 62.5 signals overbought extremes; momentum fading into close; high analyst disagreement (128\u2013600 range) signals risk.",
+            "lean": "HOLD"
           },
           {
-            "ticker": "MSFT",
-            "bull": "Modest positive momentum (+1.54% 1d), neutral RSI 51.9, and stable position (+0.46% gain) provides ballast during volatile rotation.",
-            "bear": "Lacks compelling catalyst or extreme technical signal; better to deploy capital into deeper oversold names.",
+            "ticker": "META",
+            "bull": "Extreme oversold (RSI 24.5) after -10% 5d drop; textbook capitulation setter for mean-reversion bounce.",
+            "bear": "Continued downtrend today (-1.2%); no reversal signals yet; risk of further flush before stabilization.",
+            "lean": "HOLD"
+          },
+          {
+            "ticker": "GOOGL",
+            "bull": "RSI 27.2 (oversold); +1.86% today hints at stabilization; likely bounce candidate as tech corrects.",
+            "bear": "Still down -5.17% 5d; major chart damage requires more time to prove reversal; liquidity uncertain.",
             "lean": "HOLD"
           }
         ],
-        "summary": "Portfolio is optimally positioned for oversold mean-reversion bounce (GOOGL, META, AVGO all at extreme RSI <24); cash-constrained, so HOLD and let conviction thesis play out rather than chase TSLA momentum.",
+        "summary": "Portfolio cash-locked with mean-reversion thesis intact on oversold NVDA/GOOGL/META; TSLA overbought, META still capitulating\u2014hold and let thesis play out.",
         "preferred_action": "HOLD",
         "preferred_ticker": null,
         "tools_used": [
@@ -307,6 +316,20 @@
             "args": {
               "ai": "claude",
               "n": 5
+            }
+          },
+          {
+            "name": "get_history",
+            "args": {
+              "ticker": "TSLA",
+              "days": 14
+            }
+          },
+          {
+            "name": "get_history",
+            "args": {
+              "ticker": "META",
+              "days": 14
             }
           },
           {
@@ -321,73 +344,53 @@
             "args": {
               "ticker": "TSLA"
             }
-          },
-          {
-            "name": "get_analyst_ratings",
-            "args": {
-              "ticker": "GOOGL"
-            }
-          },
-          {
-            "name": "get_history",
-            "args": {
-              "ticker": "MSFT",
-              "days": 14
-            }
-          },
-          {
-            "name": "get_history",
-            "args": {
-              "ticker": "AVGO",
-              "days": 14
-            }
           }
         ]
       },
       "tokens": {
-        "input": 17354,
-        "output": 2122
+        "input": 13277,
+        "output": 1782
       },
-      "cost_usd": 0.028,
+      "cost_usd": 0.0222,
       "order": null,
       "dry_run": false,
-      "submitted_at": "2026-10-26T20:03:02.996718+00:00"
+      "submitted_at": "2026-10-27T19:10:01.944306+00:00"
     },
     "gemini": {
-      "date": "2026-10-26",
+      "date": "2026-10-27",
       "ai": "gemini",
       "label": "Gemini",
       "action": "HOLD",
       "ticker": null,
       "amount": null,
-      "reason": "Can't add to GOOGL due to max position limits, and cash isn't enough for any new buys. Holding steady today.",
-      "confidence": 4,
-      "nav_before": 108572.12,
+      "reason": "Cash ($927.32) is insufficient for minimum $5,000 buy notional, so no action taken today despite compelling buy candidates like META.",
+      "confidence": 5,
+      "nav_before": 110599.86,
       "cash_before": 927.32,
       "research": {
         "candidates": [
           {
             "ticker": "META",
-            "bull": "Strong financials with good growth and margins, combined with a very low RSI and significant price drop without any apparent negative news, suggests the stock is oversold and due for a rebound.",
-            "bear": "The absence of specific negative news for such a steep decline might indicate an underlying, uncommunicated issue or a broader market correction affecting the sector.",
+            "bull": "Despite a significant recent drop and being deeply oversold (RSI 24.4), META exhibits strong fundamentals with attractive valuation metrics and overwhelming analyst buy ratings, suggesting an irrational sell-off and strong rebound potential.",
+            "bear": "META has experienced a sharp 10.33% decline over five days with no explicit negative news found, which could indicate unannounced issues or a deeper loss of investor confidence that might persist.",
             "lean": "BUY"
           },
           {
             "ticker": "GOOGL",
-            "bull": "Extremely low RSI and a notable 5-day decline, coupled with a strong 'buy' recommendation and significant upside from Wall Street analysts, suggests the stock is undervalued and poised for recovery.",
-            "bear": "Similar to META, the lack of specific negative news for a significant price drop could hint at underlying market concerns or a sector-wide weakness.",
+            "bull": "Deeply oversold (RSI 26.2) and down over 5% in five days without specific negative news, GOOGL's fundamental strength suggests this pullback might be an overreaction, presenting a buying opportunity.",
+            "bear": "GOOGL is significantly oversold with no clear catalyst for its recent weakness, potentially signaling a sustained downtrend or underlying concerns not yet reflected in news.",
             "lean": "BUY"
           },
           {
             "ticker": "TSLA",
-            "bull": "Strong positive momentum over the past five days, including a notable daily gain, indicates strong buying interest and potential for continued upward movement.",
-            "bear": "Chasing momentum without further fundamental or catalyst information carries high risk, and a sharp rise could trigger profit-taking.",
+            "bull": "TSLA has shown strong momentum, gaining almost 9% over five days, indicating robust buying interest.",
+            "bear": "With a high RSI of 62.1 and no specific news supporting its recent strong rally, TSLA appears overextended and could be due for a pullback.",
             "lean": "HOLD"
           }
         ],
-        "summary": "Both META and GOOGL are deeply oversold with no apparent negative news, and GOOGL benefits from strong analyst consensus for significant upside.",
+        "summary": "META is significantly oversold with strong fundamentals and bullish analyst sentiment, making it the most attractive buy candidate despite recent price weakness, while GOOGL also presents a buying opportunity after a similar unexplained dip.",
         "preferred_action": "BUY",
-        "preferred_ticker": "GOOGL",
+        "preferred_ticker": "META",
         "tools_used": [
           {
             "name": "get_news",
@@ -403,35 +406,35 @@
             }
           },
           {
+            "name": "get_analyst_ratings",
+            "args": {
+              "ticker": "META"
+            }
+          },
+          {
             "name": "get_news",
             "args": {
               "n": 3,
-              "ticker": "GOOGL"
-            }
-          },
-          {
-            "name": "get_analyst_ratings",
-            "args": {
-              "ticker": "GOOGL"
-            }
-          },
-          {
-            "name": "get_history",
-            "args": {
-              "days": 5,
               "ticker": "TSLA"
+            }
+          },
+          {
+            "name": "get_news",
+            "args": {
+              "ticker": "GOOGL",
+              "n": 3
             }
           }
         ]
       },
       "tokens": {
-        "input": 3926,
-        "output": 514
+        "input": 3675,
+        "output": 563
       },
       "cost_usd": 0.0025,
       "order": null,
       "dry_run": false,
-      "submitted_at": "2026-10-26T19:29:08.245026+00:00"
+      "submitted_at": "2026-10-27T18:49:27.925695+00:00"
     }
   },
   "chart_series": [
@@ -967,8 +970,8 @@
         },
         {
           "date": "2026-10-27",
-          "ret_pct": NaN,
-          "portfolio_value": NaN
+          "ret_pct": 5.7,
+          "portfolio_value": 105703.97
         }
       ],
       "is_benchmark": false
@@ -1505,8 +1508,8 @@
         },
         {
           "date": "2026-10-27",
-          "ret_pct": NaN,
-          "portfolio_value": NaN
+          "ret_pct": -0.46,
+          "portfolio_value": 99544.9
         }
       ],
       "is_benchmark": false
@@ -2043,8 +2046,8 @@
         },
         {
           "date": "2026-10-27",
-          "ret_pct": NaN,
-          "portfolio_value": NaN
+          "ret_pct": 10.46,
+          "portfolio_value": 110459.44
         }
       ],
       "is_benchmark": false
@@ -2581,8 +2584,8 @@
         },
         {
           "date": "2026-10-27",
-          "ret_pct": NaN,
-          "portfolio_value": NaN
+          "ret_pct": -2.14,
+          "portfolio_value": 97857.65
         }
       ],
       "is_benchmark": true
@@ -2590,31 +2593,31 @@
   ],
   "tool_usage": {
     "chatgpt": {
-      "get_news": 124,
-      "get_history": 265,
-      "get_financials": 108,
+      "get_news": 125,
+      "get_history": 267,
+      "get_financials": 110,
       "get_analyst_ratings": 24,
       "read_own_trades": 2
     },
     "claude": {
-      "get_news": 157,
-      "read_own_trades": 102,
-      "get_history": 154,
+      "get_news": 158,
+      "read_own_trades": 103,
+      "get_history": 156,
       "get_financials": 30,
-      "get_analyst_ratings": 114
+      "get_analyst_ratings": 115
     },
     "gemini": {
-      "get_news": 222,
-      "get_financials": 77,
+      "get_news": 225,
+      "get_financials": 78,
       "get_history": 122,
-      "get_analyst_ratings": 101,
+      "get_analyst_ratings": 102,
       "read_own_trades": 5
     }
   },
   "total_cost_per_ai": {
-    "chatgpt": 1.3974000000000002,
-    "claude": 2.5521,
-    "gemini": 0.33570000000000005
+    "chatgpt": 1.4102000000000001,
+    "claude": 2.5743,
+    "gemini": 0.33820000000000006
   },
   "orders_per_ai": [
     {
@@ -2625,6 +2628,19 @@
         {
           "ai": "chatgpt",
           "label": "ChatGPT",
+          "order_id": "9cd8d46e-1594-4539-8a77-60b3636f6266",
+          "side": "buy",
+          "symbol": "GOOGL",
+          "filled_qty": 77.6711,
+          "filled_avg_price": 321.87,
+          "notional": 24999.99,
+          "status": "filled",
+          "submitted_at": "2026-10-27 18:48:44.050286+00:00",
+          "filled_at": "2026-10-27 18:48:45.077539+00:00"
+        },
+        {
+          "ai": "chatgpt",
+          "label": "ChatGPT",
           "order_id": "c255454d-c9c4-4bd4-8fde-53853eaebb61",
           "side": "buy",
           "symbol": "MSFT",
@@ -2632,7 +2648,7 @@
           "filled_avg_price": 531.46,
           "notional": 4999.99,
           "status": "filled",
-          "submitted_at": "2026-10-26 19:28:29.676951+00:00",
+          "submitted_at": "2026-10-26 19:28:29.676952+00:00",
           "filled_at": "2026-10-26 19:28:30.082640+00:00"
         },
         {
