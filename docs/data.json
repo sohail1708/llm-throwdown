@@ -1,154 +1,14 @@
 {
   "leaderboard": [
     {
-      "name": "chatgpt",
-      "label": "ChatGPT",
-      "accent": "emerald",
-      "total_equity": NaN,
-      "total_ret_pct": NaN,
-      "portfolio_value": NaN,
-      "cost_basis": 99499.92,
-      "ret_pct": NaN,
-      "days_first": 60,
-      "n_positions": 5,
-      "cash": 6593.68,
-      "spent_usd": 1.45,
-      "budget_usd": 10.0,
-      "budget_pct": 14.5,
-      "positions": [
-        {
-          "ticker": "GOOGL",
-          "qty": 88.2566,
-          "avg_entry_price": 277.6,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 24499.98,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        },
-        {
-          "ticker": "META",
-          "qty": 38.7729,
-          "avg_entry_price": 644.78,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 24999.99,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        },
-        {
-          "ticker": "MSFT",
-          "qty": 9.408,
-          "avg_entry_price": 531.46,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 4999.98,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        },
-        {
-          "ticker": "NVDA",
-          "qty": 103.9717,
-          "avg_entry_price": 240.45,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 25000.0,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        },
-        {
-          "ticker": "ORCL",
-          "qty": 135.4095,
-          "avg_entry_price": 147.7,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 19999.98,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        }
-      ],
-      "is_leveraged": false,
-      "rank": 1
-    },
-    {
-      "name": "claude",
-      "label": "Claude",
-      "accent": "orange",
-      "total_equity": NaN,
-      "total_ret_pct": NaN,
-      "portfolio_value": NaN,
-      "cost_basis": 105091.95,
-      "ret_pct": NaN,
-      "days_first": 19,
-      "n_positions": 5,
-      "cash": 694.83,
-      "spent_usd": 2.67,
-      "budget_usd": 10.0,
-      "budget_pct": 26.7,
-      "positions": [
-        {
-          "ticker": "AVGO",
-          "qty": 72.5838,
-          "avg_entry_price": 358.21,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 25999.99,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        },
-        {
-          "ticker": "GOOGL",
-          "qty": 79.1263,
-          "avg_entry_price": 351.24,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 27792.03,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        },
-        {
-          "ticker": "META",
-          "qty": 26.8391,
-          "avg_entry_price": 745.18,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 19999.96,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        },
-        {
-          "ticker": "MSFT",
-          "qty": 33.9058,
-          "avg_entry_price": 510.24,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 17299.98,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        },
-        {
-          "ticker": "NVDA",
-          "qty": 64.126,
-          "avg_entry_price": 218.32,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 13999.99,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        }
-      ],
-      "is_leveraged": false,
-      "rank": 2
-    },
-    {
       "name": "gemini",
       "label": "Gemini",
       "accent": "blue",
-      "total_equity": NaN,
-      "total_ret_pct": NaN,
-      "portfolio_value": NaN,
+      "total_equity": 102509.85,
+      "total_ret_pct": 2.51,
+      "portfolio_value": 101582.53,
       "cost_basis": 116295.14,
-      "ret_pct": NaN,
+      "ret_pct": -12.65,
       "days_first": 26,
       "n_positions": 4,
       "cash": 927.32,
@@ -160,41 +20,181 @@
           "ticker": "AMZN",
           "qty": 109.1063,
           "avg_entry_price": 247.47,
-          "current_price": NaN,
-          "market_value": NaN,
+          "current_price": 245.63,
+          "market_value": 26799.78,
           "cost_basis": 26999.99,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        },
-        {
-          "ticker": "AVGO",
-          "qty": 77.6787,
-          "avg_entry_price": 358.78,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 27869.58,
-          "pl_usd": NaN,
-          "pl_pct": NaN
-        },
-        {
-          "ticker": "GOOGL",
-          "qty": 84.5784,
-          "avg_entry_price": 365.27,
-          "current_price": NaN,
-          "market_value": NaN,
-          "cost_basis": 30894.22,
-          "pl_usd": NaN,
-          "pl_pct": NaN
+          "pl_usd": -200.21,
+          "pl_pct": -0.74
         },
         {
           "ticker": "NVDA",
           "qty": 129.4458,
           "avg_entry_price": 235.86,
-          "current_price": NaN,
-          "market_value": NaN,
+          "current_price": 202.06,
+          "market_value": 26155.81,
           "cost_basis": 30531.35,
-          "pl_usd": NaN,
-          "pl_pct": NaN
+          "pl_usd": -4375.54,
+          "pl_pct": -14.33
+        },
+        {
+          "ticker": "AVGO",
+          "qty": 77.6787,
+          "avg_entry_price": 358.78,
+          "current_price": 322.23,
+          "market_value": 25030.42,
+          "cost_basis": 27869.58,
+          "pl_usd": -2839.16,
+          "pl_pct": -10.19
+        },
+        {
+          "ticker": "GOOGL",
+          "qty": 84.5784,
+          "avg_entry_price": 365.27,
+          "current_price": 278.99,
+          "market_value": 23596.52,
+          "cost_basis": 30894.22,
+          "pl_usd": -7297.7,
+          "pl_pct": -23.62
+        }
+      ],
+      "is_leveraged": false,
+      "rank": 1
+    },
+    {
+      "name": "chatgpt",
+      "label": "ChatGPT",
+      "accent": "emerald",
+      "total_equity": 96664.13,
+      "total_ret_pct": -3.34,
+      "portfolio_value": 90070.45,
+      "cost_basis": 99499.92,
+      "ret_pct": -9.48,
+      "days_first": 61,
+      "n_positions": 5,
+      "cash": 6593.68,
+      "spent_usd": 1.45,
+      "budget_usd": 10.0,
+      "budget_pct": 14.5,
+      "positions": [
+        {
+          "ticker": "GOOGL",
+          "qty": 88.2566,
+          "avg_entry_price": 277.6,
+          "current_price": 278.99,
+          "market_value": 24622.72,
+          "cost_basis": 24499.98,
+          "pl_usd": 122.74,
+          "pl_pct": 0.5
+        },
+        {
+          "ticker": "META",
+          "qty": 38.7729,
+          "avg_entry_price": 644.78,
+          "current_price": 606.73,
+          "market_value": 23524.68,
+          "cost_basis": 24999.99,
+          "pl_usd": -1475.31,
+          "pl_pct": -5.9
+        },
+        {
+          "ticker": "NVDA",
+          "qty": 103.9717,
+          "avg_entry_price": 240.45,
+          "current_price": 202.06,
+          "market_value": 21008.52,
+          "cost_basis": 25000.0,
+          "pl_usd": -3991.48,
+          "pl_pct": -15.97
+        },
+        {
+          "ticker": "ORCL",
+          "qty": 135.4095,
+          "avg_entry_price": 147.7,
+          "current_price": 119.22,
+          "market_value": 16143.53,
+          "cost_basis": 19999.98,
+          "pl_usd": -3856.45,
+          "pl_pct": -19.28
+        },
+        {
+          "ticker": "MSFT",
+          "qty": 9.408,
+          "avg_entry_price": 531.46,
+          "current_price": 507.12,
+          "market_value": 4771.0,
+          "cost_basis": 4999.98,
+          "pl_usd": -228.98,
+          "pl_pct": -4.58
+        }
+      ],
+      "is_leveraged": false,
+      "rank": 2
+    },
+    {
+      "name": "claude",
+      "label": "Claude",
+      "accent": "orange",
+      "total_equity": 92594.67,
+      "total_ret_pct": -7.41,
+      "portfolio_value": 91899.84,
+      "cost_basis": 105091.95,
+      "ret_pct": -12.55,
+      "days_first": 19,
+      "n_positions": 5,
+      "cash": 694.83,
+      "spent_usd": 2.67,
+      "budget_usd": 10.0,
+      "budget_pct": 26.7,
+      "positions": [
+        {
+          "ticker": "AVGO",
+          "qty": 72.5838,
+          "avg_entry_price": 358.21,
+          "current_price": 322.23,
+          "market_value": 23388.67,
+          "cost_basis": 25999.99,
+          "pl_usd": -2611.32,
+          "pl_pct": -10.04
+        },
+        {
+          "ticker": "GOOGL",
+          "qty": 79.1263,
+          "avg_entry_price": 351.24,
+          "current_price": 278.99,
+          "market_value": 22075.45,
+          "cost_basis": 27792.03,
+          "pl_usd": -5716.58,
+          "pl_pct": -20.57
+        },
+        {
+          "ticker": "MSFT",
+          "qty": 33.9058,
+          "avg_entry_price": 510.24,
+          "current_price": 507.12,
+          "market_value": 17194.31,
+          "cost_basis": 17299.98,
+          "pl_usd": -105.67,
+          "pl_pct": -0.61
+        },
+        {
+          "ticker": "META",
+          "qty": 26.8391,
+          "avg_entry_price": 745.18,
+          "current_price": 606.73,
+          "market_value": 16284.11,
+          "cost_basis": 19999.96,
+          "pl_usd": -3715.85,
+          "pl_pct": -18.58
+        },
+        {
+          "ticker": "NVDA",
+          "qty": 64.126,
+          "avg_entry_price": 218.32,
+          "current_price": 202.06,
+          "market_value": 12957.3,
+          "cost_basis": 13999.99,
+          "pl_usd": -1042.69,
+          "pl_pct": -7.45
         }
       ],
       "is_leveraged": false,
@@ -963,8 +963,8 @@
         },
         {
           "date": "2026-11-03",
-          "ret_pct": NaN,
-          "portfolio_value": NaN
+          "ret_pct": -3.34,
+          "portfolio_value": 96664.12
         }
       ],
       "is_benchmark": false
@@ -1526,8 +1526,8 @@
         },
         {
           "date": "2026-11-03",
-          "ret_pct": NaN,
-          "portfolio_value": NaN
+          "ret_pct": -7.41,
+          "portfolio_value": 92594.67
         }
       ],
       "is_benchmark": false
@@ -2089,8 +2089,8 @@
         },
         {
           "date": "2026-11-03",
-          "ret_pct": NaN,
-          "portfolio_value": NaN
+          "ret_pct": 2.51,
+          "portfolio_value": 102509.86
         }
       ],
       "is_benchmark": false
@@ -2652,8 +2652,8 @@
         },
         {
           "date": "2026-11-03",
-          "ret_pct": NaN,
-          "portfolio_value": NaN
+          "ret_pct": -7.59,
+          "portfolio_value": 92408.83
         }
       ],
       "is_benchmark": true
