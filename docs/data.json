@@ -1,14 +1,124 @@
 {
   "leaderboard": [
     {
+      "name": "chatgpt",
+      "label": "ChatGPT",
+      "accent": "emerald",
+      "total_equity": NaN,
+      "total_ret_pct": NaN,
+      "portfolio_value": NaN,
+      "cost_basis": 54454.86,
+      "ret_pct": NaN,
+      "days_first": 61,
+      "n_positions": 2,
+      "cash": 46970.95,
+      "spent_usd": 1.58,
+      "budget_usd": 10.0,
+      "budget_pct": 15.8,
+      "positions": [
+        {
+          "ticker": "MSFT",
+          "qty": 44.208,
+          "avg_entry_price": 552.79,
+          "current_price": NaN,
+          "market_value": NaN,
+          "cost_basis": 24437.78,
+          "pl_usd": NaN,
+          "pl_pct": NaN
+        },
+        {
+          "ticker": "NVDA",
+          "qty": 132.9619,
+          "avg_entry_price": 225.76,
+          "current_price": NaN,
+          "market_value": NaN,
+          "cost_basis": 30017.08,
+          "pl_usd": NaN,
+          "pl_pct": NaN
+        }
+      ],
+      "is_leveraged": false,
+      "rank": 1
+    },
+    {
+      "name": "claude",
+      "label": "Claude",
+      "accent": "orange",
+      "total_equity": NaN,
+      "total_ret_pct": NaN,
+      "portfolio_value": NaN,
+      "cost_basis": 104312.09,
+      "ret_pct": NaN,
+      "days_first": 22,
+      "n_positions": 5,
+      "cash": 428.5,
+      "spent_usd": 2.92,
+      "budget_usd": 10.0,
+      "budget_pct": 29.2,
+      "positions": [
+        {
+          "ticker": "AVGO",
+          "qty": 72.5838,
+          "avg_entry_price": 358.21,
+          "current_price": NaN,
+          "market_value": NaN,
+          "cost_basis": 25999.99,
+          "pl_usd": NaN,
+          "pl_pct": NaN
+        },
+        {
+          "ticker": "GOOGL",
+          "qty": 79.1263,
+          "avg_entry_price": 351.24,
+          "current_price": NaN,
+          "market_value": NaN,
+          "cost_basis": 27792.03,
+          "pl_usd": NaN,
+          "pl_pct": NaN
+        },
+        {
+          "ticker": "META",
+          "qty": 37.9591,
+          "avg_entry_price": 703.92,
+          "current_price": NaN,
+          "market_value": NaN,
+          "cost_basis": 26720.12,
+          "pl_usd": NaN,
+          "pl_pct": NaN
+        },
+        {
+          "ticker": "MSFT",
+          "qty": 33.9058,
+          "avg_entry_price": 510.24,
+          "current_price": NaN,
+          "market_value": NaN,
+          "cost_basis": 17299.98,
+          "pl_usd": NaN,
+          "pl_pct": NaN
+        },
+        {
+          "ticker": "TSLA",
+          "qty": 17.9846,
+          "avg_entry_price": 361.42,
+          "current_price": NaN,
+          "market_value": NaN,
+          "cost_basis": 6499.97,
+          "pl_usd": NaN,
+          "pl_pct": NaN
+        }
+      ],
+      "is_leveraged": false,
+      "rank": 2
+    },
+    {
       "name": "gemini",
       "label": "Gemini",
       "accent": "blue",
-      "total_equity": 99155.79,
-      "total_ret_pct": -0.84,
-      "portfolio_value": 98228.47,
+      "total_equity": NaN,
+      "total_ret_pct": NaN,
+      "portfolio_value": NaN,
       "cost_basis": 116295.14,
-      "ret_pct": -15.54,
+      "ret_pct": NaN,
       "days_first": 26,
       "n_positions": 4,
       "cash": 927.32,
@@ -20,161 +130,41 @@
           "ticker": "AMZN",
           "qty": 109.1063,
           "avg_entry_price": 247.47,
-          "current_price": 257.75,
-          "market_value": 28122.14,
+          "current_price": NaN,
+          "market_value": NaN,
           "cost_basis": 26999.99,
-          "pl_usd": 1122.15,
-          "pl_pct": 4.16
+          "pl_usd": NaN,
+          "pl_pct": NaN
         },
         {
           "ticker": "AVGO",
           "qty": 77.6787,
           "avg_entry_price": 358.78,
-          "current_price": 333.4,
-          "market_value": 25898.09,
+          "current_price": NaN,
+          "market_value": NaN,
           "cost_basis": 27869.58,
-          "pl_usd": -1971.49,
-          "pl_pct": -7.07
+          "pl_usd": NaN,
+          "pl_pct": NaN
         },
         {
           "ticker": "GOOGL",
           "qty": 84.5784,
           "avg_entry_price": 365.27,
-          "current_price": 283.72,
-          "market_value": 23996.58,
+          "current_price": NaN,
+          "market_value": NaN,
           "cost_basis": 30894.22,
-          "pl_usd": -6897.64,
-          "pl_pct": -22.33
+          "pl_usd": NaN,
+          "pl_pct": NaN
         },
         {
           "ticker": "NVDA",
           "qty": 129.4458,
           "avg_entry_price": 235.86,
-          "current_price": 156.14,
-          "market_value": 20211.66,
+          "current_price": NaN,
+          "market_value": NaN,
           "cost_basis": 30531.35,
-          "pl_usd": -10319.69,
-          "pl_pct": -33.8
-        }
-      ],
-      "is_leveraged": false,
-      "rank": 1
-    },
-    {
-      "name": "claude",
-      "label": "Claude",
-      "accent": "orange",
-      "total_equity": 95247.97,
-      "total_ret_pct": -4.75,
-      "portfolio_value": 94819.47,
-      "cost_basis": 104312.09,
-      "ret_pct": -9.1,
-      "days_first": 22,
-      "n_positions": 5,
-      "cash": 428.5,
-      "spent_usd": 2.9,
-      "budget_usd": 10.0,
-      "budget_pct": 29.0,
-      "positions": [
-        {
-          "ticker": "AVGO",
-          "qty": 72.5838,
-          "avg_entry_price": 358.21,
-          "current_price": 333.4,
-          "market_value": 24199.43,
-          "cost_basis": 25999.99,
-          "pl_usd": -1800.56,
-          "pl_pct": -6.93
-        },
-        {
-          "ticker": "META",
-          "qty": 37.9591,
-          "avg_entry_price": 703.92,
-          "current_price": 626.41,
-          "market_value": 23777.96,
-          "cost_basis": 26720.12,
-          "pl_usd": -2942.16,
-          "pl_pct": -11.01
-        },
-        {
-          "ticker": "GOOGL",
-          "qty": 79.1263,
-          "avg_entry_price": 351.24,
-          "current_price": 283.72,
-          "market_value": 22449.72,
-          "cost_basis": 27792.03,
-          "pl_usd": -5342.31,
-          "pl_pct": -19.22
-        },
-        {
-          "ticker": "MSFT",
-          "qty": 33.9058,
-          "avg_entry_price": 510.24,
-          "current_price": 517.99,
-          "market_value": 17562.87,
-          "cost_basis": 17299.98,
-          "pl_usd": 262.89,
-          "pl_pct": 1.52
-        },
-        {
-          "ticker": "TSLA",
-          "qty": 17.9846,
-          "avg_entry_price": 361.42,
-          "current_price": 379.74,
-          "market_value": 6829.49,
-          "cost_basis": 6499.97,
-          "pl_usd": 329.52,
-          "pl_pct": 5.07
-        }
-      ],
-      "is_leveraged": false,
-      "rank": 2
-    },
-    {
-      "name": "chatgpt",
-      "label": "ChatGPT",
-      "accent": "emerald",
-      "total_equity": 90515.84,
-      "total_ret_pct": -9.48,
-      "portfolio_value": 65684.8,
-      "cost_basis": 77005.98,
-      "ret_pct": -14.7,
-      "days_first": 61,
-      "n_positions": 3,
-      "cash": 24831.04,
-      "spent_usd": 1.57,
-      "budget_usd": 10.0,
-      "budget_pct": 15.7,
-      "positions": [
-        {
-          "ticker": "MSFT",
-          "qty": 44.208,
-          "avg_entry_price": 552.79,
-          "current_price": 517.99,
-          "market_value": 22899.31,
-          "cost_basis": 24437.78,
-          "pl_usd": -1538.47,
-          "pl_pct": -6.3
-        },
-        {
-          "ticker": "AVGO",
-          "qty": 66.0612,
-          "avg_entry_price": 341.37,
-          "current_price": 333.4,
-          "market_value": 22024.82,
-          "cost_basis": 22551.12,
-          "pl_usd": -526.3,
-          "pl_pct": -2.33
-        },
-        {
-          "ticker": "NVDA",
-          "qty": 132.9619,
-          "avg_entry_price": 225.76,
-          "current_price": 156.14,
-          "market_value": 20760.67,
-          "cost_basis": 30017.08,
-          "pl_usd": -9256.41,
-          "pl_pct": -30.84
+          "pl_usd": NaN,
+          "pl_pct": NaN
         }
       ],
       "is_leveraged": false,
@@ -183,48 +173,41 @@
   ],
   "today_decisions": {
     "chatgpt": {
-      "date": "2026-11-16",
+      "date": "2026-11-17",
       "ai": "chatgpt",
       "label": "ChatGPT",
-      "action": "SELL",
-      "ticker": "AVGO",
-      "amount": null,
-      "reason": "Close AVGO to reduce concentration and free cash for higher-conviction opportunities like NVDA.",
-      "confidence": 4,
-      "nav_before": 90526.27,
-      "cash_before": 24831.04,
+      "action": "BUY",
+      "ticker": "ORCL",
+      "amount": 5000.0,
+      "reason": "Orcl looks like a low-volatility value rebound with RSI support; adding a small $5k stake diversifies away from heavy NVDA/MSFT exposure.",
+      "confidence": 3,
+      "nav_before": 90306.7,
+      "cash_before": 46970.95,
       "research": {
         "candidates": [
           {
             "ticker": "NVDA",
-            "bull": "Deeply oversold after a sharp selloff; low forward P/E (~9.9), massive free cash flow and a high analyst target mean (~$269) suggest significant rebound potential if governance noise fades and sentiment normalizes.",
-            "bear": "Founder/governance scandal and negative momentum could keep sellers active and delay any recovery despite strong fundamentals.",
+            "bull": "Deeply oversold after governance/CEO headlines; forward P/E ~9.8, industry-leading margins and massive free cash flow make a mean-reversion/value bounce likely.",
+            "bear": "Management turmoil, regulatory scrutiny and heavy momentum selling could keep the stock depressed or push it lower before any recovery.",
             "lean": "BUY"
           },
           {
-            "ticker": "AVGO",
-            "bull": "Broad semiconductor exposure and recent 5-day outperformance support continued upside and it remains a high-quality core holding.",
-            "bear": "Position is already large relative to NAV; trimming into strength reduces concentration risk and frees cash for higher-expected-return opportunities.",
-            "lean": "SELL"
+            "ticker": "MSFT",
+            "bull": "High-quality cloud and AI exposure with durable cash flow and moderate forward valuation supports steady upside over time.",
+            "bear": "Recent multiple compression and short-term weakness, plus our existing large exposure, raise the risk of further near-term drawdown.",
+            "lean": "HOLD"
           },
           {
-            "ticker": "MSFT",
-            "bull": "Market-leading cloud franchises and defensive cash flows make MSFT a stable cornerstone during tech volatility.",
-            "bear": "Near-term weakness and limited immediate upside vs. deeply discounted peers; selling now would crystallize losses but might free cash for higher-conviction trades.",
-            "lean": "HOLD"
+            "ticker": "ORCL",
+            "bull": "Low RSI (~30) and stable enterprise software cash flows suggest limited downside and a decent technical setup for a rebound.",
+            "bear": "Slower growth trajectory versus cloud peers and structural headwinds could limit upside and keep the stock range-bound.",
+            "lean": "BUY"
           }
         ],
-        "summary": "Tech-wide pullback with NVDA deeply oversold and attractive from a risk/reward standpoint \u2014 prefer adding NVDA and trimming AVGO while keeping MSFT as the portfolio anchor.",
+        "summary": "Market breadth is soft; NVDA is the most interesting high-upside asymmetric trade (deeply oversold with strong fundamentals despite governance noise), while MSFT is a core hold and ORCL offers a lower-volatility value play.",
         "preferred_action": "BUY",
         "preferred_ticker": "NVDA",
         "tools_used": [
-          {
-            "name": "get_history",
-            "args": {
-              "ticker": "NVDA",
-              "days": 30
-            }
-          },
           {
             "name": "get_news",
             "args": {
@@ -233,70 +216,78 @@
             }
           },
           {
+            "name": "get_history",
+            "args": {
+              "ticker": "NVDA",
+              "days": 30
+            }
+          },
+          {
+            "name": "get_history",
+            "args": {
+              "ticker": "MSFT",
+              "days": 30
+            }
+          },
+          {
             "name": "get_financials",
             "args": {
               "ticker": "NVDA"
             }
           },
           {
-            "name": "get_analyst_ratings",
-            "args": {
-              "ticker": "NVDA"
-            }
-          },
-          {
             "name": "get_financials",
             "args": {
-              "ticker": "GOOGL"
+              "ticker": "MSFT"
             }
           }
         ]
       },
       "tokens": {
-        "input": 16084,
-        "output": 5206
+        "input": 18436,
+        "output": 6104
       },
-      "cost_usd": 0.0144,
+      "cost_usd": 0.0168,
       "order": {
-        "order_id": "92d4f0dc-c4c0-42a6-999e-ec5ed2df361f",
-        "status": "orderstatus.accepted"
+        "order_id": "e00511bf-6089-457e-871a-97a02897d013",
+        "status": "accepted"
       },
       "dry_run": false,
-      "submitted_at": "2026-11-16T22:58:49.848248+00:00"
+      "submitted_at": "2026-11-17T21:52:27.901568+00:00"
     },
     "claude": {
-      "date": "2026-11-16",
+      "date": "2026-11-17",
       "ai": "claude",
       "label": "Claude",
       "action": "HOLD",
       "ticker": null,
       "amount": null,
-      "reason": "Cash-starved with strong recovery thesis in META/TSLA. NVDA oversold but can't deploy $5k min. Preserve capital.",
+      "reason": "NVDA oversold but cash crunch + AVGO overweight signal. Hold recovery thesis, preserve dry powder.",
       "confidence": 3,
-      "nav_before": 95283.4,
+      "nav_before": 94963.17,
       "cash_before": 428.5,
       "research": {
         "candidates": [
           {
             "ticker": "NVDA",
-            "bull": "Extreme oversold (RSI 16, -12.61% 5d) with analyst mean target of $269 (72% upside) suggests panic capitulation and mean-reversion setup.",
-            "bear": "Headline 'draconian valuation' and leadership uncertainty around Jensen Huang may signal deeper structural weakness than oversold technicals suggest.",
+            "bull": "Extreme oversold (RSI 16.3) with 71% analyst target upside and forward P/E 9.8x\u2014classic mean-reversion entry after -27% crash.",
+            "bear": "Sector rotation risk and potential continued capitulation in AI demand; forward guidance could disappoint despite technical bounce.",
             "lean": "BUY"
           },
           {
-            "ticker": "GOOGL",
-            "bull": "Oversold RSI 31.4 with -4.07% 1d drop presents buying opportunity; already held at good basis ($351.24 avg vs $283.72 current).",
-            "bear": "Continued sector rotation away from mega-cap tech paired with margin compression could extend the selloff further.",
+            "ticker": "AVGO",
+            "bull": "Outperforming peers (+2.9% 5d) with momentum into strength; avoids broader tech selloff headwinds.",
+            "bear": "Billionaire Tepper dumping stake signals potential sector pivot; position already 26.4% overweight in portfolio with limited dry powder.",
             "lean": "HOLD"
           },
           {
-            "ticker": "META",
-            "bull": "Modest RSI 51.8 and -2.38% 1d drop shows resilience; held at $703.92 avg with recovery upside as advertising market stabilizes.",
-            "bear": "Concentration risk in portfolio (25% of NAV) suggests already adequately positioned for this thesis.",
+            "ticker": "MSFT",
+            "bull": "Down -5% 5d on broad tech weakness; mega-cap quality and enterprise stickiness likely to rotate back as risk stabilizes.",
+            "bear": "RSI 42 not yet oversold; continued sector selloff could drag bellwether lower before bottoming.",
             "lean": "HOLD"
           }
         ],
-        "summary": "Market in broad selloff with mega-cap tech oversold (NVDA RSI 16, GOOGL RSI 31); NVDA presents 72% upside on analyst targets but I'm cash-starved ($428); best action is HOLD recovery thesis in META/TSLA and preserve capital.",
+        "summary": "NVDA presents classic oversold mean-reversion setup (RSI 16, 71% analyst upside) but cash-starved portfolio limits deployment; AVGO momentum slipping on Tepper capitulation signal; hold recovery thesis in META/TSLA and preserve liquidity.",
         "preferred_action": "HOLD",
         "preferred_ticker": null,
         "tools_used": [
@@ -317,7 +308,7 @@
           {
             "name": "get_news",
             "args": {
-              "ticker": "NVDA",
+              "ticker": "AVGO",
               "n": 3
             }
           },
@@ -326,20 +317,26 @@
             "args": {
               "ticker": "NVDA"
             }
+          },
+          {
+            "name": "get_financials",
+            "args": {
+              "ticker": "NVDA"
+            }
           }
         ]
       },
       "tokens": {
-        "input": 12000,
-        "output": 1781
+        "input": 16209,
+        "output": 1973
       },
-      "cost_usd": 0.0209,
+      "cost_usd": 0.0261,
       "order": null,
       "dry_run": false,
-      "submitted_at": "2026-11-16T22:59:07.934915+00:00"
+      "submitted_at": "2026-11-17T21:52:49.841518+00:00"
     },
     "gemini": {
-      "date": "2026-11-16",
+      "date": "2026-11-17",
       "ai": "gemini",
       "label": "Gemini",
       "action": "ERROR",
@@ -347,14 +344,14 @@
       "amount": null,
       "reason": "agent error: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key not valid. Please pass a valid API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'g",
       "confidence": null,
-      "nav_before": 99020.38,
+      "nav_before": 100734.6,
       "cash_before": 927.32,
       "research": null,
       "tokens": null,
       "cost_usd": 0.0,
       "order": null,
       "dry_run": false,
-      "submitted_at": "2026-11-16T23:27:30.950656+00:00"
+      "submitted_at": "2026-11-17T22:31:19.346679+00:00"
     }
   },
   "chart_series": [
@@ -967,6 +964,11 @@
           "date": "2026-11-17",
           "ret_pct": -9.48,
           "portfolio_value": 90515.84
+        },
+        {
+          "date": "2026-11-18",
+          "ret_pct": NaN,
+          "portfolio_value": NaN
         }
       ],
       "is_benchmark": false
@@ -1580,6 +1582,11 @@
           "date": "2026-11-17",
           "ret_pct": -4.75,
           "portfolio_value": 95247.96
+        },
+        {
+          "date": "2026-11-18",
+          "ret_pct": NaN,
+          "portfolio_value": NaN
         }
       ],
       "is_benchmark": false
@@ -2193,6 +2200,11 @@
           "date": "2026-11-17",
           "ret_pct": -0.84,
           "portfolio_value": 99155.8
+        },
+        {
+          "date": "2026-11-18",
+          "ret_pct": NaN,
+          "portfolio_value": NaN
         }
       ],
       "is_benchmark": false
@@ -2806,6 +2818,11 @@
           "date": "2026-11-17",
           "ret_pct": -10.22,
           "portfolio_value": 89784.82
+        },
+        {
+          "date": "2026-11-18",
+          "ret_pct": NaN,
+          "portfolio_value": NaN
         }
       ],
       "is_benchmark": true
@@ -2813,18 +2830,18 @@
   ],
   "tool_usage": {
     "chatgpt": {
-      "get_news": 147,
-      "get_history": 302,
-      "get_financials": 121,
+      "get_news": 148,
+      "get_history": 304,
+      "get_financials": 123,
       "get_analyst_ratings": 27,
       "read_own_trades": 2
     },
     "claude": {
-      "get_news": 178,
-      "read_own_trades": 116,
-      "get_history": 174,
-      "get_financials": 32,
-      "get_analyst_ratings": 132
+      "get_news": 179,
+      "read_own_trades": 117,
+      "get_history": 175,
+      "get_financials": 33,
+      "get_analyst_ratings": 133
     },
     "gemini": {
       "get_news": 225,
@@ -2835,8 +2852,8 @@
     }
   },
   "total_cost_per_ai": {
-    "chatgpt": 1.5671999999999995,
-    "claude": 2.8968000000000003,
+    "chatgpt": 1.5839999999999994,
+    "claude": 2.9229000000000003,
     "gemini": 0.33820000000000006
   },
   "orders_per_ai": [
@@ -2845,6 +2862,19 @@
       "label": "ChatGPT",
       "accent": "emerald",
       "orders": [
+        {
+          "ai": "chatgpt",
+          "label": "ChatGPT",
+          "order_id": "92d4f0dc-c4c0-42a6-999e-ec5ed2df361f",
+          "side": "sell",
+          "symbol": "AVGO",
+          "filled_qty": 66.0612,
+          "filled_avg_price": 335.1422,
+          "notional": 22139.91,
+          "status": "filled",
+          "submitted_at": "2026-11-17 09:00:23.153015+00:00",
+          "filled_at": "2026-11-17 14:32:36.269838+00:00"
+        },
         {
           "ai": "chatgpt",
           "label": "ChatGPT",
