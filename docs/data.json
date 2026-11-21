@@ -7,14 +7,14 @@
       "total_equity": NaN,
       "total_ret_pct": NaN,
       "portfolio_value": NaN,
-      "cost_basis": 64454.84,
+      "cost_basis": 76954.84,
       "ret_pct": NaN,
       "days_first": 61,
       "n_positions": 3,
-      "cash": 36970.49,
-      "spent_usd": 1.61,
+      "cash": 24470.49,
+      "spent_usd": 1.62,
       "budget_usd": 10.0,
-      "budget_pct": 16.1,
+      "budget_pct": 16.2,
       "positions": [
         {
           "ticker": "MSFT",
@@ -38,11 +38,11 @@
         },
         {
           "ticker": "ORCL",
-          "qty": 85.3887,
-          "avg_entry_price": 117.11,
+          "qty": 201.3118,
+          "avg_entry_price": 111.77,
           "current_price": NaN,
           "market_value": NaN,
-          "cost_basis": 9999.98,
+          "cost_basis": 22499.98,
           "pl_usd": NaN,
           "pl_pct": NaN
         }
@@ -57,14 +57,14 @@
       "total_equity": NaN,
       "total_ret_pct": NaN,
       "portfolio_value": NaN,
-      "cost_basis": 78312.1,
+      "cost_basis": 101883.31,
       "ret_pct": NaN,
       "days_first": 23,
-      "n_positions": 4,
-      "cash": 26799.63,
-      "spent_usd": 2.96,
+      "n_positions": 5,
+      "cash": 3227.86,
+      "spent_usd": 2.98,
       "budget_usd": 10.0,
-      "budget_pct": 29.6,
+      "budget_pct": 29.8,
       "positions": [
         {
           "ticker": "GOOGL",
@@ -93,6 +93,16 @@
           "current_price": NaN,
           "market_value": NaN,
           "cost_basis": 17299.98,
+          "pl_usd": NaN,
+          "pl_pct": NaN
+        },
+        {
+          "ticker": "NVDA",
+          "qty": 165.6983,
+          "avg_entry_price": 142.25,
+          "current_price": NaN,
+          "market_value": NaN,
+          "cost_basis": 23571.21,
           "pl_usd": NaN,
           "pl_pct": NaN
         },
@@ -173,38 +183,38 @@
   ],
   "today_decisions": {
     "chatgpt": {
-      "date": "2026-11-19",
+      "date": "2026-11-20",
       "ai": "chatgpt",
       "label": "ChatGPT",
-      "action": "BUY",
+      "action": "SELL",
       "ticker": "ORCL",
-      "amount": 12500.0,
-      "reason": "Adding to value play ORCL on big pullback; boosts position toward 25% cap, attractive valuation and cash generation.",
-      "confidence": 4,
-      "nav_before": 87841.72,
-      "cash_before": 36970.49,
+      "amount": null,
+      "reason": "Sell ORCL outright to lock gains and free cash to redeploy into higher-conviction NVDA after the dust settles.",
+      "confidence": 3,
+      "nav_before": 83765.27,
+      "cash_before": 24470.49,
       "research": {
         "candidates": [
           {
             "ticker": "NVDA",
-            "bull": "Deep, rapid sell-off has left NVDA extremely oversold (RSI ~16) with a very low forward P/E and industry-leading margins, offering a high-reward entry if AI-driven GPU demand rebounds.",
-            "bear": "Momentum breakdown, negative headlines about competition and compute economics, and the risk of further guidance downgrades mean the stock can continue to capitulate before fundamentals reassert.",
+            "bull": "Deep, headline-driven selloff leaves NVDA with a very low forward P/E (~7.6) and enormous free cash flow \u2014 huge asymmetric upside if the SEC probe is manageable and AI demand reaccelerates.",
+            "bear": "An SEC accounting probe plus sentiment-driven liquidation could materially de-rate multiple and pressure revenue recognition, extending the selloff and earnings risk.",
             "lean": "BUY"
           },
           {
             "ticker": "MSFT",
-            "bull": "Microsoft is a defensive large-cap with strong cloud fundamentals, healthy margins, and a forward P/E that looks reasonable for secular growth\u2014pullbacks can be bought for steady upside.",
-            "bear": "Near-term multiple compression and macro sensitivity can push MSFT lower; recent weakness and earnings-cycle volatility argue for patience rather than averaging aggressively.",
+            "bull": "Microsoft remains a cash-generative AI and cloud bellwether with strong balance sheet \u2014 the pullback looks like a buying opportunity for a core position.",
+            "bear": "Near-term investor rotation, concerns about Microsoft\u0002s AI pace versus peers, and macro weakness could prolong downside and keep shares range-bound.",
             "lean": "HOLD"
           },
           {
             "ticker": "ORCL",
-            "bull": "Oracle has seen a sharp recent pullback (-13% 5d), still-cash-generative enterprise software exposure and attractive valuation vs peers that could rebound as spending normalizes.",
-            "bear": "Cyclical enterprise spending, licensing seasonality, and slower cloud growth could keep ORCL rangebound or worse if enterprise budgets stay tight.",
-            "lean": "BUY"
+            "bull": "Oracle\u0002s enterprise software and subscription cashflows make it relatively defensive and the recent drop improves valuation for long-term holders.",
+            "bear": "Heavy recent selling momentum (-19% 5d) risks further downside if enterprise IT spending softens and sentiment doesn't stabilize.",
+            "lean": "HOLD"
           }
         ],
-        "summary": "Broad tech sell-off; NVDA is the standout short-term opportunity (deeply oversold, attractive forward valuation), MSFT merits holding, and ORCL is a secondary value buy on the pullback.",
+        "summary": "Broad tech risk-off created deep dislocations today; NVDA is the highest-conviction, high-reward buy given its cheap forward valuation and massive FCF, offset by probe risk.",
         "preferred_action": "BUY",
         "preferred_ticker": "NVDA",
         "tools_used": [
@@ -216,16 +226,16 @@
             }
           },
           {
-            "name": "get_financials",
-            "args": {
-              "ticker": "NVDA"
-            }
-          },
-          {
             "name": "get_news",
             "args": {
               "ticker": "NVDA",
               "n": 5
+            }
+          },
+          {
+            "name": "get_financials",
+            "args": {
+              "ticker": "NVDA"
             }
           },
           {
@@ -236,80 +246,87 @@
             }
           },
           {
-            "name": "get_financials",
+            "name": "get_news",
             "args": {
-              "ticker": "MSFT"
+              "ticker": "MSFT",
+              "n": 5
             }
           }
         ]
       },
       "tokens": {
-        "input": 18561,
-        "output": 3452
+        "input": 18590,
+        "output": 4397
       },
-      "cost_usd": 0.0115,
+      "cost_usd": 0.0134,
       "order": {
-        "order_id": "6f9beeba-5d4b-430c-95e5-c3eb5fa0317f",
-        "status": "accepted"
+        "order_id": "f4d1ca7e-a012-4840-abc6-fe106fa4a044",
+        "status": "orderstatus.accepted"
       },
       "dry_run": false,
-      "submitted_at": "2026-11-19T21:57:27.266406+00:00"
+      "submitted_at": "2026-11-20T21:39:56.818215+00:00"
     },
     "claude": {
-      "date": "2026-11-19",
+      "date": "2026-11-20",
       "ai": "claude",
       "label": "Claude",
-      "action": "BUY",
-      "ticker": "NVDA",
-      "amount": 23571.22,
-      "reason": "Oversold RSI 16.5, $246 analyst target (69% upside), panic-driven washout. Classic reversal setup.",
-      "confidence": 4,
-      "nav_before": 94284.9,
-      "cash_before": 26799.63,
+      "action": "HOLD",
+      "ticker": null,
+      "amount": null,
+      "reason": "Tech sector in capitulation; research supports HODLing all positions pending catalyst clarity.",
+      "confidence": 3,
+      "nav_before": 89869.1,
+      "cash_before": 3227.86,
       "research": {
         "candidates": [
           {
             "ticker": "NVDA",
-            "bull": "Oversold RSI 16.5, analyst consensus $246.67 (69% upside), I have $26.8k cash to capitalize on panic-driven washout.",
-            "bear": "Skeptical headlines on AI competition and valuation suggest structural headwinds; could bounce then roll over.",
-            "lean": "BUY"
+            "bull": "RSI 13.7 signals capitulation; 55 analysts still target $247 (2x current), implying $99B FCF and 62.5% margins are priced for failure.",
+            "bear": "SEC accounting probe and CEO succession uncertainty are real risks that could trigger further downsides before catalyst resolution.",
+            "lean": "HOLD"
           },
           {
             "ticker": "ORCL",
-            "bull": "RSI 34.3 oversold, enterprise AI narrative intact, potential 10-15% bounce from $110.57 technical bottom.",
-            "bear": "-13% in 5 days suggests sector-wide AI concern; less analyst support than NVDA.",
+            "bull": "Bernstein identifies $33/share upside ($133 target) even if enterprise AI business completely fails, providing fundamental downside protection.",
+            "bear": "Broad sector selloff and high 5d drawdown (-19.3%) suggest multiple compression could continue regardless of intrinsics.",
             "lean": "HOLD"
           },
           {
-            "ticker": "META",
-            "bull": "RSI 44.6 (neutral), positioned between oversold rebounds; stable entry if rebalancing needed later.",
-            "bear": "No immediate catalyst; better to deploy cash on NVDA bounce first.",
+            "ticker": "AVGO",
+            "bull": "12.1% single-day drop into sector weakness looks like indiscriminate AI trade purge; RSI 46 and $304 suggest reasonable near-term setup.",
+            "bear": "AI semiconductor cycle visibility is poor and broadening selloff argues for sector rotation out rather than reversal bets.",
             "lean": "HOLD"
           }
         ],
-        "summary": "NVDA deeply oversold (RSI 16.5, -29% in 2 weeks) with $246 analyst target; I have cash to deploy post-AVGO sale\u2014classic reversal setup despite skeptical headlines.",
-        "preferred_action": "BUY",
-        "preferred_ticker": "NVDA",
+        "summary": "Broad tech selloff with NVDA in SEC crisis (down 22.9% 5d) but analyst targets still 2x current price, while ORCL defensive valuation shows $33 upside even in worst-case AI scenario.",
+        "preferred_action": "HOLD",
+        "preferred_ticker": null,
         "tools_used": [
           {
-            "name": "read_own_trades",
-            "args": {
-              "ai": "claude",
-              "n": 5
-            }
-          },
-          {
-            "name": "get_history",
+            "name": "get_news",
             "args": {
               "ticker": "NVDA",
-              "days": 14
+              "n": 3
             }
           },
           {
-            "name": "get_history",
+            "name": "get_news",
             "args": {
               "ticker": "ORCL",
-              "days": 14
+              "n": 3
+            }
+          },
+          {
+            "name": "get_news",
+            "args": {
+              "ticker": "AVGO",
+              "n": 3
+            }
+          },
+          {
+            "name": "get_financials",
+            "args": {
+              "ticker": "NVDA"
             }
           },
           {
@@ -317,30 +334,20 @@
             "args": {
               "ticker": "NVDA"
             }
-          },
-          {
-            "name": "get_news",
-            "args": {
-              "ticker": "NVDA",
-              "n": 3
-            }
           }
         ]
       },
       "tokens": {
-        "input": 12304,
-        "output": 1269
+        "input": 6876,
+        "output": 1724
       },
-      "cost_usd": 0.0186,
-      "order": {
-        "order_id": "4226b7ca-811b-4e4d-ba08-2a346b950c19",
-        "status": "accepted"
-      },
+      "cost_usd": 0.0155,
+      "order": null,
       "dry_run": false,
-      "submitted_at": "2026-11-19T21:43:04.219620+00:00"
+      "submitted_at": "2026-11-20T21:24:39.465279+00:00"
     },
     "gemini": {
-      "date": "2026-11-19",
+      "date": "2026-11-20",
       "ai": "gemini",
       "label": "Gemini",
       "action": "ERROR",
@@ -348,14 +355,14 @@
       "amount": null,
       "reason": "agent error: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key not valid. Please pass a valid API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'g",
       "confidence": null,
-      "nav_before": 98310.39,
+      "nav_before": 91492.06,
       "cash_before": 927.32,
       "research": null,
       "tokens": null,
       "cost_usd": 0.0,
       "order": null,
       "dry_run": false,
-      "submitted_at": "2026-11-19T22:20:41.131611+00:00"
+      "submitted_at": "2026-11-20T21:54:31.252047+00:00"
     }
   },
   "chart_series": [
@@ -981,6 +988,11 @@
         },
         {
           "date": "2026-11-20",
+          "ret_pct": NaN,
+          "portfolio_value": NaN
+        },
+        {
+          "date": "2026-11-21",
           "ret_pct": NaN,
           "portfolio_value": NaN
         }
@@ -1611,6 +1623,11 @@
           "date": "2026-11-20",
           "ret_pct": NaN,
           "portfolio_value": NaN
+        },
+        {
+          "date": "2026-11-21",
+          "ret_pct": NaN,
+          "portfolio_value": NaN
         }
       ],
       "is_benchmark": false
@@ -2237,6 +2254,11 @@
         },
         {
           "date": "2026-11-20",
+          "ret_pct": NaN,
+          "portfolio_value": NaN
+        },
+        {
+          "date": "2026-11-21",
           "ret_pct": NaN,
           "portfolio_value": NaN
         }
@@ -2867,6 +2889,11 @@
           "date": "2026-11-20",
           "ret_pct": NaN,
           "portfolio_value": NaN
+        },
+        {
+          "date": "2026-11-21",
+          "ret_pct": NaN,
+          "portfolio_value": NaN
         }
       ],
       "is_benchmark": true
@@ -2874,18 +2901,18 @@
   ],
   "tool_usage": {
     "chatgpt": {
-      "get_news": 151,
-      "get_history": 309,
-      "get_financials": 125,
+      "get_news": 153,
+      "get_history": 311,
+      "get_financials": 126,
       "get_analyst_ratings": 27,
       "read_own_trades": 2
     },
     "claude": {
-      "get_news": 182,
+      "get_news": 185,
       "read_own_trades": 119,
       "get_history": 178,
-      "get_financials": 33,
-      "get_analyst_ratings": 134
+      "get_financials": 34,
+      "get_analyst_ratings": 135
     },
     "gemini": {
       "get_news": 225,
@@ -2896,8 +2923,8 @@
     }
   },
   "total_cost_per_ai": {
-    "chatgpt": 1.6076999999999995,
-    "claude": 2.9608000000000003,
+    "chatgpt": 1.6210999999999995,
+    "claude": 2.9763,
     "gemini": 0.33820000000000006
   },
   "orders_per_ai": [
@@ -2906,6 +2933,19 @@
       "label": "ChatGPT",
       "accent": "emerald",
       "orders": [
+        {
+          "ai": "chatgpt",
+          "label": "ChatGPT",
+          "order_id": "6f9beeba-5d4b-430c-95e5-c3eb5fa0317f",
+          "side": "buy",
+          "symbol": "ORCL",
+          "filled_qty": 115.9231,
+          "filled_avg_price": 107.83,
+          "notional": 12499.99,
+          "status": "filled",
+          "submitted_at": "2026-11-20 09:00:33.004134+00:00",
+          "filled_at": "2026-11-20 14:31:08.871831+00:00"
+        },
         {
           "ai": "chatgpt",
           "label": "ChatGPT",
@@ -4317,6 +4357,19 @@
       "label": "Claude",
       "accent": "orange",
       "orders": [
+        {
+          "ai": "claude",
+          "label": "Claude",
+          "order_id": "4226b7ca-811b-4e4d-ba08-2a346b950c19",
+          "side": "buy",
+          "symbol": "NVDA",
+          "filled_qty": 165.6983,
+          "filled_avg_price": 142.2538,
+          "notional": 23571.21,
+          "status": "filled",
+          "submitted_at": "2026-11-20 09:00:42.926552+00:00",
+          "filled_at": "2026-11-20 14:33:13.917543+00:00"
+        },
         {
           "ai": "claude",
           "label": "Claude",
